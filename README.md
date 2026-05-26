@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# plus none
 
-## Getting Started
+The live feed at [plusnone.fetewell.com](https://plusnone.fetewell.com).
 
-First, run the development server:
+Single attendees film a 15-second selfie video, submit it via WPForms, and appear on this page for 12 hours so other singles at the wedding can go say hi in person. No DMs, no likes, no matching — the page is intentionally limited.
+
+## Stack
+
+- Next.js 16 (App Router) + React 19
+- TypeScript, Tailwind CSS v4 (CSS-first config via `@theme`)
+- Airtable as the data store, no other DB
+- Vercel for hosting
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local       # fill in the values
+npm install
+npm run dev                      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Required env vars (see `.env.example`):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `AIRTABLE_API_KEY` — Airtable personal access token, scopes `data.records:read` and `data.records:write`
+- `AIRTABLE_BASE_ID` — `app1bnUYIncirnxRn`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How the 12-hour window works
 
-## Learn More
+Records are **never** auto-deleted from Airtable. The 12-hour window is purely a visibility filter on the public feed.
 
-To learn more about Next.js, take a look at the following resources:
+Each venue feed queries Airtable per slug with:
+`AND(NOT({Consent Acknowledged} = BLANK()), {Venue} = '<venue label>', DATETIME_DIFF(NOW(), CREATED_TIME(), 'hours') < 12)`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+So anything older than 12h immediately disappears from the page, but the underlying record stays in Airtable forever — available for the podcast, business records, and follow-up.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The consent text on the form reflects this: "auto-clears from public view after 12 hours" (not "auto-clears after 12 hours"). No user-facing promise of deletion.
 
-## Deploy on Vercel
+To purge records manually (between events, or to clear out test/seed data), use the [Manual flush](#manual-flush) section below.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Rotating `AIRTABLE_API_KEY`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Generate a new token at <https://airtable.com/create/tokens> with scopes `data.records:read` + `data.records:write`, scoped to base `app1bnUYIncirnxRn`.
+2. In Vercel: Project → Settings → Environment Variables → edit `AIRTABLE_API_KEY`, paste the new value, save.
+3. Redeploy (Deployments → … → Redeploy) so the new value takes effect.
+4. Confirm the page still loads, then revoke the old token in Airtable.
+
+## Manual flush
+
+Wipes **every record** in the Submissions table. Use between events or to get out of a bad state.
+
+```bash
+CONFIRM=yes npm run flush
+```
+
+The `CONFIRM=yes` guard prevents accidents. Reads `AIRTABLE_API_KEY` and `AIRTABLE_BASE_ID` from `.env.local`.
+
+## Seeding demo data
+
+```bash
+npm run seed
+```
+
+Pushes 6 demo records with public sample MP4s into Airtable, distributed across the four venues. They drop off the public feed after 12h (the visibility filter), but stay in the Airtable table until you run `npm run flush`.
+
+## Deploy
+
+```bash
+vercel link        # one-time, picks the project
+vercel env pull    # syncs env vars locally
+vercel --prod      # production deploy
+```
+
+Custom domain: in Vercel → Project → Settings → Domains, add `plusnone.fetewell.com`. Vercel will tell you what CNAME to set at your DNS provider.
+
+## File map
+
+```
+src/
+  app/
+    layout.tsx                 # fonts (Bebas + Inter) + cream bg
+    page.tsx                   # / — server component, revalidates every 30s
+    not-found.tsx              # 404 fallback
+    globals.css                # Tailwind v4 @theme: cream/cobalt/ink palette
+  components/
+    Header.tsx                 # logo, centered, max-w 280px
+    Feed.tsx                   # client — shuffle on mount, owns audible-id
+    ProfileCard.tsx            # client — video, tap-to-unmute, IO observer
+    EmptyState.tsx             # "nothing yet — go film something" + form link
+  lib/
+    airtable.ts                # lazy SDK init
+    submissions.ts             # fetchRecent (per-venue) / fetchAll / deleteRecords
+    shuffle.ts                 # Fisher-Yates
+    types.ts                   # Submission interface
+scripts/
+  seed-airtable.ts             # npm run seed
+  flush-airtable.ts            # CONFIRM=yes npm run flush
+```

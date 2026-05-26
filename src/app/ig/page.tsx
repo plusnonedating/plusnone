@@ -1,13 +1,13 @@
 import Header from "@/components/Header";
-import LandingShell from "@/components/LandingShell";
+import IgShell from "@/components/IgShell";
 
 export const dynamic = "force-dynamic";
 
-export default function HomePage() {
+export default function IgPage() {
   return (
     <>
       <Header />
-      <LandingShell />
+      <IgShell />
     </>
   );
 }

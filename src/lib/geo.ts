@@ -1,0 +1,35 @@
+import { FEED_VENUES, type FeedVenue } from "./venues";
+
+const EARTH_RADIUS_M = 6_371_000;
+
+export function haversineMeters(
+  lat1: number,
+  lng1: number,
+  lat2: number,
+  lng2: number,
+): number {
+  const toRad = (deg: number) => (deg * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) *
+      Math.cos(toRad(lat2)) *
+      Math.sin(dLng / 2) ** 2;
+  return 2 * EARTH_RADIUS_M * Math.asin(Math.sqrt(a));
+}
+
+export function findNearestVenue(
+  lat: number,
+  lng: number,
+  maxMeters: number,
+): FeedVenue | null {
+  let best: { venue: FeedVenue; meters: number } | null = null;
+  for (const v of FEED_VENUES) {
+    const d = haversineMeters(lat, lng, v.lat, v.lng);
+    if (d <= maxMeters && (!best || d < best.meters)) {
+      best = { venue: v, meters: d };
+    }
+  }
+  return best?.venue ?? null;
+}
