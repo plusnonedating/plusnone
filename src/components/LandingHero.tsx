@@ -17,7 +17,7 @@ export default function LandingHero({ onAllowLocation, deviceId }: Props) {
         who else here is single? we&apos;ll show you.
       </p>
       <p className="mt-6 max-w-sm text-base text-muted leading-relaxed">
-        Plus None is a private 12-hour dating pool for people at this F&ecirc;tewell event. Location confirms you&apos;re in the room. Your ex isn&apos;t getting in.
+        Plus None is a private dating pool for the people here right now. Location confirms you&apos;re in the room. Resets overnight. Your ex isn&apos;t getting in.
       </p>
       <button
         type="button"
