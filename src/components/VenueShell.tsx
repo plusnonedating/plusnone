@@ -10,6 +10,7 @@ import { lock } from "@/lib/storage";
 import GateGuard from "./GateGuard";
 import Feed from "./Feed";
 import EmptyState from "./EmptyState";
+import CrossVenueToast from "./CrossVenueToast";
 
 const POLL_INTERVAL_MS = 30_000;
 
@@ -20,9 +21,12 @@ interface Props {
 
 export default function VenueShell({ venue, initialSubmissions }: Props) {
   return (
-    <GateGuard venue={venue}>
-      <VenueFeed venue={venue} initialSubmissions={initialSubmissions} />
-    </GateGuard>
+    <>
+      <CrossVenueToast currentVenue={venue} />
+      <GateGuard venue={venue}>
+        <VenueFeed venue={venue} initialSubmissions={initialSubmissions} />
+      </GateGuard>
+    </>
   );
 }
 

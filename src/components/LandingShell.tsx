@@ -32,7 +32,11 @@ export default function LandingShell() {
     if (fromSubmission) {
       const slug = slugFromLabel(venueParam);
       unlock(slug);
-      router.replace(`/${slug}`);
+      // For the IG label, pass a flag so the destination shows the
+      // "✓ you're in" confirmation pill. For feed venues the unlocked
+      // VenueShell is enough acknowledgement.
+      const dest = slug === "ig" ? "/ig?just_submitted=1" : `/${slug}`;
+      router.replace(dest);
       return;
     }
 

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getDeviceId } from "@/lib/deviceId";
 import { formUrlForVenue } from "@/lib/form";
 import { IG_VENUE } from "@/lib/venues";
+import JustSubmittedPill from "./JustSubmittedPill";
 
 /**
  * Screen 3 — IG-only landing.
@@ -19,6 +20,7 @@ export default function IgLanding() {
 
   return (
     <div className="relative flex-1 overflow-hidden">
+      <JustSubmittedPill />
       <div
         aria-hidden
         className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"
