@@ -8,7 +8,6 @@ import { findNearestVenue } from "@/lib/geo";
 import { getDeviceId } from "@/lib/deviceId";
 import { formUrlForVenue } from "@/lib/form";
 import LandingHero from "./LandingHero";
-import LocationNeeded from "./LocationNeeded";
 
 type Phase =
   | "checking"
@@ -99,11 +98,19 @@ export default function LandingShell() {
   }
 
   if (phase === "location-needed") {
+    // Transitional fallback — full IG-only landing replaces this in a later
+    // commit on this branch. Keeps the build green.
     return (
-      <LocationNeeded
-        onTryAgain={attemptGeolocation}
-        deviceId={deviceId}
-      />
+      <section className="flex-1 flex flex-col items-center justify-center px-6 py-12 text-center">
+        <p className="font-display text-5xl tracking-wide text-ink">we can&apos;t find you</p>
+        <button
+          type="button"
+          onClick={attemptGeolocation}
+          className="mt-8 rounded-full bg-cobalt px-8 py-4 text-white font-display tracking-wider uppercase"
+        >
+          Try again
+        </button>
+      </section>
     );
   }
 

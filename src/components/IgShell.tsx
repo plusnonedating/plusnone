@@ -1,14 +1,43 @@
 "use client";
 
-import { lock } from "@/lib/storage";
-import GateGuard from "./GateGuard";
+import { useEffect, useState } from "react";
+import { isUnlocked, lock, unlock } from "@/lib/storage";
+
+// NOTE: This is a transitional implementation. In a follow-up commit on the
+// visual-refresh branch, this component is replaced by the public IgLanding
+// (Screen 3), at which point /ig becomes ungated marketing.
 
 export default function IgShell() {
-  return (
-    <GateGuard slug="ig">
-      <IgThankYou />
-    </GateGuard>
+  const [state, setState] = useState<"checking" | "locked" | "unlocked">(
+    "checking",
   );
+
+  useEffect(() => {
+    if (isUnlocked("ig")) {
+      unlock("ig");
+      setState("unlocked");
+    } else {
+      setState("locked");
+    }
+  }, []);
+
+  if (state === "checking") {
+    return <div className="flex-1" />;
+  }
+
+  if (state === "locked") {
+    // Transitional fallback — the new design ungates this page; for now
+    // we just show a minimal message so the build stays green.
+    return (
+      <section className="flex-1 flex flex-col items-center justify-center px-6 py-16 text-center">
+        <p className="font-display text-5xl sm:text-6xl tracking-wide text-ink leading-none">
+          submit your video first
+        </p>
+      </section>
+    );
+  }
+
+  return <IgThankYou />;
 }
 
 function IgThankYou() {

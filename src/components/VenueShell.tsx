@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { Submission } from "@/lib/types";
 import type { FeedVenue } from "@/lib/venues";
@@ -19,7 +20,7 @@ interface Props {
 
 export default function VenueShell({ venue, initialSubmissions }: Props) {
   return (
-    <GateGuard slug={venue.slug}>
+    <GateGuard venue={venue}>
       <VenueFeed venue={venue} initialSubmissions={initialSubmissions} />
     </GateGuard>
   );
@@ -90,6 +91,16 @@ function VenueFeed({ venue, initialSubmissions }: Props) {
 
   return (
     <>
+      <div className="pt-6 pb-2 flex items-center justify-center">
+        <Image
+          src="/plus-none-logo.png"
+          alt="Plus None"
+          width={330}
+          height={330}
+          priority
+          className="w-[165px] h-auto"
+        />
+      </div>
       <div className="px-4 pt-2 pb-1 text-center">
         <p className="font-display text-2xl sm:text-3xl tracking-wide text-ink leading-tight">
           here&apos;s who else is here. go say hi 👋
