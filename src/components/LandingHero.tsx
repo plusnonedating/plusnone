@@ -27,7 +27,7 @@ export default function LandingHero({ onAllowLocation, deviceId }: Props) {
         Allow location
       </button>
       <p className="mt-6 text-sm text-muted">
-        Not at a venue?{" "}
+        Not at a Plus None location?{" "}
         <a
           href={igFormUrl}
           className="text-cobalt hover:text-cobalt-hover underline decoration-dotted"
