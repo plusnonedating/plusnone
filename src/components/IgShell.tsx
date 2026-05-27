@@ -26,12 +26,12 @@ function IgThankYou() {
         <p className="mt-5 max-w-sm text-base text-muted leading-relaxed">
           follow{" "}
           <a
-            href="https://instagram.com/plusnonepod"
+            href="https://instagram.com/plusnonedating"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium text-cobalt hover:text-cobalt-hover underline decoration-dotted"
           >
-            @plusnonepod
+            @plusnonedating
           </a>{" "}
           — we&apos;ll post your video soon. someone out there might shoot their shot. 💋
         </p>
