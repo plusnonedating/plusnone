@@ -101,11 +101,11 @@ function VenueFeed({ venue, initialSubmissions }: Props) {
           className="w-[165px] h-auto"
         />
       </div>
-      <div className="px-4 pt-2 pb-1 text-center">
-        <p className="font-display text-2xl sm:text-3xl tracking-wide text-ink leading-tight">
-          here&apos;s who else is here. go say hi 👋
+      <div className="px-5 pt-1 pb-2 text-center">
+        <p className="font-display text-[36px] tracking-[0.01em] text-ink leading-none">
+          here&apos;s who else is here. go say hi.
         </p>
-        <p className="mt-1 text-xs text-muted tracking-wide">
+        <p className="mt-[10px] text-[11px] tracking-[0.08em] uppercase text-muted">
           {venueSubtitle(venue)}
         </p>
       </div>
