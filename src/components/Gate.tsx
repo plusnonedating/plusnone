@@ -32,7 +32,7 @@ export default function Gate({ venue }: Props) {
             width={660}
             height={660}
             priority
-            className="w-[260px] h-auto block"
+            className="w-[210px] h-auto block"
           />
         </div>
         <p className="text-[14px] tracking-[0.08em] uppercase text-muted mb-[22px]">
