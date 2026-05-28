@@ -7,6 +7,7 @@ import type { FeedVenue } from "@/lib/venues";
 import { venueSubtitle } from "@/lib/venues";
 import { shuffle } from "@/lib/shuffle";
 import { lock } from "@/lib/storage";
+import { getDeviceId } from "@/lib/deviceId";
 import GateGuard from "./GateGuard";
 import Feed from "./Feed";
 import EmptyState from "./EmptyState";
@@ -39,6 +40,21 @@ function VenueFeed({ venue, initialSubmissions }: Props) {
     initialAppliedRef.current = true;
     setOrdered(shuffle(initialSubmissions));
   }, [initialSubmissions]);
+
+  // Touch Last Seen on this venue's record(s) for the visiting device.
+  // Powers the per-card "active" indicator. Fire-and-forget; never blocks.
+  useEffect(() => {
+    const deviceId = getDeviceId();
+    if (!deviceId) return;
+    void fetch("/api/submissions/touch", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ device_id: deviceId, slug: venue.slug }),
+      keepalive: true,
+    }).catch(() => {
+      // Ignore — indicator degrades gracefully without this signal.
+    });
+  }, [venue.slug]);
 
   useEffect(() => {
     let cancelled = false;

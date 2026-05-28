@@ -60,6 +60,7 @@ async function fetchRecentSubmissionsImpl(
       lookingFor: asTrimmed(r.get("Looking For")),
       pitch: asTrimmed(r.get("Ice Breaker")),
       videoUrl,
+      lastSeen: asTrimmed(r.get("Last Seen")),
     });
   }
   return submissions;
@@ -67,9 +68,49 @@ async function fetchRecentSubmissionsImpl(
 
 export const fetchRecentSubmissions = unstable_cache(
   fetchRecentSubmissionsImpl,
-  ["recent-submissions-v2"],
+  ["recent-submissions-v3"],
   { revalidate: 30, tags: ["submissions"] },
 );
+
+/**
+ * Update the "Last Seen" field on every submission record whose Device ID
+ * matches the given device and whose Venue matches the given label. Called
+ * from the touch route on each /[slug] visit so we can show a recency
+ * ("active") indicator on profile cards.
+ *
+ * Best-effort: returns the number of records updated, or 0 on any failure
+ * (e.g. the "Last Seen" column not yet added in Airtable).
+ */
+export async function touchLastSeen(
+  deviceId: string,
+  venueLabel: string,
+): Promise<number> {
+  if (!deviceId) return 0;
+  const base = getBase();
+  const records = await base(SUBMISSIONS_TABLE)
+    .select({
+      filterByFormula: `AND({Device ID} = '${escapeFormulaString(deviceId)}', {Venue} = '${escapeFormulaString(venueLabel)}')`,
+      fields: [],
+      pageSize: 100,
+    })
+    .all();
+
+  if (records.length === 0) return 0;
+
+  const now = new Date().toISOString();
+  const updates = records.map((r) => ({
+    id: r.id,
+    fields: { "Last Seen": now },
+  }));
+
+  let updated = 0;
+  for (let i = 0; i < updates.length; i += 10) {
+    const chunk = updates.slice(i, i + 10);
+    await base(SUBMISSIONS_TABLE).update(chunk);
+    updated += chunk.length;
+  }
+  return updated;
+}
 
 export async function fetchAllRecordIds(): Promise<string[]> {
   const base = getBase();

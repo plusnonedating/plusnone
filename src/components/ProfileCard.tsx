@@ -51,6 +51,15 @@ export default function ProfileCard({
     onRequestAudible();
   };
 
+  // "active" within 30 min of the most recent /[slug] visit by this device.
+  // Computed at render time — Feed re-renders on every poll (every 30s), so
+  // the indicator decays without needing its own timer.
+  const isActive = Boolean(
+    submission.lastSeen &&
+      Date.now() - new Date(submission.lastSeen).getTime() <
+        30 * 60 * 1000,
+  );
+
   return (
     <article
       ref={containerRef}
@@ -78,6 +87,18 @@ export default function ProfileCard({
         >
           {isAudible ? "TAP TO MUTE" : "TAP FOR SOUND"}
         </span>
+        {isActive ? (
+          <span
+            role="status"
+            className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-ink/70 px-2.5 py-1 text-[11px] text-cream font-medium tracking-wide"
+          >
+            <span
+              aria-hidden
+              className="inline-block w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse-dot"
+            />
+            active
+          </span>
+        ) : null}
       </button>
       <div className="bg-cream text-ink px-4 py-4">
         <div className="flex items-baseline gap-2">
