@@ -31,18 +31,18 @@ export default function Gate({ venue }: Props) {
           width={660}
           height={660}
           priority
-          className="w-[330px] max-w-full h-auto mb-5"
+          className="w-[330px] max-w-full h-auto mb-4"
         />
-        <p className="text-[16px] tracking-[0.08em] uppercase text-muted mb-[27px]">
+        <p className="text-[14px] tracking-[0.08em] uppercase text-muted mb-[22px]">
           {venueSubtitle(venue)}
         </p>
-        <div className="w-full max-w-md bg-cream rounded-[18px] px-[33px] pt-[42px] pb-[36px] shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
-          <h1 className="font-display text-[57px] leading-none tracking-[0.01em] text-ink mb-[21px]">
+        <div className="w-full max-w-md bg-cream rounded-[18px] px-[28px] pt-9 pb-7 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+          <h1 className="font-display text-[48px] leading-none tracking-[0.01em] text-ink mb-[18px]">
             who else here is single?
             <br />
             <span className="text-cobalt">we&apos;ll show you.</span>
           </h1>
-          <p className="text-[21px] leading-[1.55] text-ink/85 mb-[33px]">
+          <p className="text-[18px] leading-[1.55] text-ink/85 mb-7">
             Plus None is a private dating pool for the people here right now.
             Location confirms you&apos;re in the room. Resets overnight. Your ex
             isn&apos;t getting in.
@@ -51,7 +51,7 @@ export default function Gate({ venue }: Props) {
         </div>
         <a
           href={igFallbackUrl}
-          className="mt-[27px] text-[19px] text-muted hover:text-cobalt"
+          className="mt-[22px] text-[16px] text-muted hover:text-cobalt"
         >
           Not at a Plus None location?{" "}
           <u className="decoration-1 underline-offset-[3px]">

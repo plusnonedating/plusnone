@@ -82,21 +82,21 @@ export default function GeoVerify({ venue }: Props) {
     const igFallback = formUrlForVenue(IG_VENUE.label, getDeviceId());
     return (
       <div className="text-center">
-        <p className="text-[21px] text-ink/85 leading-snug mb-6">
+        <p className="text-[18px] text-ink/85 leading-snug mb-5">
           We can&apos;t confirm you&apos;re at {venue.name}. Make sure location is on,
           or skip ahead to IG.
         </p>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2.5">
           <button
             type="button"
             onClick={attempt}
-            className="w-full rounded-full bg-cobalt hover:bg-cobalt-hover transition-colors px-9 py-[21px] font-display text-[27px] uppercase tracking-[0.06em] text-white"
+            className="w-full rounded-full bg-cobalt hover:bg-cobalt-hover transition-colors px-7 py-[18px] font-display text-[23px] uppercase tracking-[0.06em] text-white"
           >
             Try again
           </button>
           <a
             href={igFallback}
-            className="w-full text-center rounded-full border border-ink/15 px-9 py-[18px] text-ink text-[19px] font-medium hover:bg-ink/5 transition-colors"
+            className="w-full text-center rounded-full border border-ink/15 px-7 py-[16px] text-ink text-[16px] font-medium hover:bg-ink/5 transition-colors"
           >
             Submit for IG only
           </a>
@@ -110,7 +110,7 @@ export default function GeoVerify({ venue }: Props) {
       type="button"
       onClick={attempt}
       disabled={phase === "locating"}
-      className="w-full rounded-full bg-cobalt hover:bg-cobalt-hover transition-colors px-9 py-[21px] font-display text-[27px] uppercase tracking-[0.06em] text-white disabled:opacity-70"
+      className="w-full rounded-full bg-cobalt hover:bg-cobalt-hover transition-colors px-7 py-[18px] font-display text-[23px] uppercase tracking-[0.06em] text-white disabled:opacity-70"
     >
       {phase === "locating" ? "Finding you…" : "Allow location"}
     </button>
