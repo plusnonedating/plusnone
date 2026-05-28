@@ -33,7 +33,7 @@ export default function IgLanding() {
             width={360}
             height={360}
             priority
-            className="w-[160px] h-auto block"
+            className="w-[210px] h-auto block"
           />
         </div>
         <div className="w-full max-w-md bg-cream rounded-[18px] px-[28px] pt-9 pb-7 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
