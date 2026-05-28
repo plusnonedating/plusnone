@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { fetchRecentSubmissions } from "@/lib/submissions";
 import { feedVenueBySlug, FEED_VENUES } from "@/lib/venues";
 import type { Submission } from "@/lib/types";
-import Header from "@/components/Header";
 import VenueShell from "@/components/VenueShell";
 
 export const dynamic = "force-dynamic";
@@ -28,9 +27,6 @@ export default async function VenuePage({ params }: PageProps) {
   }
 
   return (
-    <>
-      <Header />
-      <VenueShell venue={venue} initialSubmissions={initialSubmissions} />
-    </>
+    <VenueShell venue={venue} initialSubmissions={initialSubmissions} />
   );
 }

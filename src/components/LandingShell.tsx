@@ -1,79 +1,29 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { unlock } from "@/lib/storage";
-import { slugFromLabel, IG_VENUE } from "@/lib/venues";
-import { findNearestVenue } from "@/lib/geo";
+import { slugFromLabel } from "@/lib/venues";
 import { getDeviceId } from "@/lib/deviceId";
-import { formUrlForVenue } from "@/lib/form";
-import LandingHero from "./LandingHero";
-import LocationNeeded from "./LocationNeeded";
+import IgLanding from "./IgLanding";
 
-type Phase =
-  | "checking"
-  | "hero"
-  | "locating"
-  | "redirecting"
-  | "location-needed";
-
-const GEO_TIMEOUT_MS = 8000;
-const VENUE_RADIUS_M = 500;
-
+/**
+ * The / route shell.
+ *
+ * - Ensures a device_id exists on every landing visit (functional analytics).
+ * - If the URL has `?from=submission&venue=…`, unlocks the matching slug and
+ *   redirects to that page (so post-submission flow ends up at the venue feed
+ *   or the IG landing).
+ * - Otherwise renders Screen 3 (the public IG-only landing).
+ *
+ * Geo verification no longer happens here — that moved to GeoVerify on /[slug].
+ */
 export default function LandingShell() {
   const router = useRouter();
-  const [phase, setPhase] = useState<Phase>("checking");
-  const [deviceId, setDeviceId] = useState<string | null>(null);
-
-  const attemptGeolocation = useCallback(() => {
-    if (typeof navigator === "undefined" || !("geolocation" in navigator)) {
-      setPhase("location-needed");
-      return;
-    }
-
-    setPhase("locating");
-
-    let resolved = false;
-    const timer = setTimeout(() => {
-      if (resolved) return;
-      resolved = true;
-      setPhase("location-needed");
-    }, GEO_TIMEOUT_MS + 500);
-
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        if (resolved) return;
-        resolved = true;
-        clearTimeout(timer);
-        const nearest = findNearestVenue(
-          pos.coords.latitude,
-          pos.coords.longitude,
-          VENUE_RADIUS_M,
-        );
-        const venueLabel = nearest ? nearest.label : IG_VENUE.label;
-        setPhase("redirecting");
-        // Pull the latest device_id at click-time in case it was created
-        // between hero mount and button tap.
-        window.location.href = formUrlForVenue(venueLabel, getDeviceId());
-      },
-      () => {
-        if (resolved) return;
-        resolved = true;
-        clearTimeout(timer);
-        setPhase("location-needed");
-      },
-      {
-        timeout: GEO_TIMEOUT_MS,
-        enableHighAccuracy: false,
-        maximumAge: 60_000,
-      },
-    );
-  }, []);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // Ensure an anonymous device_id exists on every landing-page load
-    // (functional analytics; see lib/deviceId.ts for scope).
-    setDeviceId(getDeviceId());
+    getDeviceId();
 
     const url = new URL(window.location.href);
     const fromSubmission = url.searchParams.get("from") === "submission";
@@ -82,38 +32,20 @@ export default function LandingShell() {
     if (fromSubmission) {
       const slug = slugFromLabel(venueParam);
       unlock(slug);
-      router.replace(`/${slug}`);
+      // For the IG label, pass a flag so the destination shows the
+      // "✓ you're in" confirmation pill. For feed venues the unlocked
+      // VenueShell is enough acknowledgement.
+      const dest = slug === "ig" ? "/ig?just_submitted=1" : `/${slug}`;
+      router.replace(dest);
       return;
     }
 
-    setPhase("hero");
+    setReady(true);
   }, [router]);
 
-  if (phase === "hero") {
-    return (
-      <LandingHero
-        onAllowLocation={attemptGeolocation}
-        deviceId={deviceId}
-      />
-    );
+  if (!ready) {
+    return <div className="flex-1" />;
   }
 
-  if (phase === "location-needed") {
-    return (
-      <LocationNeeded
-        onTryAgain={attemptGeolocation}
-        deviceId={deviceId}
-      />
-    );
-  }
-
-  return (
-    <div className="flex-1 flex items-center justify-center px-6 text-sm tracking-wide text-muted">
-      {phase === "locating"
-        ? "finding your venue…"
-        : phase === "redirecting"
-          ? "redirecting…"
-          : ""}
-    </div>
-  );
+  return <IgLanding />;
 }

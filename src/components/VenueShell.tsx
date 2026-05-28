@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { Submission } from "@/lib/types";
 import type { FeedVenue } from "@/lib/venues";
@@ -9,6 +10,7 @@ import { lock } from "@/lib/storage";
 import GateGuard from "./GateGuard";
 import Feed from "./Feed";
 import EmptyState from "./EmptyState";
+import CrossVenueToast from "./CrossVenueToast";
 
 const POLL_INTERVAL_MS = 30_000;
 
@@ -19,9 +21,12 @@ interface Props {
 
 export default function VenueShell({ venue, initialSubmissions }: Props) {
   return (
-    <GateGuard slug={venue.slug}>
-      <VenueFeed venue={venue} initialSubmissions={initialSubmissions} />
-    </GateGuard>
+    <>
+      <CrossVenueToast currentVenue={venue} />
+      <GateGuard venue={venue}>
+        <VenueFeed venue={venue} initialSubmissions={initialSubmissions} />
+      </GateGuard>
+    </>
   );
 }
 
@@ -90,11 +95,21 @@ function VenueFeed({ venue, initialSubmissions }: Props) {
 
   return (
     <>
-      <div className="px-4 pt-2 pb-1 text-center">
-        <p className="font-display text-2xl sm:text-3xl tracking-wide text-ink leading-tight">
-          here&apos;s who else is here. go say hi 👋
+      <div className="pt-6 pb-2 flex items-center justify-center">
+        <Image
+          src="/plus-none-logo.png"
+          alt="Plus None"
+          width={330}
+          height={330}
+          priority
+          className="w-[165px] h-auto"
+        />
+      </div>
+      <div className="px-5 pt-1 pb-2 text-center">
+        <p className="font-display text-[36px] tracking-[0.01em] text-ink leading-none">
+          here&apos;s who else is here. go say hi.
         </p>
-        <p className="mt-1 text-xs text-muted tracking-wide">
+        <p className="mt-[10px] text-[11px] tracking-[0.08em] uppercase text-muted">
           {venueSubtitle(venue)}
         </p>
       </div>
