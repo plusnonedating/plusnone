@@ -25,7 +25,7 @@ export default function IgLanding() {
         aria-hidden
         className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"
       />
-      <section className="relative z-10 flex flex-col items-center px-5 pt-6 pb-10">
+      <section className="relative z-10 flex flex-col items-center px-5 pt-6 pb-10 text-center">
         <Image
           src="/plus-none-logo.png"
           alt="Plus None"
