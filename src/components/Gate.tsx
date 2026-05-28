@@ -25,14 +25,14 @@ export default function Gate({ venue }: Props) {
         className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"
       />
       <section className="relative z-10 flex flex-col items-center px-5 pt-6 pb-10 text-center">
-        <div className="w-full max-w-md bg-cream rounded-[18px] px-6 py-4 mb-4 flex items-center justify-center shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+        <div className="bg-cream rounded-[18px] p-4 mb-4 w-fit shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
           <Image
             src="/plus-none-logo.png"
             alt="Plus None"
             width={660}
             height={660}
             priority
-            className="w-[280px] max-w-full h-auto"
+            className="w-[260px] h-auto block"
           />
         </div>
         <p className="text-[14px] tracking-[0.08em] uppercase text-muted mb-[22px]">
