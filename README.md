@@ -2,7 +2,7 @@
 
 The live feed at [plusnone.fetewell.com](https://plusnone.fetewell.com).
 
-Single attendees film a 15-second selfie video, submit it via WPForms, and appear on this page for 12 hours so other singles at the wedding can go say hi in person. No DMs, no likes, no matching — the page is intentionally limited.
+Single attendees film a 15-second selfie video, submit it via WPForms, and appear on this page for 6 hours so other singles at the wedding can go say hi in person. No DMs, no likes, no matching — the page is intentionally limited.
 
 ## Stack
 
@@ -24,16 +24,16 @@ Required env vars (see `.env.example`):
 - `AIRTABLE_API_KEY` — Airtable personal access token, scopes `data.records:read` and `data.records:write`
 - `AIRTABLE_BASE_ID` — `app1bnUYIncirnxRn`
 
-## How the 12-hour window works
+## How the 6-hour window works
 
-Records are **never** auto-deleted from Airtable. The 12-hour window is purely a visibility filter on the public feed.
+Records are **never** auto-deleted from Airtable. The 6-hour window is purely a visibility filter on the public feed.
 
 Each venue feed queries Airtable per slug with:
-`AND(NOT({Consent Acknowledged} = BLANK()), {Venue} = '<venue label>', DATETIME_DIFF(NOW(), CREATED_TIME(), 'hours') < 12)`
+`AND(NOT({Consent Acknowledged} = BLANK()), {Venue} = '<venue label>', DATETIME_DIFF(NOW(), CREATED_TIME(), 'hours') < 6)`
 
-So anything older than 12h immediately disappears from the page, but the underlying record stays in Airtable forever — available for the podcast, business records, and follow-up.
+So anything older than 6h immediately disappears from the page, but the underlying record stays in Airtable forever — available for the podcast, business records, and follow-up.
 
-The consent text on the form reflects this: "auto-clears from public view after 12 hours" (not "auto-clears after 12 hours"). No user-facing promise of deletion.
+The consent text on the form reflects this: "auto-clears from public view after 6 hours" (not "auto-clears after 6 hours"). No user-facing promise of deletion.
 
 To purge records manually (between events, or to clear out test/seed data), use the [Manual flush](#manual-flush) section below.
 

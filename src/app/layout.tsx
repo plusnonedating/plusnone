@@ -15,7 +15,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "plus none",
-  description: "Single attendees, last 12 hours. Go say hi in person.",
+  description: "Single attendees, last 6 hours. Go say hi in person.",
 };
 
 export const viewport: Viewport = {
