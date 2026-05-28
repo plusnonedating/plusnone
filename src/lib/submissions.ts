@@ -8,7 +8,7 @@ function escapeFormulaString(value: string): string {
 
 function freshFormula(venueLabel: string): string {
   const escaped = escapeFormulaString(venueLabel);
-  return `AND(NOT({Consent Acknowledged} = BLANK()), {Venue} = '${escaped}', DATETIME_DIFF(NOW(), CREATED_TIME(), 'hours') < 12)`;
+  return `AND(NOT({Consent Acknowledged} = BLANK()), {Venue} = '${escaped}', DATETIME_DIFF(NOW(), CREATED_TIME(), 'hours') < 6)`;
 }
 
 function firstNameOf(full: unknown): string {
