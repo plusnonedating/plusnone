@@ -99,10 +99,10 @@ function VenueFeed({ venue, initialSubmissions }: Props) {
         <Image
           src="/plus-none-logo.png"
           alt="Plus None"
-          width={330}
-          height={330}
+          width={660}
+          height={660}
           priority
-          className="w-[165px] h-auto"
+          className="w-[330px] max-w-full h-auto"
         />
       </div>
       <div className="px-5 pt-1 pb-2 text-center">

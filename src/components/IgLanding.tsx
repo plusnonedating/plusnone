@@ -29,10 +29,10 @@ export default function IgLanding() {
         <Image
           src="/plus-none-logo.png"
           alt="Plus None"
-          width={180}
-          height={180}
+          width={360}
+          height={360}
           priority
-          className="w-[90px] h-auto mb-3"
+          className="w-[180px] h-auto mb-3"
         />
         <div className="w-full max-w-md bg-cream rounded-[18px] px-[22px] pt-7 pb-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
           <p className="text-[13px] font-medium uppercase tracking-[0.06em] text-ink leading-[1.45] mb-3.5">
