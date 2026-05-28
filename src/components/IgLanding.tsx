@@ -26,14 +26,14 @@ export default function IgLanding() {
         className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"
       />
       <section className="relative z-10 flex flex-col items-center px-5 pt-6 pb-10 text-center">
-        <div className="w-full max-w-md bg-cream rounded-[18px] px-6 py-4 mb-4 flex items-center justify-center shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+        <div className="bg-cream rounded-[18px] p-4 mb-4 w-fit shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
           <Image
             src="/plus-none-logo.png"
             alt="Plus None"
             width={360}
             height={360}
             priority
-            className="w-[180px] h-auto"
+            className="w-[160px] h-auto block"
           />
         </div>
         <div className="w-full max-w-md bg-cream rounded-[18px] px-[28px] pt-9 pb-7 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
