@@ -26,47 +26,49 @@ export default function IgLanding() {
         className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"
       />
       <section className="relative z-10 flex flex-col items-center px-5 pt-6 pb-10 text-center">
-        <Image
-          src="/plus-none-logo.png"
-          alt="Plus None"
-          width={360}
-          height={360}
-          priority
-          className="w-[180px] h-auto mb-3"
-        />
-        <div className="w-full max-w-md bg-cream rounded-[18px] px-[22px] pt-7 pb-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
-          <p className="text-[13px] font-medium uppercase tracking-[0.06em] text-ink leading-[1.45] mb-3.5">
+        <div className="w-full max-w-md bg-cream rounded-[18px] px-6 py-4 mb-4 flex items-center justify-center shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+          <Image
+            src="/plus-none-logo.png"
+            alt="Plus None"
+            width={360}
+            height={360}
+            priority
+            className="w-[180px] h-auto"
+          />
+        </div>
+        <div className="w-full max-w-md bg-cream rounded-[18px] px-[28px] pt-9 pb-7 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+          <p className="text-[16px] font-medium uppercase tracking-[0.06em] text-ink leading-[1.45] mb-[18px]">
             A dating account where strangers shoot their shot in your comments.
           </p>
-          <h1 className="font-display text-[30px] leading-none tracking-[0.01em] text-ink mb-3.5">
+          <h1 className="font-display text-[38px] leading-none tracking-[0.01em] text-ink mb-[18px]">
             Get matched in our comment section.
           </h1>
-          <p className="text-sm leading-[1.55] text-ink/85 mb-4">
+          <p className="text-[18px] leading-[1.55] text-ink/85 mb-5">
             Drop a 15-sec selfie. Tell us what someone should ask you about.
             We&apos;ll post it to @plusnonedating.
           </p>
-          <div className="relative z-[1] flex justify-center -mb-3.5">
+          <div className="relative z-[1] flex justify-center -mb-4">
             <Image
               src="/cat-cool.svg"
               alt=""
-              width={86}
-              height={86}
+              width={108}
+              height={108}
               priority
               className="block"
             />
           </div>
           <a
             href={formUrl}
-            className="block w-full rounded-full bg-cobalt hover:bg-cobalt-hover transition-colors px-6 py-3.5 font-display text-lg uppercase tracking-[0.06em] text-white text-center"
+            className="block w-full rounded-full bg-cobalt hover:bg-cobalt-hover transition-colors px-7 py-[18px] font-display text-[23px] uppercase tracking-[0.06em] text-white text-center"
           >
             Shoot your shot
           </a>
         </div>
-        <div className="w-full max-w-md bg-cream rounded-[14px] px-[18px] py-3.5 mt-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
-          <p className="text-[13px] leading-[1.4] text-ink">
+        <div className="w-full max-w-md bg-cream rounded-[14px] px-[22px] py-[18px] mt-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+          <p className="text-[16px] leading-[1.4] text-ink">
             Not at a Plus None location? You&apos;re in the right place.
           </p>
-          <p className="text-[13px] leading-[1.4] text-ink mt-[10px] pt-[10px] border-t border-ink/10">
+          <p className="text-[16px] leading-[1.4] text-ink mt-[12px] pt-[12px] border-t border-ink/10">
             Run a bar, restaurant, or venue?{" "}
             <a
               href="mailto:hello@fetewell.com"
