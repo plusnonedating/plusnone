@@ -332,7 +332,7 @@ export default function PartnerSignup({
           Plus None LLC ·{" "}
           <a href="mailto:plusnone@fetewell.com">plusnone@fetewell.com</a> ·{" "}
           <Link href="/partner-terms">Partner Terms</Link> ·{" "}
-          <Link href="/plus-none-terms">User Terms</Link> ·{" "}
+          <a href="https://fetewell.com/plus-none-terms">User Terms</a> ·{" "}
           <Link href="/privacy-policy">Privacy</Link>
           <div className="footer-disclosure">{footerDisclosure}</div>
         </div>
