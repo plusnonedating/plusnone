@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CheckIcon from "@/components/partners/CheckIcon";
 import Header from "@/components/partners/Header";
+import PopupDataSection from "@/components/partners/PopupDataSection";
 
 export const metadata: Metadata = {
   title: "Plus None Pop-Up · Event activations",
@@ -158,6 +159,8 @@ export default function PopupPage() {
             />
           </div>
         </div>
+
+        <PopupDataSection />
 
         {/* PRICING */}
         <div className="section" id="pricing">
