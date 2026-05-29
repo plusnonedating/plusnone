@@ -13,6 +13,7 @@ export default function BusinessPage() {
   return (
     <PartnerSignup
       stripeUrl={STRIPE_URL}
+      showTwoWaysIn
       pricingFootTag="Welcome offer"
       pricingFootBody={
         <>

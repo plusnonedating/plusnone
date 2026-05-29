@@ -12,6 +12,8 @@ interface Props {
   pricingFootBody: React.ReactNode;
   /** Tiny disclosure line below the footer links. */
   footerDisclosure: string;
+  /** Show the "Two ways in" subscription-vs-event comparison after the hero. Defaults to false. */
+  showTwoWaysIn?: boolean;
 }
 
 /**
@@ -24,6 +26,7 @@ export default function PartnerSignup({
   pricingFootTag,
   pricingFootBody,
   footerDisclosure,
+  showTwoWaysIn = false,
 }: Props) {
   return (
     <div className="partner-page">
@@ -123,6 +126,63 @@ export default function PartnerSignup({
             </div>
           </div>
         </section>
+
+        {showTwoWaysIn && (
+          // TWO WAYS IN — locked Change 4a, copy reconciled to shipped rebrand
+          // (Partner subscription → Business subscription; Pop-up event →
+          // Event activation; prices align with Single Day / Multi-Day tiers).
+          <section className="bg-[#f4ede4] px-5 py-10 md:px-8 md:py-20">
+            <div className="mx-auto max-w-3xl">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
+                Two ways in
+              </p>
+              <h2 className="mb-8 font-serif text-3xl leading-[1.02] tracking-tight text-stone-900 md:text-5xl">
+                Recurring or one-night.
+              </h2>
+
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div className="rounded-xl border border-stone-300 bg-[#ede4d5] p-6 md:p-7">
+                  <p className="text-xs uppercase tracking-[0.14em] text-stone-600">
+                    Ongoing
+                  </p>
+                  <h3 className="mt-1 font-serif text-2xl leading-tight text-stone-900">
+                    Business subscription
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-stone-700">
+                    $99/month. Your venue geo-gated, monthly data report,
+                    featured to 1M+. First month free with code PLUSNONE.
+                  </p>
+                  <a
+                    href="#pricing"
+                    className="mt-4 inline-block bg-black px-4 py-2.5 text-sm text-[#f4ede4]"
+                  >
+                    Sign up →
+                  </a>
+                </div>
+
+                <div className="rounded-xl border border-stone-300 bg-[#ede4d5] p-6 md:p-7">
+                  <p className="text-xs uppercase tracking-[0.14em] text-stone-600">
+                    One night
+                  </p>
+                  <h3 className="mt-1 font-serif text-2xl leading-tight text-stone-900">
+                    Event activation
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-stone-700">
+                    $499 single day or $799 multi-day. We bring signage,
+                    social pull, and a post-event report. No monthly
+                    commitment.
+                  </p>
+                  <Link
+                    href="/events"
+                    className="mt-4 inline-block border border-stone-900 px-4 py-2.5 text-sm text-stone-900"
+                  >
+                    See event details →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* TRUST */}
         <div className="trust">
