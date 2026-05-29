@@ -9,6 +9,7 @@
 
   --font-display: var(--font-bebas), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
 
   --animate-pulse-dot: pulse-dot 1.6s ease-in-out infinite;
 }
@@ -109,7 +110,7 @@
 
 /* Hero */
 .partner-page .hero {
-  padding: 80px 52px 64px;
+  padding: 64px 52px 112px;
   border-bottom: 1px solid var(--pn-line);
 }
 .partner-page .hero-row {
@@ -136,26 +137,26 @@
   background: var(--pn-cobalt);
 }
 .partner-page .h1 {
-  font-size: 40px;
-  line-height: 1.08;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: 72px;
+  line-height: 1.05;
   color: var(--pn-ink);
-  letter-spacing: -0.03em;
-  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-weight: 400;
   margin-bottom: 20px;
 }
+.partner-page .h1 em,
 .partner-page .h1 .italic {
-  font-family: var(--font-instrument-serif), Georgia, serif;
   font-style: italic;
   font-weight: 400;
-  font-size: 44px;
-  letter-spacing: -0.02em;
 }
 .partner-page .hero-body {
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.6;
   color: var(--pn-slate);
   max-width: 460px;
-  margin-bottom: 28px;
+  margin-top: 24px;
+  margin-bottom: 32px;
 }
 .partner-page .hero-actions {
   display: flex;
@@ -352,7 +353,7 @@
 
 /* Section */
 .partner-page .section {
-  padding: 72px 52px;
+  padding: 96px 52px;
   border-bottom: 1px solid var(--pn-line);
 }
 .partner-page .section-head {
@@ -717,21 +718,19 @@
 
 /* Mobile */
 @media (max-width: 720px) {
-  .partner-page .nav { padding: 18px 24px; }
-  .partner-page .nav-right { gap: 16px; }
-  .partner-page .nav-right a:not(.btn-ghost) { display: none; }
-  .partner-page .hero { padding: 48px 24px 40px; }
+  .partner-page .hero { padding: 24px 24px 48px; }
   .partner-page .hero-row { grid-template-columns: 1fr; gap: 32px; }
   .partner-page .hero-visual { height: auto; padding: 28px 20px; }
   .partner-page .hv-phone { margin: 0 auto; }
   .partner-page .event-card { max-width: 360px; margin: 0 auto; }
-  .partner-page .h1 { font-size: 32px; }
-  .partner-page .h1 .italic { font-size: 34px; }
+  .partner-page .h1 { font-size: 40px; line-height: 0.95; }
+  .partner-page .hero-body { font-size: 16px; margin-top: 16px; margin-bottom: 24px; }
   .partner-page .trust { padding: 22px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
   .partner-page .trust-stats { gap: 28px; flex-wrap: wrap; }
-  .partner-page .section { padding: 48px 24px; }
+  .partner-page .section { padding: 40px 24px; }
   .partner-page .section-h2 { font-size: 24px; }
-  .partner-page .steps { grid-template-columns: 1fr; gap: 14px; }
+  .partner-page .steps { grid-template-columns: 1fr; gap: 12px; }
+  .partner-page .step { padding: 20px 22px; }
   .partner-page .items { grid-template-columns: 1fr; gap: 20px; }
   .partner-page .data-grid { grid-template-columns: 1fr; gap: 28px; }
   .partner-page .pricing-body { grid-template-columns: 1fr; gap: 20px; }

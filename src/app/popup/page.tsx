@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import CheckIcon from "@/components/partners/CheckIcon";
+import Header from "@/components/partners/Header";
+import PopupDataSection from "@/components/partners/PopupDataSection";
 
 export const metadata: Metadata = {
   title: "Plus None Pop-Up · Event activations",
@@ -16,28 +17,7 @@ export default function PopupPage() {
   return (
     <div className="partner-page">
       <div className="page">
-        {/* NAV */}
-        <div className="nav">
-          <div className="nav-left">
-            <Image
-              src="/plus-none-logo.png"
-              alt="Plus None"
-              width={144}
-              height={144}
-              className="nav-logo"
-              priority
-            />
-            <div className="nav-divider" />
-            <div className="nav-tag">Pop-Up</div>
-          </div>
-          <div className="nav-right">
-            <a href="#pricing">Pricing</a>
-            <a href="#faq">FAQ</a>
-            <a className="btn-ghost" href="mailto:plusnone@fetewell.com">
-              Book the team
-            </a>
-          </div>
-        </div>
+        <Header context="popup" />
 
         {/* HERO */}
         <div className="hero">
@@ -47,8 +27,7 @@ export default function PopupPage() {
                 For conventions · weddings · activations · festivals
               </div>
               <h1 className="h1">
-                Turn your event <span className="italic">into</span>
-                <br />a dating pool.
+                Turn your event <em>into</em> a dating pool.
               </h1>
               <p className="hero-body">
                 For one night only. Add a Plus None Pop-Up to your event and
@@ -180,6 +159,8 @@ export default function PopupPage() {
             />
           </div>
         </div>
+
+        <PopupDataSection />
 
         {/* PRICING */}
         <div className="section" id="pricing">
