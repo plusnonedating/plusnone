@@ -173,7 +173,7 @@ export default function EventsPage() {
           </div>
           <div className="pricing-tiers">
             <div className="tier">
-              <div className="tier-name">Single Night</div>
+              <div className="tier-name">Event Activation — Single Day</div>
               <div className="tier-price">
                 <span className="num">$499</span>
                 <span className="per">/ event</span>
@@ -199,7 +199,7 @@ export default function EventsPage() {
             </div>
             <div className="tier featured">
               <div className="tier-badge">Most popular</div>
-              <div className="tier-name">Weekend</div>
+              <div className="tier-name">Event Activation — Multi-Day</div>
               <div className="tier-price">
                 <span className="num">$799</span>
                 <span className="per">/ event</span>
@@ -208,7 +208,7 @@ export default function EventsPage() {
                 Plus None active for up to 3 consecutive nights.
               </div>
               <ul>
-                <li>Everything in Single Night</li>
+                <li>Everything in Single Day</li>
                 <li>Multi-night geo activation</li>
                 <li>Pre- and mid-event social posts</li>
               </ul>
