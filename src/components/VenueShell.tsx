@@ -118,7 +118,13 @@ function VenueFeed({ venue, initialSubmissions }: Props) {
       ) : (
         <Feed submissions={ordered} />
       )}
-      <div className="pb-8 pt-4 text-center">
+      <div className="pb-8 pt-4 flex flex-col items-center gap-3 text-center">
+        <a
+          href="https://plusnone.fetewell.com/business"
+          className="inline-block border-b border-ink pb-0.5 text-sm font-medium text-ink"
+        >
+          Add Plus None to your bar, restaurant, or event →
+        </a>
         <button
           type="button"
           onClick={handleClearAccess}

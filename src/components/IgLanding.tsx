@@ -71,10 +71,10 @@ export default function IgLanding() {
           <p className="text-[16px] leading-[1.4] text-ink mt-[12px] pt-[12px] border-t border-ink/10">
             Run a bar, restaurant, or venue?{" "}
             <a
-              href="mailto:plusnone@fetewell.com"
+              href="https://plusnone.fetewell.com/business"
               className="text-cobalt font-medium underline underline-offset-[2px]"
             >
-              Add yours &rarr;
+              Add Plus None to your bar, restaurant, or event &rarr;
             </a>
           </p>
         </div>
