@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Event booked · Plus None",
 };
 
-export default function PopupThanksPage() {
+export default function EventsThanksPage() {
   return (
     <ThanksPage
       heading="Event booked"

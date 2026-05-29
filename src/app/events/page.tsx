@@ -5,7 +5,7 @@ import Header from "@/components/partners/Header";
 import PopupDataSection from "@/components/partners/PopupDataSection";
 
 export const metadata: Metadata = {
-  title: "Plus None Pop-Up · Event activations",
+  title: "Plus None Events · Event activations",
   description:
     "One-night Plus None activations for conventions, weddings, festivals, and brand events. Geo-gated to your event, featured to a 1M+ audience.",
 };
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const STRIPE_URL_SINGLE = "https://buy.stripe.com/dRmcN74ZBfZF48hbcWcV202";
 const STRIPE_URL_WEEKEND = "https://buy.stripe.com/cNidRb3Vx4gX0W5a8ScV201";
 
-export default function PopupPage() {
+export default function EventsPage() {
   return (
     <div className="partner-page">
       <div className="page">
@@ -30,10 +30,9 @@ export default function PopupPage() {
                 Turn your event <em>into</em> a dating pool.
               </h1>
               <p className="hero-body">
-                For one night only. Add a Plus None Pop-Up to your event and
-                give every single attendee a reason to scan, mingle, and post
-                about it. The most-screenshotted moment of the night, by
-                design.
+                For one night only. Add Plus None to your event and give
+                every single attendee a reason to scan, mingle, and post about
+                it. The most-screenshotted moment of the night, by design.
               </p>
               <div className="hero-actions">
                 <a
@@ -42,7 +41,7 @@ export default function PopupPage() {
                   rel="noopener noreferrer"
                   className="btn-primary"
                 >
-                  Book your event →
+                  Sign up →
                 </a>
               </div>
             </div>
@@ -114,7 +113,7 @@ export default function PopupPage() {
             </div>
             <div className="step">
               <div className="step-num">2.</div>
-              <div className="step-title">We set up your pop-up</div>
+              <div className="step-title">We set up your event</div>
               <div className="step-desc">
                 Geo-gating configured to your venue + event window. Custom
                 event branding on your signage. Shipped to arrive 3 days
@@ -195,7 +194,7 @@ export default function PopupPage() {
                 className="tier-btn"
                 style={{ justifyContent: "center" }}
               >
-                Book single night →
+                Sign up →
               </a>
             </div>
             <div className="tier featured">
@@ -220,7 +219,7 @@ export default function PopupPage() {
                 className="tier-btn"
                 style={{ justifyContent: "center" }}
               >
-                Book weekend →
+                Sign up →
               </a>
             </div>
           </div>
@@ -260,10 +259,10 @@ export default function PopupPage() {
           <a href="https://fetewell.com/plus-none-terms">User Terms</a> ·{" "}
           <Link href="/privacy-policy">Privacy</Link>
           <div className="footer-disclosure">
-            Payments processed by Stripe. Pop-ups are one-time charges.
+            Payments processed by Stripe. Events are one-time charges.
             Reschedule free up to 7 days before; cancel for full refund up to
             14 business days before. Cancellations inside 14 business days are
-            non-refundable. By booking you agree to our Partner Terms.
+            non-refundable. By signing up you agree to our Partner Terms.
           </div>
         </div>
       </div>

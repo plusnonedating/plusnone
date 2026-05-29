@@ -19,10 +19,10 @@ import { usePathname } from "next/navigation";
  */
 export default function Header() {
   const pathname = usePathname();
-  const isSubscription =
-    pathname?.startsWith("/partner") ||
+  const isBusiness =
+    pathname?.startsWith("/business") ||
     pathname?.startsWith("/founding-partner");
-  const isPopup = pathname?.startsWith("/popup");
+  const isEvents = pathname?.startsWith("/events");
 
   return (
     <header className="bg-cream">
@@ -42,24 +42,24 @@ export default function Header() {
           <div className="flex flex-col items-end gap-3 md:flex-row md:items-center md:gap-6">
             <nav className="flex items-center gap-4 text-xs md:gap-5 md:text-sm">
               <Link
-                href="/partner"
+                href="/business"
                 className={`pb-0.5 ${
-                  isSubscription
+                  isBusiness
                     ? "border-b border-stone-900 font-medium text-stone-900"
                     : "text-stone-600"
                 }`}
               >
-                Subscription
+                Business
               </Link>
               <Link
-                href="/popup"
+                href="/events"
                 className={`pb-0.5 ${
-                  isPopup
+                  isEvents
                     ? "border-b border-stone-900 font-medium text-stone-900"
                     : "text-stone-600"
                 }`}
               >
-                Pop-up
+                Events
               </Link>
             </nav>
             <a
