@@ -168,10 +168,11 @@ Questions, requests, or concerns about your privacy or this policy?
 
 We read every email. Response within 30 days for formal requests, faster for everything else.
 
-<!-- TODO: Kate to replace the placeholder below with Plus None LLC's registered Maryland business address before this PR ships. -->
 **Mailing address (for legal/formal requests):**
-Plus None LLC
-[Your registered Maryland business address]
+
+Plus None LLC  
+8307 Main St  
+Ellicott City, MD 21043
 
 ---
 
