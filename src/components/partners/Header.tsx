@@ -30,10 +30,10 @@ export default function Header({ context }: Props) {
             <Image
               src="/plus-none-logo.png"
               alt="Plus None"
-              width={240}
-              height={96}
+              width={296}
+              height={280}
               priority
-              className="h-16 w-auto md:h-20"
+              className="h-28 w-auto md:h-36"
             />
           </Link>
 
