@@ -14,8 +14,8 @@ interface Props {
 }
 
 /**
- * Shared signup landing layout used by both /partners (founding partner) and
- * /partners-regular (standard monthly). Differences are passed via props — the
+ * Shared signup landing layout used by both /founding-partner and /partner
+ * (standard monthly). Differences are passed via props — the
  * structure, copy, and CTAs are identical otherwise.
  */
 export default function PartnerSignup({
