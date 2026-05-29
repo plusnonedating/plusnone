@@ -1,27 +1,29 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-
-type Context = "partners" | "popup" | "founder";
-
-const CONTEXT_LABEL: Record<Context, string> = {
-  partners: "For partners",
-  popup: "Pop-up events",
-  founder: "Founding partner",
-};
-
-interface Props {
-  context: Context;
-}
+import { usePathname } from "next/navigation";
 
 /**
  * Shared header used across /founding-partner, /partner, and /popup.
- * Big-logo-left, stacked-nav-right layout — context tag + (Pricing/FAQ on
- * desktop) + Contact button stack vertically on mobile, sit inline on
- * desktop (≥ md). Anchored to the brand cream and the existing brand
- * cobalt; not wrapped in `.partner-page`, so it composes cleanly with the
- * namespaced CSS used by the rest of each signup page.
+ * Bigger-logo-left, pathname-aware nav-right: Subscription / Pop-up
+ * tabs underline the current page, with a Contact button trailing.
+ *
+ * Client component because it reads the current pathname to compute
+ * active-tab state. Lives outside the namespaced `.partner-page` CSS
+ * so it composes cleanly with the rest of each signup page.
+ *
+ * Bigger-logo sizing is intentional: the source PNG is cropped tight
+ * to the wordmark (no transparent padding), so h-28 / md:h-36 makes
+ * the visible wordmark properly dominant on the left.
  */
-export default function Header({ context }: Props) {
+export default function Header() {
+  const pathname = usePathname();
+  const isBusiness =
+    pathname?.startsWith("/business") ||
+    pathname?.startsWith("/founding-partner");
+  const isEvents = pathname?.startsWith("/events");
+
   return (
     <header className="bg-cream">
       <div className="mx-auto max-w-6xl px-5 py-5 md:px-8 md:py-7">
@@ -37,13 +39,28 @@ export default function Header({ context }: Props) {
             />
           </Link>
 
-          <div className="flex flex-col items-end gap-2 md:flex-row md:items-center md:gap-6">
-            <span className="text-[11px] uppercase tracking-wide text-stone-600 md:border-l md:border-stone-400 md:pl-4">
-              {CONTEXT_LABEL[context]}
-            </span>
-            <nav className="hidden gap-5 text-sm md:flex">
-              <a href="#pricing">Pricing</a>
-              <a href="#faq">FAQ</a>
+          <div className="flex flex-col items-end gap-3 md:flex-row md:items-center md:gap-6">
+            <nav className="flex items-center gap-4 text-xs md:gap-5 md:text-sm">
+              <Link
+                href="/business"
+                className={`pb-0.5 ${
+                  isBusiness
+                    ? "border-b border-stone-900 font-medium text-stone-900"
+                    : "text-stone-600"
+                }`}
+              >
+                Business
+              </Link>
+              <Link
+                href="/events"
+                className={`pb-0.5 ${
+                  isEvents
+                    ? "border-b border-stone-900 font-medium text-stone-900"
+                    : "text-stone-600"
+                }`}
+              >
+                Events
+              </Link>
             </nav>
             <a
               href="mailto:plusnone@fetewell.com"

@@ -8,7 +8,7 @@ interface Props {
 
 /**
  * Shared layout for the three post-Stripe confirmation pages
- * (/founding-partner/thanks, /partner/thanks, /popup/thanks).
+ * (/founding-partner/thanks, /business/thanks, /events/thanks).
  * Logo, heading, body paragraph, link back to the consumer landing.
  */
 export default function ThanksPage({ heading, body }: Props) {

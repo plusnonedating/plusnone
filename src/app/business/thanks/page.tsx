@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Welcome to Plus None",
 };
 
-export default function RegularThanksPage() {
+export default function BusinessThanksPage() {
   return (
     <ThanksPage
       heading="Welcome to Plus None"

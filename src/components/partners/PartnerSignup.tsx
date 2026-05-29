@@ -4,8 +4,6 @@ import Header from "./Header";
 import DataSection from "./DataSection";
 
 interface Props {
-  /** Which signup context the header tag should reflect. */
-  context: "partners" | "founder";
   /** Stripe Payment Link the primary CTA points to. */
   stripeUrl: string;
   /** Small uppercase tag in the pricing footer, e.g. "Founding partner" or "Welcome offer". */
@@ -17,12 +15,11 @@ interface Props {
 }
 
 /**
- * Shared signup landing layout used by both /founding-partner and /partner
+ * Shared signup landing layout used by both /founding-partner and /business
  * (standard monthly). Differences are passed via props — the
  * structure, copy, and CTAs are identical otherwise.
  */
 export default function PartnerSignup({
-  context,
   stripeUrl,
   pricingFootTag,
   pricingFootBody,
@@ -31,7 +28,7 @@ export default function PartnerSignup({
   return (
     <div className="partner-page">
       <div className="page">
-        <Header context={context} />
+        <Header />
 
         {/* HERO */}
         <div className="hero">
@@ -54,7 +51,7 @@ export default function PartnerSignup({
                   rel="noopener noreferrer"
                   className="btn-primary"
                 >
-                  Become a partner →
+                  Sign up →
                 </a>
               </div>
             </div>
@@ -178,7 +175,7 @@ export default function PartnerSignup({
           <div className="pricing-card">
             <div className="pricing-body">
               <div>
-                <div className="pricing-name">Plus None Partner</div>
+                <div className="pricing-name">Plus None Business</div>
                 <div className="pricing-row">
                   <span className="pricing-price">$99</span>
                   <span className="pricing-per">/ month</span>
@@ -193,7 +190,7 @@ export default function PartnerSignup({
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Become a partner →
+                Sign up →
               </a>
             </div>
             <div className="pricing-foot">
@@ -224,7 +221,7 @@ export default function PartnerSignup({
             />
             <Faq
               q="Do I have exclusivity in my area?"
-              a="No. Plus None is open competition by design — more participating venues means more singles using the platform, which benefits every partner."
+              a="No. Plus None is open competition by design — more participating venues means more singles using the platform, which benefits every business."
             />
           </div>
         </div>

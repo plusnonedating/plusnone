@@ -2,17 +2,16 @@ import type { Metadata } from "next";
 import PartnerSignup from "@/components/partners/PartnerSignup";
 
 export const metadata: Metadata = {
-  title: "Become a partner · Plus None",
+  title: "For business · Plus None",
   description:
     "Turn your business into a dating pool. Plus None is geo-gated to your venue, featured to a 1M+ audience, and reports on your bar monthly.",
 };
 
 const STRIPE_URL = "https://buy.stripe.com/6oUeVf9fR6p5gV30yicV203";
 
-export default function RegularPartnerPage() {
+export default function BusinessPage() {
   return (
     <PartnerSignup
-      context="partners"
       stripeUrl={STRIPE_URL}
       pricingFootTag="Welcome offer"
       pricingFootBody={
