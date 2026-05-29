@@ -78,7 +78,7 @@ export default function PartnerSignup({
         <section className="bg-[#f4ede4] px-5 pt-12 pb-4 md:px-8 md:pt-20 md:pb-8">
           <div className="mx-auto max-w-3xl">
             <h2 className="mb-8 font-serif text-3xl leading-[1.02] tracking-tight text-stone-900 md:text-5xl">
-              The businesses that last are the ones where people met.
+              The businesses that thrive are the ones where people meet.
             </h2>
 
             <div className="space-y-5 md:space-y-6">
