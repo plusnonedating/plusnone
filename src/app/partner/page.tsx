@@ -12,6 +12,7 @@ const STRIPE_URL = "https://buy.stripe.com/6oUeVf9fR6p5gV30yicV203";
 export default function RegularPartnerPage() {
   return (
     <PartnerSignup
+      context="partners"
       stripeUrl={STRIPE_URL}
       pricingFootTag="Welcome offer"
       pricingFootBody={

@@ -1,8 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import CheckIcon from "./CheckIcon";
+import Header from "./Header";
 
 interface Props {
+  /** Which signup context the header tag should reflect. */
+  context: "partners" | "founder";
   /** Stripe Payment Link the primary CTA points to. */
   stripeUrl: string;
   /** Small uppercase tag in the pricing footer, e.g. "Founding partner" or "Welcome offer". */
@@ -19,6 +21,7 @@ interface Props {
  * structure, copy, and CTAs are identical otherwise.
  */
 export default function PartnerSignup({
+  context,
   stripeUrl,
   pricingFootTag,
   pricingFootBody,
@@ -27,28 +30,7 @@ export default function PartnerSignup({
   return (
     <div className="partner-page">
       <div className="page">
-        {/* NAV */}
-        <div className="nav">
-          <div className="nav-left">
-            <Image
-              src="/plus-none-logo.png"
-              alt="Plus None"
-              width={144}
-              height={144}
-              className="nav-logo"
-              priority
-            />
-            <div className="nav-divider" />
-            <div className="nav-tag">For partners</div>
-          </div>
-          <div className="nav-right">
-            <a href="#pricing">Pricing</a>
-            <a href="#faq">FAQ</a>
-            <a className="btn-ghost" href="mailto:plusnone@fetewell.com">
-              Contact
-            </a>
-          </div>
-        </div>
+        <Header context={context} />
 
         {/* HERO */}
         <div className="hero">

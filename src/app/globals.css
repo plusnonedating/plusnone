@@ -9,6 +9,7 @@
 
   --font-display: var(--font-bebas), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
 
   --animate-pulse-dot: pulse-dot 1.6s ease-in-out infinite;
 }
