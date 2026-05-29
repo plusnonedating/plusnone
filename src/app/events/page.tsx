@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+// Brief spec'd `Instagram`; lucide-react v1.17 doesn't export that name,
+// so using AtSign — closest semantic match for the "featured on socials" row.
+import { AtSign, Heart, MapPin } from "lucide-react";
 import CheckIcon from "@/components/partners/CheckIcon";
 import Header from "@/components/partners/Header";
 import PopupDataSection from "@/components/partners/PopupDataSection";
+import { LiveFeedPreview } from "@/components/marketing/LiveFeedPreview";
+import { StatStrip } from "@/components/marketing/StatStrip";
+import { Statement } from "@/components/marketing/Statement";
 
 export const metadata: Metadata = {
   title: "Plus None Events · Event activations",
@@ -19,80 +25,70 @@ export default function EventsPage() {
       <div className="page">
         <Header />
 
-        {/* HERO */}
-        <div className="hero">
-          <div className="hero-row">
-            <div>
-              <div className="eyebrow">
-                For conventions · weddings · activations · festivals
-              </div>
-              <h1 className="h1">
-                Turn your event <em>into</em> a dating pool.
-              </h1>
-              <p className="hero-body">
-                For one night only. Add Plus None to your event and give
-                every single attendee a reason to scan, mingle, and post about
-                it. The most-screenshotted moment of the night, by design.
-              </p>
-              <div className="hero-actions">
-                <a
-                  href={STRIPE_URL_SINGLE}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Sign up →
-                </a>
-              </div>
-            </div>
-            <div className="hero-visual event">
-              <div className="event-card">
-                <div className="event-tag">POST-EVENT REPORT</div>
-                <div className="event-name">The Singles Mixer · Vol. 4</div>
-                <div className="event-meta">Brooklyn, NY · Saturday night</div>
-                <div className="event-stats">
-                  <div className="event-stat">
-                    <div className="es-num">612</div>
-                    <div className="es-label">Scans</div>
-                  </div>
-                  <div className="event-stat">
-                    <div className="es-num">284</div>
-                    <div className="es-label">Submissions</div>
-                  </div>
-                  <div className="event-stat">
-                    <div className="es-num">84K</div>
-                    <div className="es-label">Social Reach</div>
-                  </div>
-                  <div className="event-stat">
-                    <div className="es-num">47%</div>
-                    <div className="es-label">Repeat Visitors</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* HERO — locked Change 5b (revised lean brief) */}
+        <section className="bg-[#f4ede4] px-5 pt-6 pb-10 md:px-8 md:pt-16 md:pb-16">
+          <div className="mx-auto max-w-3xl">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
+              — For festivals · conferences · faires
+            </p>
+            <h1 className="font-serif text-[40px] leading-[0.95] tracking-tight text-stone-900 md:text-7xl md:leading-tight">
+              The best part of your event <em>isn&apos;t</em> on the schedule.
+            </h1>
+            <p className="mt-4 text-base leading-relaxed text-stone-700 md:mt-6 md:text-lg">
+              Plus None turns your event into a dating pool. The singles in
+              the room can find each other.
+            </p>
+            <a
+              href="#book"
+              className="mt-6 inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:mt-8 md:px-6 md:py-4 md:text-base"
+            >
+              Add Plus None to your event →
+            </a>
 
-        {/* TRUST */}
-        <div className="trust">
-          <div className="trust-label">Highlights</div>
-          <div className="trust-stats">
-            <div>
-              <div className="stat-num">1M+</div>
-              <div className="stat-label">
-                Social reach across IG &amp; TikTok
-              </div>
-            </div>
-            <div>
-              <div className="stat-num">14 days</div>
-              <div className="stat-label">Minimum lead time to deploy</div>
-            </div>
-            <div>
-              <div className="stat-num">Post-event</div>
-              <div className="stat-label">Data report on your guests</div>
+            <div className="mt-10 flex justify-center md:mt-14">
+              <LiveFeedPreview venueName="SXSW 2026" />
             </div>
           </div>
-        </div>
+        </section>
+
+        <StatStrip
+          items={[
+            { value: "1M+", label: "Social reach" },
+            { value: "Yours", label: "Geo-gated" },
+            { value: "Post-event", label: "Data report" },
+          ]}
+        />
+
+        {/* WHY THIS WORKS — locked Change 5d (revised lean brief) */}
+        <section className="bg-[#f4ede4] px-5 py-12 md:px-8 md:py-20">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="mb-8 font-serif text-3xl leading-[1.02] tracking-tight text-stone-900 md:text-5xl">
+              The events that last are the ones where you made friends.
+            </h2>
+
+            <div className="space-y-5 md:space-y-6">
+              <Statement
+                icon={MapPin}
+                title="Findable."
+                body="Singles opt in. Geo-gated to your event."
+              />
+              <Statement
+                icon={Heart}
+                title={'"I met my person there."'}
+                body="Said at weddings."
+              />
+              <Statement
+                icon={AtSign}
+                title="Featured to 1M+."
+                body="Every event. Across IG and TikTok."
+              />
+            </div>
+
+            <p className="mt-10 font-serif text-2xl italic leading-snug text-[#2647e8] md:mt-12 md:text-3xl">
+              Build the event they tell stories about for the next decade.
+            </p>
+          </div>
+        </section>
 
         {/* HOW IT WORKS */}
         <div className="section">
@@ -162,6 +158,7 @@ export default function EventsPage() {
         <PopupDataSection />
 
         {/* PRICING */}
+        <span id="book" />
         <div className="section" id="pricing">
           <div className="section-head">
             <div className="section-eyebrow">Pricing</div>
