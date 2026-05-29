@@ -30,54 +30,99 @@ export default function PartnerSignup({
       <div className="page">
         <Header />
 
-        {/* HERO */}
-        <div className="hero">
-          <div className="hero-row">
-            <div>
-              <div className="eyebrow">For bars · restaurants · venues</div>
-              <h1 className="h1">
-                Turn your business <em>into</em> a dating pool.
-              </h1>
-              <p className="hero-body">
-                Singles already come to your bar. Plus None gives them a reason
-                to scan, stick around, and come back — and gives you the data
-                to prove it. Featured on our socials. Geo-gated to your room
-                only. Reported on monthly.
-              </p>
-              <div className="hero-actions">
-                <a
-                  href={stripeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Sign up →
-                </a>
+        {/* HERO — locked Change 5a */}
+        <section className="bg-[#f4ede4] px-5 pt-6 pb-12 md:px-8 md:pt-16 md:pb-28">
+          <div className="mx-auto max-w-3xl">
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
+              — For bars · restaurants · venues
+            </p>
+            <h1 className="font-serif text-[40px] leading-[0.95] tracking-tight text-stone-900 md:text-7xl md:leading-tight">
+              The best part of your business <em>isn&apos;t</em> on the menu.
+            </h1>
+            <p className="mt-5 text-base leading-relaxed text-stone-800 md:mt-7 md:text-lg">
+              We&apos;re sure the cocktails are great. But Plus None turns your
+              business into a dating pool so the singles in the room can
+              actually find each other. That&apos;s why they keep coming back.
+            </p>
+            <a
+              href={stripeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:mt-8 md:px-6 md:py-4 md:text-base"
+            >
+              Become a Plus None Location →
+            </a>
+          </div>
+        </section>
+
+        {/* WHY THIS WORKS — locked Change 5c */}
+        <section className="bg-[#f4ede4] px-5 py-10 md:px-8 md:py-20">
+          <div className="mx-auto max-w-3xl">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
+              Why this works
+            </p>
+            <h2 className="mb-4 font-serif text-3xl leading-[1.02] tracking-tight text-stone-900 md:text-5xl">
+              The businesses that last are the ones where people met.
+            </h2>
+            <p className="mb-10 text-base leading-relaxed text-stone-700 md:text-lg">
+              Cocktails fade. Dinner gets forgotten. The person they met at
+              your place shows up in their life for the next ten years. Plus
+              None makes sure those people find each other.
+            </p>
+
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
+              <div className="rounded-xl bg-[#ede4d5] p-5 md:p-6">
+                <p className="font-serif text-3xl text-[#2647e8] md:text-4xl">
+                  01
+                </p>
+                <h3 className="mt-3 font-serif text-xl leading-tight text-stone-900">
+                  The room becomes findable.
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-stone-700">
+                  Plus None geo-gates to your business only. Singles inside
+                  opt into a dating pool that&apos;s gone the moment they
+                  leave. The people who want to meet someone get to. The rest
+                  of the room is none the wiser.
+                </p>
+              </div>
+
+              <div className="rounded-xl bg-[#ede4d5] p-5 md:p-6">
+                <p className="font-serif text-3xl text-[#2647e8] md:text-4xl">
+                  02
+                </p>
+                <h3 className="mt-3 font-serif text-xl leading-tight text-stone-900">
+                  &ldquo;We met at your place.&rdquo;
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-stone-700">
+                  Four words that drive return visits for decades. That get
+                  said at weddings. That turn your business into a landmark
+                  in someone&apos;s life.
+                </p>
+              </div>
+
+              <div className="rounded-xl bg-[#ede4d5] p-5 md:p-6">
+                <p className="font-serif text-3xl text-[#2647e8] md:text-4xl">
+                  03
+                </p>
+                <h3 className="mt-3 font-serif text-xl leading-tight text-stone-900">
+                  Featured to 1M+ singles.
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-stone-700">
+                  Plus None posts your business across @plusnonedating and
+                  @TheVenueCEO — an audience of 1M+ already engaged with
+                  going-out content. The exposure is built into your
+                  subscription.
+                </p>
               </div>
             </div>
-            <div className="hero-visual">
-              <div className="hv-phone">
-                <div className="hv-phone-h">Who&apos;s single here?</div>
-                <div className="hv-phone-v">CITIZENS BALLROOM</div>
-                {[
-                  ["Sam, 28", "Ask me about my dog"],
-                  ["Jay, 31", "Ask me about Berlin"],
-                  ["Rae, 26", "Ask me about hot sauce"],
-                  ["Mo, 33", "Ask me about karaoke"],
-                ].map(([name, ask]) => (
-                  <div key={name} className="hv-profile">
-                    <div className="hv-pic" />
-                    <div className="hv-info">
-                      <div className="hv-name">{name}</div>
-                      <div className="hv-ask">{ask}</div>
-                    </div>
-                    <div className="hv-dot">↗</div>
-                  </div>
-                ))}
-              </div>
+
+            <div className="mt-10 border-l-2 border-[#2647e8] pl-5 md:mt-12 md:pl-6">
+              <p className="font-serif text-2xl leading-tight text-stone-900 md:text-3xl">
+                Build the place they tell stories about for the next decade.
+              </p>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* TRUST */}
         <div className="trust">

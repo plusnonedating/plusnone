@@ -19,59 +19,97 @@ export default function EventsPage() {
       <div className="page">
         <Header />
 
-        {/* HERO */}
-        <div className="hero">
-          <div className="hero-row">
-            <div>
-              <div className="eyebrow">
-                For conventions · weddings · activations · festivals
+        {/* HERO — locked Change 5b */}
+        <section className="bg-[#f4ede4] px-5 pt-6 pb-12 md:px-8 md:pt-16 md:pb-28">
+          <div className="mx-auto max-w-3xl">
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
+              — For festivals · conferences · conventions · faires
+            </p>
+            <h1 className="font-serif text-[40px] leading-[0.95] tracking-tight text-stone-900 md:text-7xl md:leading-tight">
+              The best part of your event <em>isn&apos;t</em> on the schedule.
+            </h1>
+            <p className="mt-5 text-base leading-relaxed text-stone-800 md:mt-7 md:text-lg">
+              We&apos;re sure the schedule&apos;s great. But Plus None turns
+              your event into a dating pool so the singles in the room can
+              actually find each other. That&apos;s why they come back next
+              year.
+            </p>
+            <a
+              href="#book"
+              className="mt-6 inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:mt-8 md:px-6 md:py-4 md:text-base"
+            >
+              Add Plus None to your event →
+            </a>
+          </div>
+        </section>
+
+        {/* WHY THIS WORKS — locked Change 5d */}
+        <section className="bg-[#f4ede4] px-5 py-10 md:px-8 md:py-20">
+          <div className="mx-auto max-w-3xl">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
+              Why this works
+            </p>
+            <h2 className="mb-4 font-serif text-3xl leading-[1.02] tracking-tight text-stone-900 md:text-5xl">
+              The events that last are the ones where you made friends.
+            </h2>
+            <p className="mb-10 text-base leading-relaxed text-stone-700 md:text-lg">
+              Headliners fade. Speakers get forgotten. The person they met in
+              the dating pool shows up in their life for the next ten years.
+              Plus None makes sure those people find each other.
+            </p>
+
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
+              <div className="rounded-xl bg-[#ede4d5] p-5 md:p-6">
+                <p className="font-serif text-3xl text-[#2647e8] md:text-4xl">
+                  01
+                </p>
+                <h3 className="mt-3 font-serif text-xl leading-tight text-stone-900">
+                  Make the singles findable.
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-stone-700">
+                  Plus None gives attendees a way to opt into the room&apos;s
+                  dating pool. Geo-gated to your event, gone when it ends.
+                  The people who want to meet someone can — without rolling
+                  the dice on every conversation.
+                </p>
               </div>
-              <h1 className="h1">
-                Turn your event <em>into</em> a dating pool.
-              </h1>
-              <p className="hero-body">
-                For one night only. Add Plus None to your event and give
-                every single attendee a reason to scan, mingle, and post about
-                it. The most-screenshotted moment of the night, by design.
-              </p>
-              <div className="hero-actions">
-                <a
-                  href={STRIPE_URL_SINGLE}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Sign up →
-                </a>
+
+              <div className="rounded-xl bg-[#ede4d5] p-5 md:p-6">
+                <p className="font-serif text-3xl text-[#2647e8] md:text-4xl">
+                  02
+                </p>
+                <h3 className="mt-3 font-serif text-xl leading-tight text-stone-900">
+                  &ldquo;I met my person there.&rdquo;
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-stone-700">
+                  The sentence that gets said at weddings. That ends up in
+                  the New York Times. That turns your event into a tradition
+                  someone built their life around.
+                </p>
+              </div>
+
+              <div className="rounded-xl bg-[#ede4d5] p-5 md:p-6">
+                <p className="font-serif text-3xl text-[#2647e8] md:text-4xl">
+                  03
+                </p>
+                <h3 className="mt-3 font-serif text-xl leading-tight text-stone-900">
+                  Featured to 1M+ singles.
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-stone-700">
+                  Plus None posts your event across @plusnonedating and
+                  @TheVenueCEO — an audience of 1M+ already engaged with
+                  going-out content. The exposure is built into the booking.
+                </p>
               </div>
             </div>
-            <div className="hero-visual event">
-              <div className="event-card">
-                <div className="event-tag">POST-EVENT REPORT</div>
-                <div className="event-name">The Singles Mixer · Vol. 4</div>
-                <div className="event-meta">Brooklyn, NY · Saturday night</div>
-                <div className="event-stats">
-                  <div className="event-stat">
-                    <div className="es-num">612</div>
-                    <div className="es-label">Scans</div>
-                  </div>
-                  <div className="event-stat">
-                    <div className="es-num">284</div>
-                    <div className="es-label">Submissions</div>
-                  </div>
-                  <div className="event-stat">
-                    <div className="es-num">84K</div>
-                    <div className="es-label">Social Reach</div>
-                  </div>
-                  <div className="event-stat">
-                    <div className="es-num">47%</div>
-                    <div className="es-label">Repeat Visitors</div>
-                  </div>
-                </div>
-              </div>
+
+            <div className="mt-10 border-l-2 border-[#2647e8] pl-5 md:mt-12 md:pl-6">
+              <p className="font-serif text-2xl leading-tight text-stone-900 md:text-3xl">
+                Build the event they tell stories about for the next decade.
+              </p>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* TRUST */}
         <div className="trust">
@@ -162,6 +200,7 @@ export default function EventsPage() {
         <PopupDataSection />
 
         {/* PRICING */}
+        <span id="book" />
         <div className="section" id="pricing">
           <div className="section-head">
             <div className="section-eyebrow">Pricing</div>
