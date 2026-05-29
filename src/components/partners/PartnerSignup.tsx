@@ -4,8 +4,6 @@ import Header from "./Header";
 import DataSection from "./DataSection";
 
 interface Props {
-  /** Which signup context the header tag should reflect. */
-  context: "partners" | "founder";
   /** Stripe Payment Link the primary CTA points to. */
   stripeUrl: string;
   /** Small uppercase tag in the pricing footer, e.g. "Founding partner" or "Welcome offer". */
@@ -22,7 +20,6 @@ interface Props {
  * structure, copy, and CTAs are identical otherwise.
  */
 export default function PartnerSignup({
-  context,
   stripeUrl,
   pricingFootTag,
   pricingFootBody,
@@ -31,7 +28,7 @@ export default function PartnerSignup({
   return (
     <div className="partner-page">
       <div className="page">
-        <Header context={context} />
+        <Header />
 
         {/* HERO */}
         <div className="hero">

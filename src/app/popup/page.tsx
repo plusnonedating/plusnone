@@ -17,7 +17,7 @@ export default function PopupPage() {
   return (
     <div className="partner-page">
       <div className="page">
-        <Header context="popup" />
+        <Header />
 
         {/* HERO */}
         <div className="hero">
