@@ -72,8 +72,10 @@ export default function PartnerSignup({
           ]}
         />
 
-        {/* WHY THIS WORKS — locked Change 5c (revised lean brief) */}
-        <section className="bg-[#f4ede4] px-5 py-12 md:px-8 md:py-20">
+        {/* WHY THIS WORKS — locked Change 5c (revised lean brief).
+            Bottom padding trimmed (pb-4/pb-8) to avoid double-padding
+            against the .partner-page .section that follows. */}
+        <section className="bg-[#f4ede4] px-5 pt-12 pb-4 md:px-8 md:pt-20 md:pb-8">
           <div className="mx-auto max-w-3xl">
             <h2 className="mb-8 font-serif text-3xl leading-[1.02] tracking-tight text-stone-900 md:text-5xl">
               The businesses that last are the ones where people met.
