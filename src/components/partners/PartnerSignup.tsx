@@ -38,8 +38,7 @@ export default function PartnerSignup({
             <div>
               <div className="eyebrow">For bars · restaurants · venues</div>
               <h1 className="h1">
-                Turn your business <span className="italic">into</span>
-                <br />a dating pool.
+                Turn your business <em>into</em> a dating pool.
               </h1>
               <p className="hero-body">
                 Singles already come to your bar. Plus None gives them a reason

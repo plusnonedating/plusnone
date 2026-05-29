@@ -26,8 +26,7 @@ export default function PopupPage() {
                 For conventions · weddings · activations · festivals
               </div>
               <h1 className="h1">
-                Turn your event <span className="italic">into</span>
-                <br />a dating pool.
+                Turn your event <em>into</em> a dating pool.
               </h1>
               <p className="hero-body">
                 For one night only. Add a Plus None Pop-Up to your event and
