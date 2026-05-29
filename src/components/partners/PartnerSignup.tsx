@@ -109,7 +109,7 @@ export default function PartnerSignup({
         <div className="section">
           <div className="section-head">
             <div className="section-eyebrow">How it works</div>
-            <h2 className="section-h2">Three steps. Live in under a week.</h2>
+            <h2 className="section-h2">Three steps. Live in 10 business days.</h2>
           </div>
           <div className="steps">
             <div className="step">
@@ -125,7 +125,7 @@ export default function PartnerSignup({
               <div className="step-title">We set up your location</div>
               <div className="step-desc">
                 Your venue is added to the geo-gated network within 48 hours.
-                Printed signage ships in 5 business days.
+                Printed signage arrives within 10 business days of signup.
               </div>
             </div>
             <div className="step">
@@ -218,7 +218,7 @@ export default function PartnerSignup({
             />
             <Faq
               q="How long until I'm live?"
-              a="Your location is configured manually within 48 hours of signup. Signage ships within 5 business days."
+              a="Your location is configured manually within 48 hours of signup. Signage arrives within 10 business days of signup."
             />
             <Faq
               q="Can I cancel?"
