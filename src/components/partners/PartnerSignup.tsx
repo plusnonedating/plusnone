@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CheckIcon from "./CheckIcon";
 import Header from "./Header";
+import DataSection from "./DataSection";
 
 interface Props {
   /** Which signup context the header tag should reflect. */
@@ -166,87 +167,7 @@ export default function PartnerSignup({
           </div>
         </div>
 
-        {/* THE DATA */}
-        <div className="section">
-          <div className="section-head">
-            <div className="section-eyebrow">The data</div>
-            <h2 className="section-h2">
-              Real intelligence on who walks through your door.
-            </h2>
-            <p className="section-sub">
-              No bar has visibility into who its single patrons are, how often
-              they come back, or what nights actually drive new traffic. Plus
-              None gives you that.
-            </p>
-          </div>
-
-          <div className="data-grid">
-            <div>
-              <div className="data-col-eyebrow">You&apos;ll see</div>
-              <ul className="data-list">
-                <li>
-                  <strong>Demographic mix</strong> — age and gender breakdown
-                  of who scanned at your venue
-                </li>
-                <li>
-                  <strong>Peak hours and nights</strong> — when single patrons
-                  actually show up
-                </li>
-                <li>
-                  <strong>Repeat visit rate</strong> — how many of your
-                  scanners come back within 30 / 60 / 90 days
-                </li>
-                <li>
-                  <strong>Social pull</strong> — submissions that converted to
-                  follows on @plusnonedating and tagged your venue
-                </li>
-                <li>
-                  <strong>Benchmark</strong> — how your venue compares to
-                  similar Plus None bars (anonymized)
-                </li>
-              </ul>
-            </div>
-            <div>
-              <div className="data-col-eyebrow">So you can</div>
-              <ul className="data-list">
-                <li>
-                  <strong>Staff the right nights.</strong> Stop over-staffing
-                  slow ones. Stop drowning on the busy ones.
-                </li>
-                <li>
-                  <strong>Run promotions where they&apos;ll land.</strong>{" "}
-                  Tuesday slow? Now you know what kind of singles are missing —
-                  target them.
-                </li>
-                <li>
-                  <strong>Prove your bar&apos;s story to brands.</strong> Sell
-                  sponsorship and partnership deals with real demographic data,
-                  not guesses.
-                </li>
-                <li>
-                  <strong>Justify rent. Justify expansion.</strong> When your
-                  landlord or your investor asks &ldquo;is this place
-                  working?&rdquo; — show them.
-                </li>
-                <li>
-                  <strong>Become the singles bar of your city.</strong>{" "}
-                  Repeat-visit data is the proof. Use it in your own marketing.
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="data-callout">
-            <div>
-              <div className="data-callout-eyebrow">Why this matters</div>
-              <div className="data-callout-text">
-                Most bars rely on &ldquo;vibes&rdquo; to make staffing,
-                programming, and marketing decisions. Plus None partners get
-                monthly numbers nobody else in their market has.
-              </div>
-            </div>
-          </div>
-        </div>
+        <DataSection />
 
         {/* PRICING */}
         <div className="section" id="pricing">
