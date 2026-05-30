@@ -70,26 +70,19 @@ export default function PartnerSignup({
                 <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
                   How it works
                 </p>
-                <div className="space-y-5 md:space-y-6">
-                  <Statement
-                    icon={QrCode}
-                    title="Scan the QR code."
-                    body="Single customers scan from a table tent."
-                  />
+                <div className="space-y-4 md:space-y-5">
+                  <Statement icon={QrCode} title="Scan the QR code." />
                   <Statement
                     icon={Users}
                     title="See who else is single in the room."
-                    body="They see profiles of other singles at your business and can learn about them before shooting their shot IRL."
                   />
                   <Statement
                     icon={MapPin}
                     title="Gated to your room. Clears overnight."
-                    body="Only people physically at your business can join. The pool wakes up empty every morning."
                   />
                   <Statement
                     icon={Smartphone}
                     title="No app. No algorithm. Nothing to download."
-                    body="It works in any browser. That&apos;s it."
                   />
                 </div>
               </div>
