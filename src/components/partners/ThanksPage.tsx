@@ -37,16 +37,16 @@ export default function ThanksPage({
           />
         </div>
         <h1>{heading}</h1>
+        <p>{body}</p>
         {showPlaybookDownload && (
           <a
             href="/plus-none-playbook.pdf"
             download
-            className="mt-4 mb-2 inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:px-6 md:py-4 md:text-base"
+            className="mt-6 mb-4 inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:px-6 md:py-4 md:text-base"
           >
             Download the Plus None Playbook →
           </a>
         )}
-        <p>{body}</p>
         <Link className="back-link" href="/">
           plusnone.fetewell.com →
         </Link>
