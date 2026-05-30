@@ -52,11 +52,8 @@ export default function EventsPage() {
               Add Plus None to your event →
             </a>
 
-            <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-[260px_1fr] md:items-start md:gap-12">
-              <div className="flex justify-center md:justify-start">
-                <LiveFeedPreview venueName="SXSW 2026" />
-              </div>
-              <div>
+            <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-[1fr_260px] md:items-start md:gap-12">
+              <div className="order-2 md:order-1">
                 <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
                   How it works
                 </p>
@@ -82,6 +79,9 @@ export default function EventsPage() {
                     body="It works in any browser. That&apos;s it."
                   />
                 </div>
+              </div>
+              <div className="order-1 flex justify-center md:order-2 md:justify-end">
+                <LiveFeedPreview venueName="SXSW 2026" />
               </div>
             </div>
           </div>
