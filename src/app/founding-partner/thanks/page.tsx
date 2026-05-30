@@ -9,6 +9,7 @@ export default function FoundingThanksPage() {
   return (
     <ThanksPage
       heading="Welcome, founding partner"
+      showPlaybookDownload
       body={
         <>
           We&apos;ll set up your location within 48 hours. Signage arrives
