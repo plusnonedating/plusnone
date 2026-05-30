@@ -43,7 +43,7 @@ We may improve report quality, add new metrics, or change the report format over
 ## 1.2 Service-Level Expectations
 
 - **Geo-tag setup:** Within 48 hours of signup (subscriptions) or within the 14-business-day lead time (pop-ups).
-- **Signage delivery:** Within 5 business days of signup (subscriptions). Shipped to arrive at least 3 days before event date (pop-ups).
+- **Signage delivery:** Within 10 business days of signup (subscriptions). Shipped to arrive at least 3 days before event date (pop-ups).
 - **Social media features:** At least one @plusnonedating post within your first 30 days of paid subscription; pre-event and post-event posts for pop-ups.
 - **Report delivery:** By the 5th of each month (subscriptions); within 5 business days of event end (pop-ups).
 

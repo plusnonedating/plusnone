@@ -11,8 +11,9 @@ export default function BusinessThanksPage() {
       heading="Welcome to Plus None"
       body={
         <>
-          We&apos;ll set up your location within 48 hours. Signage ships in 5
-          business days. Look for an email from plusnone@fetewell.com.
+          We&apos;ll set up your location within 48 hours. Signage arrives
+          within 10 business days of signup. Look for an email from
+          plusnone@fetewell.com.
         </>
       }
     />
