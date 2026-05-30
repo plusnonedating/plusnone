@@ -11,9 +11,9 @@ export default function FoundingThanksPage() {
       heading="Welcome, founding partner"
       body={
         <>
-          We&apos;ll set up your location within 48 hours. Signage ships in 5
-          business days. You&apos;ll get an email confirmation. Look for it
-          from plusnone@fetewell.com.
+          We&apos;ll set up your location within 48 hours. Signage arrives
+          within 10 business days of signup. You&apos;ll get an email
+          confirmation. Look for it from plusnone@fetewell.com.
         </>
       }
     />
