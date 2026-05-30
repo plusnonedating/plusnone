@@ -11,8 +11,12 @@ export default function EventsThanksPage() {
       heading="Event booked"
       body={
         <>
-          We&apos;ll be in touch within 24 hours with signage proofs. See you
-          at your event.
+          To kick off design, send your event logo and any signage notes to{" "}
+          <a href="mailto:plusnone@fetewell.com?subject=Event%20signage%20assets">
+            plusnone@fetewell.com
+          </a>
+          . We&apos;ll have proofs in your inbox shortly after your assets
+          land.
         </>
       }
     />
