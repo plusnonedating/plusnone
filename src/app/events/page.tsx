@@ -61,7 +61,7 @@ export default function EventsPage() {
                   <Statement icon={QrCode} title="Scan the QR code." />
                   <Statement
                     icon={Users}
-                    title="See who else is single in the room."
+                    title="See who else is single in the crowd."
                   />
                   <Statement
                     icon={MapPin}
