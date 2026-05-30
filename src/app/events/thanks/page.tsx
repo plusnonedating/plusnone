@@ -9,6 +9,7 @@ export default function EventsThanksPage() {
   return (
     <ThanksPage
       heading="Event booked"
+      showPlaybookDownload
       body={
         <>
           To kick off design, send your event logo and any signage notes to{" "}
