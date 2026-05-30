@@ -1,7 +1,13 @@
 import Link from "next/link";
+// Brief spec'd `Instagram`; lucide-react v1.17 doesn't export that name,
+// so using AtSign — closest semantic match for the "featured on socials" row.
+import { AtSign, Heart, MapPin } from "lucide-react";
 import CheckIcon from "./CheckIcon";
 import Header from "./Header";
 import DataSection from "./DataSection";
+import { LiveFeedPreview } from "@/components/marketing/LiveFeedPreview";
+import { StatStrip } from "@/components/marketing/StatStrip";
+import { Statement } from "@/components/marketing/Statement";
 
 interface Props {
   /** Stripe Payment Link the primary CTA points to. */
@@ -30,81 +36,80 @@ export default function PartnerSignup({
       <div className="page">
         <Header />
 
-        {/* HERO */}
-        <div className="hero">
-          <div className="hero-row">
-            <div>
-              <div className="eyebrow">For bars · restaurants · venues</div>
-              <h1 className="h1">
-                Turn your business <em>into</em> a dating pool.
-              </h1>
-              <p className="hero-body">
-                Singles already come to your bar. Plus None gives them a reason
-                to scan, stick around, and come back — and gives you the data
-                to prove it. Featured on our socials. Geo-gated to your room
-                only. Reported on monthly.
-              </p>
-              <div className="hero-actions">
-                <a
-                  href={stripeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Sign up →
-                </a>
-              </div>
-            </div>
-            <div className="hero-visual">
-              <div className="hv-phone">
-                <div className="hv-phone-h">Who&apos;s single here?</div>
-                <div className="hv-phone-v">CITIZENS BALLROOM</div>
-                {[
-                  ["Sam, 28", "Ask me about my dog"],
-                  ["Jay, 31", "Ask me about Berlin"],
-                  ["Rae, 26", "Ask me about hot sauce"],
-                  ["Mo, 33", "Ask me about karaoke"],
-                ].map(([name, ask]) => (
-                  <div key={name} className="hv-profile">
-                    <div className="hv-pic" />
-                    <div className="hv-info">
-                      <div className="hv-name">{name}</div>
-                      <div className="hv-ask">{ask}</div>
-                    </div>
-                    <div className="hv-dot">↗</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* HERO — locked Change 5a (revised lean brief) */}
+        <section className="bg-[#f4ede4] px-5 pt-6 pb-10 md:px-8 md:pt-16 md:pb-16">
+          <div className="mx-auto max-w-3xl">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
+              — For bars · restaurants · venues
+            </p>
+            <h1 className="font-serif text-[40px] leading-[0.95] tracking-tight text-stone-900 md:text-7xl md:leading-tight">
+              The best part of your business <em>isn&apos;t</em> on the menu.
+            </h1>
+            <p className="mt-4 text-base leading-relaxed text-stone-700 md:mt-6 md:text-lg">
+              Plus None turns the room into a dating pool. Singles in the room
+              can find each other.
+            </p>
+            <a
+              href={stripeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:mt-8 md:px-6 md:py-4 md:text-base"
+            >
+              Become a Plus None Location →
+            </a>
 
-        {/* TRUST */}
-        <div className="trust">
-          <div className="trust-label">Highlights</div>
-          <div className="trust-stats">
-            <div>
-              <div className="stat-num">1M+</div>
-              <div className="stat-label">
-                Social reach across IG &amp; TikTok
-              </div>
-            </div>
-            <div>
-              <div className="stat-num">Yours</div>
-              <div className="stat-label">Geo-gated to your venue only</div>
-            </div>
-            <div>
-              <div className="stat-num">Monthly</div>
-              <div className="stat-label">Data report on your venue</div>
+            <div className="mt-10 flex justify-center md:mt-14">
+              <LiveFeedPreview venueName="Citizens Ballroom" />
             </div>
           </div>
-        </div>
+        </section>
+
+        <StatStrip
+          items={[
+            { value: "1M+", label: "Social reach" },
+            { value: "Yours", label: "Geo-gated" },
+            { value: "Monthly", label: "Data report" },
+          ]}
+        />
+
+        {/* WHY THIS WORKS — locked Change 5c (revised lean brief).
+            Bottom padding trimmed (pb-4/pb-8) to avoid double-padding
+            against the .partner-page .section that follows. */}
+        <section className="bg-[#f4ede4] px-5 pt-12 pb-4 md:px-8 md:pt-20 md:pb-8">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="mb-8 font-serif text-3xl leading-[1.02] tracking-tight text-stone-900 md:text-5xl">
+              The businesses that thrive are the ones where people meet.
+            </h2>
+
+            <div className="space-y-5 md:space-y-6">
+              <Statement
+                icon={MapPin}
+                title="Findable."
+                body="Singles opt in. Geo-gated to your room."
+              />
+              <Statement
+                icon={Heart}
+                title={'"We met at your place."'}
+                body="Said at weddings for decades."
+              />
+              <Statement
+                icon={AtSign}
+                title="Featured to 1M+."
+                body="Monthly. Across IG and TikTok."
+              />
+            </div>
+
+            <p className="mt-10 font-serif text-2xl italic leading-snug text-[#2647e8] md:mt-12 md:text-3xl">
+              Build the place they tell stories about for the next decade.
+            </p>
+          </div>
+        </section>
 
         {/* HOW IT WORKS */}
         <div className="section">
           <div className="section-head">
             <div className="section-eyebrow">How it works</div>
-            <h2 className="section-h2">Three steps. Live in under a week.</h2>
+            <h2 className="section-h2">Three steps. Live in 10 business days.</h2>
           </div>
           <div className="steps">
             <div className="step">
@@ -120,7 +125,7 @@ export default function PartnerSignup({
               <div className="step-title">We set up your location</div>
               <div className="step-desc">
                 Your venue is added to the geo-gated network within 48 hours.
-                Printed signage ships in 5 business days.
+                Printed signage arrives within 10 business days of signup.
               </div>
             </div>
             <div className="step">
@@ -213,7 +218,7 @@ export default function PartnerSignup({
             />
             <Faq
               q="How long until I'm live?"
-              a="Your location is configured manually within 48 hours of signup. Signage ships within 5 business days."
+              a="Your location is configured manually within 48 hours of signup. Signage arrives within 10 business days of signup."
             />
             <Faq
               q="Can I cancel?"
