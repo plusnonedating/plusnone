@@ -52,16 +52,19 @@ export default function EventsPage() {
               Add Plus None to your event →
             </a>
 
-            <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-[1fr_260px] md:items-start md:gap-12">
+            <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-[1fr_300px] md:items-start md:gap-12">
               <div className="order-2 md:order-1">
                 <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
                   How it works
                 </p>
-                <div className="space-y-4 md:space-y-5">
-                  <Statement icon={QrCode} title="Scan the QR code." />
+                <div className="space-y-5 md:space-y-6">
+                  <Statement
+                    icon={QrCode}
+                    title="Single guests scan the QR code."
+                  />
                   <Statement
                     icon={Users}
-                    title="See who else is single in the crowd."
+                    title="They see who else is single and can go say hi IRL."
                   />
                   <Statement
                     icon={MapPin}
