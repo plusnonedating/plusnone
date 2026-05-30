@@ -52,12 +52,12 @@ export default function EventsPage() {
               Add Plus None to your event →
             </a>
 
-            <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-[1fr_260px] md:items-start md:gap-12">
-              <div className="order-2 md:order-1">
+            <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-[1fr_260px] md:gap-12">
+              <div className="order-2 md:order-1 md:flex md:flex-col">
                 <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
                   How it works
                 </p>
-                <div className="space-y-4 md:space-y-5">
+                <div className="space-y-4 md:flex md:flex-1 md:flex-col md:justify-between md:space-y-0">
                   <Statement icon={QrCode} title="Scan the QR code." />
                   <Statement
                     icon={Users}
