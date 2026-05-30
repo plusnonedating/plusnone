@@ -1,14 +1,7 @@
 import Link from "next/link";
 // Brief spec'd `Instagram`; lucide-react v1.17 doesn't export that name,
 // so using AtSign — closest semantic match for the "featured on socials" row.
-import {
-  AtSign,
-  Heart,
-  MapPin,
-  QrCode,
-  Smartphone,
-  Users,
-} from "lucide-react";
+import { AtSign, Heart, MapPin } from "lucide-react";
 import CheckIcon from "./CheckIcon";
 import Header from "./Header";
 import DataSection from "./DataSection";
@@ -112,44 +105,10 @@ export default function PartnerSignup({
           </div>
         </section>
 
-        {/* HOW IT WORKS — customer mechanic explainer */}
-        <section className="bg-[#f4ede4] px-5 py-10 md:px-8 md:py-20">
-          <div className="mx-auto max-w-3xl">
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
-              How it works
-            </p>
-            <h2 className="mb-8 font-serif text-3xl leading-[1.02] tracking-tight text-stone-900 md:text-5xl">
-              Scan. See. Say hi.
-            </h2>
-            <div className="space-y-5 md:space-y-6">
-              <Statement
-                icon={QrCode}
-                title="Scan the QR code."
-                body="Single customers scan from a table tent or bathroom mirror."
-              />
-              <Statement
-                icon={Users}
-                title="See who else is single in the room."
-                body="They see profiles of other singles at your business and can learn a little about them before shooting their shot IRL."
-              />
-              <Statement
-                icon={MapPin}
-                title="Gated to your room. Clears overnight."
-                body="Only people physically at your business can join. The pool wakes up empty every morning."
-              />
-              <Statement
-                icon={Smartphone}
-                title="No app. No algorithm. Nothing to download."
-                body="It works in any browser. That&apos;s it."
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* YOUR LAUNCH — operational onboarding timeline */}
+        {/* HOW IT WORKS */}
         <div className="section">
           <div className="section-head">
-            <div className="section-eyebrow">Your launch</div>
+            <div className="section-eyebrow">How it works</div>
             <h2 className="section-h2">Three steps. Live in 10 business days.</h2>
           </div>
           <div className="steps">
