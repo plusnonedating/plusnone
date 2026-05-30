@@ -65,8 +65,37 @@ export default function PartnerSignup({
               Become a Plus None Location →
             </a>
 
-            <div className="mt-10 flex justify-center md:mt-14">
-              <LiveFeedPreview venueName="Citizens Ballroom" />
+            <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-[260px_1fr] md:items-start md:gap-12">
+              <div className="flex justify-center md:justify-start">
+                <LiveFeedPreview venueName="Citizens Ballroom" />
+              </div>
+              <div>
+                <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
+                  How it works
+                </p>
+                <div className="space-y-5 md:space-y-6">
+                  <Statement
+                    icon={QrCode}
+                    title="Scan the QR code."
+                    body="Single customers scan from a table tent."
+                  />
+                  <Statement
+                    icon={Users}
+                    title="See who else is single in the room."
+                    body="They see profiles of other singles at your business and can learn about them before shooting their shot IRL."
+                  />
+                  <Statement
+                    icon={MapPin}
+                    title="Gated to your room. Clears overnight."
+                    body="Only people physically at your business can join. The pool wakes up empty every morning."
+                  />
+                  <Statement
+                    icon={Smartphone}
+                    title="No app. No algorithm. Nothing to download."
+                    body="It works in any browser. That&apos;s it."
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -109,40 +138,6 @@ export default function PartnerSignup({
             <p className="mt-10 font-serif text-2xl italic leading-snug text-[#2647e8] md:mt-12 md:text-3xl">
               Build the place they tell stories about for the next decade.
             </p>
-          </div>
-        </section>
-
-        {/* HOW IT WORKS — customer mechanic explainer */}
-        <section className="bg-[#f4ede4] px-5 py-10 md:px-8 md:py-20">
-          <div className="mx-auto max-w-3xl">
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
-              How it works
-            </p>
-            <h2 className="mb-8 font-serif text-3xl leading-[1.02] tracking-tight text-stone-900 md:text-5xl">
-              Scan. See. Say hi.
-            </h2>
-            <div className="space-y-5 md:space-y-6">
-              <Statement
-                icon={QrCode}
-                title="Scan the QR code."
-                body="Single customers scan from a table tent or bathroom mirror."
-              />
-              <Statement
-                icon={Users}
-                title="See who else is single in the room."
-                body="They see profiles of other singles at your business and can learn a little about them before shooting their shot IRL."
-              />
-              <Statement
-                icon={MapPin}
-                title="Gated to your room. Clears overnight."
-                body="Only people physically at your business can join. The pool wakes up empty every morning."
-              />
-              <Statement
-                icon={Smartphone}
-                title="No app. No algorithm. Nothing to download."
-                body="It works in any browser. That&apos;s it."
-              />
-            </div>
           </div>
         </section>
 
