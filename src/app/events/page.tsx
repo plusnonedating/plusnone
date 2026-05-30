@@ -2,14 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 // Brief spec'd `Instagram`; lucide-react v1.17 doesn't export that name,
 // so using AtSign — closest semantic match for the "featured on socials" row.
-import {
-  AtSign,
-  Heart,
-  MapPin,
-  QrCode,
-  Smartphone,
-  Users,
-} from "lucide-react";
+import { AtSign, Heart, MapPin } from "lucide-react";
 import CheckIcon from "@/components/partners/CheckIcon";
 import Header from "@/components/partners/Header";
 import PopupDataSection from "@/components/partners/PopupDataSection";
@@ -99,44 +92,10 @@ export default function EventsPage() {
           </div>
         </section>
 
-        {/* HOW IT WORKS — customer mechanic explainer */}
-        <section className="bg-[#f4ede4] px-5 py-10 md:px-8 md:py-20">
-          <div className="mx-auto max-w-3xl">
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
-              How it works
-            </p>
-            <h2 className="mb-8 font-serif text-3xl leading-[1.02] tracking-tight text-stone-900 md:text-5xl">
-              Scan. See. Say hi.
-            </h2>
-            <div className="space-y-5 md:space-y-6">
-              <Statement
-                icon={QrCode}
-                title="Scan the QR code."
-                body="Single attendees scan from event signage."
-              />
-              <Statement
-                icon={Users}
-                title="See who else is single in the room."
-                body="They see profiles of other singles at your event and can learn a little about them before shooting their shot IRL."
-              />
-              <Statement
-                icon={MapPin}
-                title="Gated to your event. Clears when it ends."
-                body="Only people physically at your event can join. The pool disappears when your event is over."
-              />
-              <Statement
-                icon={Smartphone}
-                title="No app. No algorithm. Nothing to download."
-                body="It works in any browser. That&apos;s it."
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* YOUR LAUNCH — operational onboarding timeline */}
+        {/* HOW IT WORKS */}
         <div className="section">
           <div className="section-head">
-            <div className="section-eyebrow">Your launch</div>
+            <div className="section-eyebrow">How it works</div>
             <h2 className="section-h2">
               Three steps. Live the night of your event.
             </h2>
