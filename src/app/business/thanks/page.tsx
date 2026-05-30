@@ -9,6 +9,7 @@ export default function BusinessThanksPage() {
   return (
     <ThanksPage
       heading="Welcome to Plus None"
+      showPlaybookDownload
       body={
         <>
           We&apos;ll set up your location within 48 hours. Signage arrives

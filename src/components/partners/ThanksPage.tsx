@@ -4,14 +4,25 @@ import Link from "next/link";
 interface Props {
   heading: string;
   body: React.ReactNode;
+  /**
+   * When true, renders a dark "Download the Plus None Playbook" CTA
+   * between the heading and the body. The button links to
+   * /plus-none-playbook.pdf with the `download` attribute.
+   */
+  showPlaybookDownload?: boolean;
 }
 
 /**
  * Shared layout for the three post-Stripe confirmation pages
  * (/founding-partner/thanks, /business/thanks, /events/thanks).
- * Logo, heading, body paragraph, link back to the consumer landing.
+ * Logo, heading, optional playbook download CTA, body paragraph,
+ * link back to the consumer landing.
  */
-export default function ThanksPage({ heading, body }: Props) {
+export default function ThanksPage({
+  heading,
+  body,
+  showPlaybookDownload = false,
+}: Props) {
   return (
     <div className="partner-page thanks">
       <div className="container">
@@ -26,6 +37,15 @@ export default function ThanksPage({ heading, body }: Props) {
           />
         </div>
         <h1>{heading}</h1>
+        {showPlaybookDownload && (
+          <a
+            href="/plus-none-playbook.pdf"
+            download
+            className="mt-4 mb-2 inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:px-6 md:py-4 md:text-base"
+          >
+            Download the Plus None Playbook →
+          </a>
+        )}
         <p>{body}</p>
         <Link className="back-link" href="/">
           plusnone.fetewell.com →
