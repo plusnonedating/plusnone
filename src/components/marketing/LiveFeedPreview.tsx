@@ -16,7 +16,7 @@ export function LiveFeedPreview({ venueName }: Props) {
     { name: "Rae, 26", icebreaker: "Ask me about hot sauce" },
   ];
   return (
-    <div className="w-[220px] rounded-t-[22px] border-[6px] border-b-0 border-stone-900 bg-white px-3.5 pb-3.5 pt-3 md:w-[260px]">
+    <div className="w-[240px] rounded-t-[22px] border-[6px] border-b-0 border-stone-900 bg-white px-3.5 pb-3.5 pt-3 md:w-[300px]">
       <div className="mb-3 flex items-center justify-between">
         <span className="font-serif text-sm font-medium text-stone-900 md:text-base">
           who&apos;s single here?
