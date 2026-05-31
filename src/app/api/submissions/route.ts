@@ -43,11 +43,22 @@ export async function GET(request: Request) {
     );
   }
 
+  const countOnly = url.searchParams.get("count_only") === "1";
+
   try {
     const submissions = await fetchRecentSubmissions(venueLabel);
+    if (countOnly) {
+      // Don't ship video URLs / names / pitches to non-submitted viewers
+      // hitting /scan in blurred-preview mode. Count is enough to render
+      // the "N profiles in the room" badge.
+      return NextResponse.json({ count: submissions.length });
+    }
     return NextResponse.json({ submissions });
   } catch (error) {
     console.error("Failed to fetch submissions:", error);
+    if (countOnly) {
+      return NextResponse.json({ count: 0 });
+    }
     return NextResponse.json({ submissions: [] });
   }
 }
