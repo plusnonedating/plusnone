@@ -3,34 +3,41 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { Submission } from "@/lib/types";
-import type { FeedVenue } from "@/lib/venues";
-import { venueSubtitle } from "@/lib/venues";
+import { FORM_URL } from "@/lib/form";
 import { shuffle } from "@/lib/shuffle";
-import { lock } from "@/lib/storage";
-import GateGuard from "./GateGuard";
 import Feed from "./Feed";
 import EmptyState from "./EmptyState";
-import CrossVenueToast from "./CrossVenueToast";
 
 const POLL_INTERVAL_MS = 30_000;
 
+export interface FeedVenueData {
+  /** Internal slug — used as a stable key for the polling effect. */
+  slug: string;
+  /** Display name for the venue subtitle. */
+  name: string;
+  /** Full venue label used as the filter key for `/api/submissions?label=…`. */
+  label: string;
+  /** Pre-encoded value to drop straight into the WordPress form URL's
+   * `?venue=…` query param. Used by the "Add yourself" CTA. */
+  wordpressVenueParam: string;
+}
+
 interface Props {
-  venue: FeedVenue;
+  venue: FeedVenueData;
   initialSubmissions: Submission[];
 }
 
-export default function VenueShell({ venue, initialSubmissions }: Props) {
-  return (
-    <>
-      <CrossVenueToast currentVenue={venue} />
-      <GateGuard venue={venue}>
-        <VenueFeed venue={venue} initialSubmissions={initialSubmissions} />
-      </GateGuard>
-    </>
-  );
-}
-
-function VenueFeed({ venue, initialSubmissions }: Props) {
+/**
+ * Renders the venue feed: logo, "who else is here" header, the profile
+ * cards, the "Add yourself" CTA pointing at the WPForms submission form,
+ * the existing B2B "Add Plus None to your bar" CTA, and the dotted
+ * "clear access" hint.
+ *
+ * This component is rendered inline on /scan once /api/locate resolves
+ * a venue — it doesn't own the gate or the geolocation flow, only the
+ * post-match display + polling.
+ */
+export default function VenueFeedView({ venue, initialSubmissions }: Props) {
   const [ordered, setOrdered] = useState<Submission[] | null>(null);
   const initialAppliedRef = useRef(false);
 
@@ -46,7 +53,7 @@ function VenueFeed({ venue, initialSubmissions }: Props) {
     const refresh = async () => {
       try {
         const res = await fetch(
-          `/api/submissions?slug=${encodeURIComponent(venue.slug)}`,
+          `/api/submissions?label=${encodeURIComponent(venue.label)}`,
           { cache: "no-store" },
         );
         if (!res.ok) return;
@@ -76,12 +83,9 @@ function VenueFeed({ venue, initialSubmissions }: Props) {
       cancelled = true;
       clearInterval(interval);
     };
-  }, [venue.slug]);
+  }, [venue.label]);
 
-  const handleClearAccess = () => {
-    lock(venue.slug);
-    window.location.href = "/";
-  };
+  const addYourselfUrl = `${FORM_URL}?venue=${venue.wordpressVenueParam}`;
 
   if (ordered === null) {
     return (
@@ -110,28 +114,25 @@ function VenueFeed({ venue, initialSubmissions }: Props) {
           here&apos;s who else is here. go say hi.
         </p>
         <p className="mt-[10px] text-[11px] tracking-[0.08em] uppercase text-muted">
-          {venueSubtitle(venue)}
+          {venue.name}
         </p>
       </div>
-      {ordered.length === 0 ? (
-        <EmptyState />
-      ) : (
-        <Feed submissions={ordered} />
-      )}
-      <div className="pb-8 pt-4 flex flex-col items-center gap-3 text-center">
+      {ordered.length === 0 ? <EmptyState /> : <Feed submissions={ordered} />}
+      <div className="px-5 pt-2 pb-4 flex justify-center">
+        <a
+          href={addYourselfUrl}
+          className="w-full max-w-md text-center rounded-full bg-cobalt hover:bg-cobalt-hover transition-colors px-7 py-[16px] font-display text-[20px] uppercase tracking-[0.06em] text-white"
+        >
+          Add yourself
+        </a>
+      </div>
+      <div className="pb-8 pt-2 flex flex-col items-center gap-3 text-center">
         <a
           href="https://plusnone.fetewell.com/business"
           className="inline-block border-b border-ink pb-0.5 text-sm font-medium text-ink"
         >
           Add Plus None to your bar, restaurant, or event →
         </a>
-        <button
-          type="button"
-          onClick={handleClearAccess}
-          className="text-xs text-muted underline decoration-dotted hover:text-cobalt"
-        >
-          submitted by mistake? clear your access
-        </button>
       </div>
     </>
   );

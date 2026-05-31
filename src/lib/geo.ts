@@ -33,3 +33,26 @@ export function findNearestVenue(
   }
   return best?.venue ?? null;
 }
+
+/**
+ * Generic version of {@link findNearestVenue} that accepts any list of
+ * geofenced points with per-point radii. Used by /api/locate, where the
+ * venue list and radii are fetched live from Airtable rather than
+ * hardcoded.
+ *
+ * Returns the closest point whose own radius covers the visitor (i.e.
+ * `distance ≤ point.radiusMeters`). Returns null if no point covers the
+ * visitor.
+ */
+export function findNearestInList<
+  T extends { lat: number; lng: number; radiusMeters: number },
+>(lat: number, lng: number, points: T[]): T | null {
+  let best: { point: T; meters: number } | null = null;
+  for (const p of points) {
+    const d = haversineMeters(lat, lng, p.lat, p.lng);
+    if (d <= p.radiusMeters && (!best || d < best.meters)) {
+      best = { point: p, meters: d };
+    }
+  }
+  return best?.point ?? null;
+}

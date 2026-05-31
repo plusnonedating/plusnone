@@ -19,6 +19,13 @@ const nextConfig: NextConfig = {
         destination: "/events/thanks",
         permanent: true,
       },
+      // Venue feed consolidation (2026-05-30) — the four hardcoded
+      // per-venue routes collapse into a single geo-aware /scan. Old
+      // printed QR codes / shared links keep working via these 308s.
+      { source: "/cb", destination: "/scan", permanent: true },
+      { source: "/msb", destination: "/scan", permanent: true },
+      { source: "/csq", destination: "/scan", permanent: true },
+      { source: "/sbw", destination: "/scan", permanent: true },
     ];
   },
 };
