@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { fetchActivePartners, type PartnerVenue } from "@/lib/partners";
+import {
+  currentBusinessBaseId,
+  fetchActivePartners,
+  type PartnerVenue,
+} from "@/lib/partners";
 import { findNearestInList, haversineMeters } from "@/lib/geo";
 
 export const dynamic = "force-dynamic";
@@ -27,6 +31,10 @@ interface LocateResponse {
   _debug?: {
     received: { lat: number; lng: number };
     activeVenueCount: number;
+    /** Airtable base ID the server is querying. Surfaced so testers can
+     * confirm the deploy is pointing at the right base (e.g. Plus None
+     * Partners vs Podcast). */
+    baseId: string;
     error?: "airtable-fetch-failed";
     errorMessage?: string;
     venues: Array<{
@@ -129,6 +137,7 @@ export async function POST(request: Request) {
       fallback._debug = {
         received: { lat, lng },
         activeVenueCount: 0,
+        baseId: currentBusinessBaseId(),
         error: "airtable-fetch-failed",
         errorMessage,
         venues: [],
@@ -174,6 +183,7 @@ export async function POST(request: Request) {
     responseBody._debug = {
       received: { lat, lng },
       activeVenueCount: partners.length,
+      baseId: currentBusinessBaseId(),
       venues: distanceRows,
     };
   }

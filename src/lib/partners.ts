@@ -1,19 +1,32 @@
+import Airtable, { type Base } from "airtable";
 import { unstable_cache } from "next/cache";
-import { getBase } from "./airtable";
-
-// The "Business" table in Airtable holds the partner-venue rows that
-// /api/locate matches visitors against. We pass the table ID rather
-// than the display name — IDs survive renames and are case-stable,
-// where display-name lookups can fail silently if the table is
-// renamed or cased differently than the code expects.
-//
-// Table ID supplied by Kate; display name is "Business".
-export const BUSINESS_TABLE = "tblCjS56kFGGr1XYo";
 
 /**
- * Active partner venue with everything /api/locate needs to match a
- * visitor to a venue and render the feed.
+ * Plus None Partners base — the Airtable base that holds the "Business"
+ * table /api/locate reads from.
+ *
+ * Kate's setup keeps the Partners data in its own base, separate from the
+ * Submissions/Podcast base used by lib/airtable.ts. Airtable Personal
+ * Access Tokens are scoped per-base, so the PAT used by /api/submissions
+ * almost certainly does NOT have read access here.
+ *
+ * Required Vercel env vars for /api/locate to work:
+ *
+ *   AIRTABLE_BUSINESS_API_KEY  — PAT with `data.records:read` scope on
+ *                                base appNewsi5A4VKSs4g. If unset, falls
+ *                                back to AIRTABLE_API_KEY (which works
+ *                                only if that PAT covers BOTH bases).
+ *
+ *   AIRTABLE_BUSINESS_BASE_ID  — Optional. Defaults to "appNewsi5A4VKSs4g".
+ *                                Override only if the base ID changes.
  */
+export const DEFAULT_BUSINESS_BASE_ID = "appNewsi5A4VKSs4g";
+
+// Identified by ID rather than display name — Airtable JS sometimes
+// fails silently on name lookups when the table is renamed or cased
+// differently than the code expects.
+export const BUSINESS_TABLE_ID = "tblCjS56kFGGr1XYo";
+
 export interface PartnerVenue {
   /** Short internal identifier — e.g., "cb", "msb". Used as the slug
    * in the existing /api/submissions endpoint and venue analytics. */
@@ -50,9 +63,50 @@ function asTrimmed(value: unknown): string | undefined {
   return trimmed.length > 0 ? trimmed : undefined;
 }
 
+let cachedBase: Base | null = null;
+
+/**
+ * Returns the Plus None Partners base, lazily constructed.
+ *
+ * Resolves credentials from (in order):
+ *   1. AIRTABLE_BUSINESS_API_KEY  (preferred — scoped per-base)
+ *   2. AIRTABLE_API_KEY            (fallback — only works if it has
+ *                                   access to BOTH the Podcast base AND
+ *                                   the Partners base)
+ *
+ * Resolves base ID from:
+ *   1. AIRTABLE_BUSINESS_BASE_ID  (override)
+ *   2. DEFAULT_BUSINESS_BASE_ID    (hardcoded "appNewsi5A4VKSs4g")
+ */
+function getBusinessBase(): Base {
+  if (cachedBase) return cachedBase;
+
+  const apiKey =
+    process.env.AIRTABLE_BUSINESS_API_KEY ?? process.env.AIRTABLE_API_KEY;
+  if (!apiKey) {
+    throw new Error(
+      "Neither AIRTABLE_BUSINESS_API_KEY nor AIRTABLE_API_KEY is set",
+    );
+  }
+
+  const baseId =
+    process.env.AIRTABLE_BUSINESS_BASE_ID ?? DEFAULT_BUSINESS_BASE_ID;
+
+  cachedBase = new Airtable({ apiKey }).base(baseId);
+  return cachedBase;
+}
+
+/**
+ * Returns the actual base ID being used — exposed so the /api/locate
+ * debug response can surface it. Pure helper, doesn't touch the cache.
+ */
+export function currentBusinessBaseId(): string {
+  return process.env.AIRTABLE_BUSINESS_BASE_ID ?? DEFAULT_BUSINESS_BASE_ID;
+}
+
 async function fetchActivePartnersImpl(): Promise<PartnerVenue[]> {
-  const base = getBase();
-  const records = await base(BUSINESS_TABLE)
+  const base = getBusinessBase();
+  const records = await base(BUSINESS_TABLE_ID)
     .select({
       filterByFormula: `{Status} = 'Active'`,
       pageSize: 100,
@@ -93,6 +147,6 @@ async function fetchActivePartnersImpl(): Promise<PartnerVenue[]> {
  */
 export const fetchActivePartners = unstable_cache(
   fetchActivePartnersImpl,
-  ["active-partners-v1"],
+  ["active-partners-v2"],
   { revalidate: 60, tags: ["partners"] },
 );
