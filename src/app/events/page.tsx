@@ -215,7 +215,7 @@ export default function EventsPage() {
                 <span className="per">/ event</span>
               </div>
               <div className="tier-note">
-                Plus None active for one night, up to 12 hours.
+                Plus None active for 24 hours.
               </div>
               <ul>
                 <li>Geo-gated to your venue</li>
@@ -241,11 +241,11 @@ export default function EventsPage() {
                 <span className="per">/ event</span>
               </div>
               <div className="tier-note">
-                Plus None active for up to 3 consecutive nights.
+                Plus None active for 72 hours.
               </div>
               <ul>
                 <li>Everything in Single Day</li>
-                <li>Multi-night geo activation</li>
+                <li>72-hour geo activation</li>
                 <li>Pre- and mid-event social posts</li>
               </ul>
               <a
