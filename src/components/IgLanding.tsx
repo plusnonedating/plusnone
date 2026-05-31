@@ -44,8 +44,8 @@ export default function IgLanding() {
             Get matched in our comment section.
           </h1>
           <p className="text-[18px] leading-[1.55] text-ink/85 mb-5">
-            Drop a 15-sec selfie. Tell us what someone should ask you about.
-            We&apos;ll post it to @plusnonedating.
+            Drop a quick selfie video. Tell us what someone should ask you
+            about. We&apos;ll post it to @plusnonedating.
           </p>
           <div className="relative z-[1] flex justify-center -mb-4">
             <Image
