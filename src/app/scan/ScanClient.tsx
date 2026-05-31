@@ -1,13 +1,14 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import LocationGate from "@/components/LocationGate";
 import VenueFeedView, {
   type FeedVenueData,
 } from "@/components/VenueFeedView";
 import { FORM_URL } from "@/lib/form";
 import type { Submission } from "@/lib/types";
+import DebugPanel from "./DebugPanel";
 
 const GEO_TIMEOUT_MS = 8000;
 
@@ -20,6 +21,20 @@ interface LocateResponse {
     name: string;
     label: string;
     wordpressVenueParam: string;
+  };
+  _debug?: {
+    received: { lat: number; lng: number };
+    activeVenueCount: number;
+    error?: "airtable-fetch-failed";
+    venues: Array<{
+      slug: string;
+      label: string;
+      lat: number;
+      lng: number;
+      radiusMeters: number;
+      distanceMeters: number;
+      withinRadius: boolean;
+    }>;
   };
 }
 
@@ -45,11 +60,17 @@ interface LocateResponse {
  */
 export default function ScanClient() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const debug = searchParams?.get("debug") === "1";
   const [phase, setPhase] = useState<Phase>("idle");
   const [venue, setVenue] = useState<FeedVenueData | null>(null);
   const [initialSubmissions, setInitialSubmissions] = useState<Submission[]>(
     [],
   );
+  const [debugResult, setDebugResult] = useState<{
+    matchedSlug: string | null;
+    info: NonNullable<LocateResponse["_debug"]>;
+  } | null>(null);
 
   // The IG fallback link gets the page-level IG venue param so the
   // WPForm still knows it came from a scan attempt rather than an
@@ -82,21 +103,53 @@ export default function ScanClient() {
         clearTimeout(timer);
 
         try {
-          const locateRes = await fetch("/api/locate", {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({
-              lat: pos.coords.latitude,
-              lng: pos.coords.longitude,
-            }),
-          });
+          const locateRes = await fetch(
+            `/api/locate${debug ? "?debug=1" : ""}`,
+            {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify({
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude,
+              }),
+            },
+          );
 
           if (!locateRes.ok) {
+            if (debug) {
+              // In debug mode, show whatever we got back even if the API
+              // errored — the tester can read the status code back.
+              setDebugResult({
+                matchedSlug: null,
+                info: {
+                  received: {
+                    lat: pos.coords.latitude,
+                    lng: pos.coords.longitude,
+                  },
+                  activeVenueCount: 0,
+                  error: "airtable-fetch-failed",
+                  venues: [],
+                },
+              });
+              return;
+            }
             redirectToIg();
             return;
           }
 
           const data = (await locateRes.json()) as LocateResponse;
+
+          // Debug mode short-circuits the normal flow — render the
+          // DebugPanel with the full diagnostic instead of redirecting
+          // or showing the feed.
+          if (debug && data._debug) {
+            setDebugResult({
+              matchedSlug: data.slug,
+              info: data._debug,
+            });
+            return;
+          }
+
           if (!data.slug || !data.venue) {
             redirectToIg();
             return;
@@ -146,6 +199,15 @@ export default function ScanClient() {
       },
     );
   }, [redirectToIg]);
+
+  if (debugResult) {
+    return (
+      <DebugPanel
+        matchedSlug={debugResult.matchedSlug}
+        debug={debugResult.info}
+      />
+    );
+  }
 
   if (venue) {
     return (

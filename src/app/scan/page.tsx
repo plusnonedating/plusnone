@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import ScanClient from "./ScanClient";
 
@@ -25,5 +26,12 @@ export const metadata: Metadata = {
  * next.config so old printed QRs still work.
  */
 export default function ScanPage() {
-  return <ScanClient />;
+  // useSearchParams() inside ScanClient (used to detect ?debug=1)
+  // requires a Suspense boundary in the App Router. Empty fallback —
+  // the gate itself is the meaningful first frame.
+  return (
+    <Suspense fallback={null}>
+      <ScanClient />
+    </Suspense>
+  );
 }
