@@ -28,6 +28,7 @@ interface LocateResponse {
     received: { lat: number; lng: number };
     activeVenueCount: number;
     error?: "airtable-fetch-failed";
+    errorMessage?: string;
     venues: Array<{
       slug: string;
       label: string;
@@ -112,12 +113,15 @@ export async function POST(request: Request) {
   try {
     partners = await fetchActivePartners();
   } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : String(error);
     console.error("[/api/locate] Airtable Business fetch failed:", error);
     console.log(
       JSON.stringify({
         at: "api/locate",
         received: { lat, lng },
         error: "airtable-fetch-failed",
+        errorMessage,
       }),
     );
     const fallback: LocateResponse = { slug: null };
@@ -126,6 +130,7 @@ export async function POST(request: Request) {
         received: { lat, lng },
         activeVenueCount: 0,
         error: "airtable-fetch-failed",
+        errorMessage,
         venues: [],
       };
     }
