@@ -94,9 +94,23 @@ export default function BlurredFeedView({ venue, overrideCount }: Props) {
         </p>
       </div>
 
+      <div className="px-4 pt-4 pb-2 flex justify-center">
+        <a
+          href={addYourselfUrl}
+          className="w-full max-w-md text-center rounded-full bg-cobalt hover:bg-cobalt-hover transition-colors px-7 py-[18px] font-display text-[23px] uppercase tracking-[0.06em] text-white"
+        >
+          {count && count > 0 ? "Add yourself to see them" : "Add yourself"}
+        </a>
+      </div>
+      <p className="px-5 pt-3 pb-4 text-center text-[13px] leading-[1.5] text-muted">
+        Plus None&apos;s private. Drop a quick selfie video and you&apos;ll see
+        everyone else who&apos;s in here right now.
+      </p>
+
       {/* Blurred placeholder cards — pure visual stand-ins, never
-          hydrated with real profile data. */}
-      <div className="px-4 pt-2 pb-2">
+          hydrated with real profile data. Sit below the CTA as a tease
+          of what they unlock by submitting. */}
+      <div className="px-4 pt-2 pb-8">
         <div className="mx-auto max-w-md space-y-4">
           {placeholderCards.map((i) => (
             <div
@@ -108,19 +122,6 @@ export default function BlurredFeedView({ venue, overrideCount }: Props) {
           ))}
         </div>
       </div>
-
-      <div className="px-4 pt-4 pb-2 flex justify-center">
-        <a
-          href={addYourselfUrl}
-          className="w-full max-w-md text-center rounded-full bg-cobalt hover:bg-cobalt-hover transition-colors px-7 py-[18px] font-display text-[23px] uppercase tracking-[0.06em] text-white"
-        >
-          {count && count > 0 ? "Add yourself to see them" : "Add yourself"}
-        </a>
-      </div>
-      <p className="px-5 pt-3 pb-8 text-center text-[13px] leading-[1.5] text-muted">
-        Plus None&apos;s private. Drop a quick selfie video and you&apos;ll see
-        everyone else who&apos;s in here right now.
-      </p>
     </>
   );
 }
