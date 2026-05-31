@@ -12,9 +12,13 @@ export default function FoundingThanksPage() {
       showPlaybookDownload
       body={
         <>
-          We&apos;ll set up your location within 48 hours. Signage arrives
-          within 10 business days of signup. You&apos;ll get an email
-          confirmation. Look for it from plusnone@fetewell.com.
+          Send your venue address to{" "}
+          <a href="mailto:plusnone@fetewell.com?subject=Plus%20None%20venue%20setup">
+            plusnone@fetewell.com
+          </a>{" "}
+          so we can set up your geo-gate. Signage arrives within 10 business
+          days of signup. Your founding-partner year is on us — billing starts
+          on day 366.
         </>
       }
     />

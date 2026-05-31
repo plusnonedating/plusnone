@@ -23,8 +23,10 @@ export const metadata: Metadata = {
     "One-night Plus None activations for conventions, weddings, festivals, and brand events. Geo-gated to your event, featured to a 1M+ audience.",
 };
 
-const STRIPE_URL_SINGLE = "https://buy.stripe.com/dRmcN74ZBfZF48hbcWcV202";
-const STRIPE_URL_WEEKEND = "https://buy.stripe.com/cNidRb3Vx4gX0W5a8ScV201";
+const CHECKOUT_URL_SINGLE_DAY =
+  "https://plusnone.lemonsqueezy.com/checkout/buy/1d01a2b0-9c4e-42fa-b8c4-37fbc1718aa3?discount=0";
+const CHECKOUT_URL_MULTI_DAY =
+  "https://plusnone.lemonsqueezy.com/checkout/buy/0e96c53a-c49a-4ab9-8dfd-10703f04d5d6?discount=0";
 
 export default function EventsPage() {
   return (
@@ -138,7 +140,7 @@ export default function EventsPage() {
               <div className="step-title">Book your event date</div>
               <div className="step-desc">
                 Tell us your event name, venue address, and event date. Minimum
-                14 business days lead time. Payment via Stripe.
+                14 business days lead time. Payment via Lemon Squeezy.
               </div>
             </div>
             <div className="step">
@@ -219,7 +221,7 @@ export default function EventsPage() {
                 <li>Post-event data report</li>
               </ul>
               <a
-                href={STRIPE_URL_SINGLE}
+                href={CHECKOUT_URL_SINGLE_DAY}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="tier-btn"
@@ -244,7 +246,7 @@ export default function EventsPage() {
                 <li>Pre- and mid-event social posts</li>
               </ul>
               <a
-                href={STRIPE_URL_WEEKEND}
+                href={CHECKOUT_URL_MULTI_DAY}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="tier-btn"
@@ -290,7 +292,7 @@ export default function EventsPage() {
           <a href="https://fetewell.com/plus-none-terms">User Terms</a> ·{" "}
           <Link href="/privacy-policy">Privacy</Link>
           <div className="footer-disclosure">
-            Payments processed by Stripe. Events are one-time charges.
+            Payments processed by Lemon Squeezy. Events are one-time charges.
             Reschedule free up to 7 days before; cancel for full refund up to
             14 business days before. Cancellations inside 14 business days are
             non-refundable. By signing up you agree to our Partner Terms.

@@ -17,8 +17,8 @@ import { StatStrip } from "@/components/marketing/StatStrip";
 import { Statement } from "@/components/marketing/Statement";
 
 interface Props {
-  /** Stripe Payment Link the primary CTA points to. */
-  stripeUrl: string;
+  /** Lemon Squeezy Buy Link the primary CTA points to. */
+  checkoutUrl: string;
   /** Small uppercase tag in the pricing footer, e.g. "Founding partner" or "Welcome offer". */
   pricingFootTag: string;
   /** Pricing footer body — may include strong tags / coupon code chips. */
@@ -33,7 +33,7 @@ interface Props {
  * structure, copy, and CTAs are identical otherwise.
  */
 export default function PartnerSignup({
-  stripeUrl,
+  checkoutUrl,
   pricingFootTag,
   pricingFootBody,
   footerDisclosure,
@@ -57,7 +57,7 @@ export default function PartnerSignup({
               can find each other.
             </p>
             <a
-              href={stripeUrl}
+              href={checkoutUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:mt-8 md:px-6 md:py-4 md:text-base"
@@ -149,7 +149,7 @@ export default function PartnerSignup({
               <div className="step-title">Sign up &amp; submit your details</div>
               <div className="step-desc">
                 Business address, shipping address, payment method. Two minutes
-                via Stripe.
+                via Lemon Squeezy.
               </div>
             </div>
             <div className="step">
@@ -222,7 +222,7 @@ export default function PartnerSignup({
                 </div>
               </div>
               <a
-                href={stripeUrl}
+                href={checkoutUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
@@ -246,7 +246,7 @@ export default function PartnerSignup({
           <div>
             <Faq
               q="What do you need from me at signup?"
-              a="Business name and contact, the address you want geotagged (where guests will be scanning), a shipping address for signage if it's different, and payment via Stripe."
+              a="Business name and contact, the address you want geotagged (where guests will be scanning), a shipping address for signage if it's different, and payment via Lemon Squeezy."
             />
             <Faq
               q="How long until I'm live?"

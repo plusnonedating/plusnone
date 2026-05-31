@@ -13,7 +13,7 @@ interface Props {
 }
 
 /**
- * Shared layout for the three post-Stripe confirmation pages
+ * Shared layout for the three post-checkout confirmation pages
  * (/founding-partner/thanks, /business/thanks, /events/thanks).
  * Logo, heading, optional playbook download CTA, body paragraph,
  * link back to the consumer landing.

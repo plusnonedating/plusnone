@@ -58,24 +58,24 @@ Pricing is what's posted on the signup page at the time you purchase.
 - **Monthly subscriptions** are charged in advance every 30 days from your signup date (or after a free trial, where applicable). Subscriptions auto-renew monthly unless you cancel.
 - **Pop-up events** are paid in full at booking. The fee is non-refundable within 7 days of your event date.
 
-Payments are processed by **Stripe**. By purchasing, you also agree to Stripe's [Terms of Service](https://stripe.com/legal). We don't store full card numbers.
+Payments are processed by **Lemon Squeezy**. By purchasing, you also agree to Lemon Squeezy's [Terms of Service](https://www.lemonsqueezy.com/legal/terms-of-service). We don't store full card numbers.
 
 If your payment fails, we may suspend your service until the issue is resolved.
 
-## 3. Free Trials and Promo Codes
+## 3. Free Trials
 
-If you signed up under a free trial (e.g., the 365-day Founding Partner trial) or applied a promotional code (e.g., PLUSNONE for first month free):
+If you signed up under a free trial (e.g., the 30-day Business trial or the 365-day Founding Partner trial):
 
 - We require a valid payment method on file at signup.
-- You won't be charged during the trial or promo period.
-- At the end of the trial or promo, your subscription **automatically renews at the full rate** ($99/month) unless you cancel before the trial ends.
+- You won't be charged during the trial period.
+- At the end of the trial, your subscription **automatically renews at the full rate** ($99/month) unless you cancel before the trial ends.
 
 You're responsible for tracking when your trial ends and cancelling if you don't want to continue.
 
 ## 4. Cancellation
 
 **Monthly subscriptions:**
-- You can cancel anytime through your Stripe Customer Portal (link emailed to you with your receipt).
+- You can cancel anytime through your Lemon Squeezy customer portal (link emailed to you with your receipt) or by emailing plusnone@fetewell.com.
 - Cancellation takes effect at the end of your current billing cycle. You retain access until then.
 - We don't issue prorated refunds for partial months.
 
