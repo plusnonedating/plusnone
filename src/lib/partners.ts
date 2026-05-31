@@ -1,7 +1,11 @@
 import { unstable_cache } from "next/cache";
 import { getBase } from "./airtable";
 
-export const PARTNERS_TABLE = "Partners";
+// The "Business" table in Airtable holds the partner-venue rows that
+// /api/locate matches visitors against. The name reflects Kate's
+// Airtable schema (each partner IS a business); conceptually the rows
+// are still partner venues, hence the PartnerVenue type below.
+export const BUSINESS_TABLE = "Business";
 
 /**
  * Active partner venue with everything /api/locate needs to match a
@@ -45,7 +49,7 @@ function asTrimmed(value: unknown): string | undefined {
 
 async function fetchActivePartnersImpl(): Promise<PartnerVenue[]> {
   const base = getBase();
-  const records = await base(PARTNERS_TABLE)
+  const records = await base(BUSINESS_TABLE)
     .select({
       filterByFormula: `{Status} = 'Active'`,
       pageSize: 100,
