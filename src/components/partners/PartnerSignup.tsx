@@ -59,8 +59,8 @@ export default function PartnerSignup({
               Plus None turns the room into a dating pool. Singles in the room
               can find each other.
             </p>
-            <p className="mt-3 text-sm font-medium text-stone-900 md:mt-4 md:text-base">
-              No app. No download. No messaging. Just IRL connections.
+            <p className="mt-4 font-serif text-base italic leading-relaxed text-stone-700 md:mt-5 md:text-lg">
+              No app, no download, no messaging — just IRL connections.
             </p>
             <a
               href={checkoutUrl}
