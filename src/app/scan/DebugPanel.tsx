@@ -3,6 +3,7 @@
 interface DebugInfo {
   received: { lat: number; lng: number };
   activeVenueCount: number;
+  baseId: string;
   error?: "airtable-fetch-failed";
   errorMessage?: string;
   venues: Array<{
@@ -63,6 +64,20 @@ export default function DebugPanel({ matchedSlug, debug }: Props) {
             lat = {debug.received.lat.toFixed(6)}
           </p>
           <p className="font-mono">lng = {debug.received.lng.toFixed(6)}</p>
+        </div>
+
+        <div>
+          <p className="text-xs uppercase tracking-wider text-stone-500">
+            Airtable base
+          </p>
+          <p className="mt-1 font-mono">{debug.baseId}</p>
+          <p className="mt-1 text-xs text-stone-500">
+            Should be{" "}
+            <span className="font-mono">appNewsi5A4VKSs4g</span> (Plus None
+            Partners). If different, the env var{" "}
+            <span className="font-mono">AIRTABLE_BUSINESS_BASE_ID</span> in
+            Vercel needs updating.
+          </p>
         </div>
 
         <div>

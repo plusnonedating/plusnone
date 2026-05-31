@@ -25,6 +25,7 @@ interface LocateResponse {
   _debug?: {
     received: { lat: number; lng: number };
     activeVenueCount: number;
+    baseId: string;
     error?: "airtable-fetch-failed";
     errorMessage?: string;
     venues: Array<{
@@ -128,6 +129,7 @@ export default function ScanClient() {
                     lng: pos.coords.longitude,
                   },
                   activeVenueCount: 0,
+                  baseId: "<unknown — api errored>",
                   error: "airtable-fetch-failed",
                   venues: [],
                 },
