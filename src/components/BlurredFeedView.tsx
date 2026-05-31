@@ -7,6 +7,11 @@ import type { FeedVenueData } from "./VenueFeedView";
 
 interface Props {
   venue: FeedVenueData;
+  /** When set, skips the `/api/submissions?count_only=1` fetch and uses
+   * this value as the count directly. Used by /preview/blur to render
+   * the multi-card state without needing real submissions. Should never
+   * be passed in real usage. */
+  overrideCount?: number;
 }
 
 /**
@@ -23,10 +28,13 @@ interface Props {
  * stay server-side until the visitor commits via the form. The N
  * placeholders shown here are stand-ins, not blurred real cards.
  */
-export default function BlurredFeedView({ venue }: Props) {
-  const [count, setCount] = useState<number | null>(null);
+export default function BlurredFeedView({ venue, overrideCount }: Props) {
+  const [count, setCount] = useState<number | null>(
+    overrideCount ?? null,
+  );
 
   useEffect(() => {
+    if (overrideCount !== undefined) return;
     let cancelled = false;
     const load = async () => {
       try {
@@ -46,7 +54,7 @@ export default function BlurredFeedView({ venue }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [venue.label]);
+  }, [venue.label, overrideCount]);
 
   const addYourselfUrl = `${FORM_URL}?venue=${venue.wordpressVenueParam}`;
 
