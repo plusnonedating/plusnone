@@ -47,6 +47,9 @@ export default function EventsPage() {
               Plus None turns your event into a dating pool. The singles in
               the room can find each other.
             </p>
+            <p className="mt-3 text-sm font-medium text-stone-900 md:mt-4 md:text-base">
+              No app. No download. No messaging. Just IRL connections.
+            </p>
             <a
               href="#book"
               className="mt-6 inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:mt-8 md:px-6 md:py-4 md:text-base"

@@ -25,6 +25,8 @@ interface Props {
   pricingFootBody: React.ReactNode;
   /** Tiny disclosure line below the footer links. */
   footerDisclosure: string;
+  /** Optional muted note rendered directly under the hero CTA — typically the trial reminder ("First 30 days free. Cancel anytime."). */
+  heroCtaSubtext?: string;
 }
 
 /**
@@ -37,6 +39,7 @@ export default function PartnerSignup({
   pricingFootTag,
   pricingFootBody,
   footerDisclosure,
+  heroCtaSubtext,
 }: Props) {
   return (
     <div className="partner-page">
@@ -56,6 +59,9 @@ export default function PartnerSignup({
               Plus None turns the room into a dating pool. Singles in the room
               can find each other.
             </p>
+            <p className="mt-3 text-sm font-medium text-stone-900 md:mt-4 md:text-base">
+              No app. No download. No messaging. Just IRL connections.
+            </p>
             <a
               href={checkoutUrl}
               target="_blank"
@@ -64,6 +70,11 @@ export default function PartnerSignup({
             >
               Become a Plus None Location →
             </a>
+            {heroCtaSubtext && (
+              <p className="mt-3 text-xs text-stone-600 md:text-sm">
+                {heroCtaSubtext}
+              </p>
+            )}
 
             <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-[1fr_300px] md:items-start md:gap-12">
               <div className="order-2 md:order-1">

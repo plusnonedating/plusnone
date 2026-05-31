@@ -14,6 +14,7 @@ export default function BusinessPage() {
   return (
     <PartnerSignup
       checkoutUrl={CHECKOUT_URL}
+      heroCtaSubtext="First 30 days free. Cancel anytime."
       pricingFootTag="Welcome offer"
       pricingFootBody={
         <>

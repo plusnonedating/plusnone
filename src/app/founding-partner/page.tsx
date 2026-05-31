@@ -14,6 +14,7 @@ export default function FoundingPartnerPage() {
   return (
     <PartnerSignup
       checkoutUrl={CHECKOUT_URL}
+      heroCtaSubtext="First year free. Cancel anytime."
       pricingFootTag="Founding partner"
       pricingFootBody="First year free for our first five partners. Card on file, no charges for 365 days, auto-renews unless you cancel."
       footerDisclosure="Payments processed by Lemon Squeezy. Founding partner offer: card on file, no charges for 365 days, auto-renews at $99/month unless cancelled. By signing up you agree to our Partner Terms."
