@@ -6,7 +6,14 @@ import LocationGate from "@/components/LocationGate";
 import VenueFeedView, {
   type FeedVenueData,
 } from "@/components/VenueFeedView";
+import BlurredFeedView from "@/components/BlurredFeedView";
 import { FORM_URL } from "@/lib/form";
+import {
+  clearJustSubmitted,
+  isUnlocked,
+  unlock,
+  wasJustSubmitted,
+} from "@/lib/storage";
 import type { Submission } from "@/lib/types";
 import DebugPanel from "./DebugPanel";
 
@@ -66,6 +73,7 @@ export default function ScanClient() {
   const debug = searchParams?.get("debug") === "1";
   const [phase, setPhase] = useState<Phase>("idle");
   const [venue, setVenue] = useState<FeedVenueData | null>(null);
+  const [venueLocked, setVenueLocked] = useState(false);
   const [initialSubmissions, setInitialSubmissions] = useState<Submission[]>(
     [],
   );
@@ -158,23 +166,44 @@ export default function ScanClient() {
             return;
           }
 
-          // Fetch initial submissions for the matched venue. If this
-          // fails, we still render the feed empty rather than redirecting
-          // — the 30s poll in VenueFeedView will retry.
+          // Lock-state decision tree:
+          //
+          //   - just-submitted → unlock now (promotes the 5-min flag into
+          //     the 24h per-slug cache), show full feed
+          //   - already unlocked for this slug (24h cache hit) → full feed
+          //   - otherwise → blurred preview, gated by submission
+          //
+          // The just-submitted flag is per-device, not per-venue: a
+          // visitor who submits at venue A and walks to B within 5 min
+          // sees B's full feed. Acceptable — they're a real submitter.
+          let locked = true;
+          if (wasJustSubmitted()) {
+            unlock(data.venue.slug);
+            clearJustSubmitted();
+            locked = false;
+          } else if (isUnlocked(data.venue.slug)) {
+            locked = false;
+          }
+
+          // Only fetch real profile data if we're going to render the
+          // unlocked feed. The blurred view fetches its own count-only
+          // payload to avoid leaking PII to non-submitters.
           let submissions: Submission[] = [];
-          try {
-            const subsRes = await fetch(
-              `/api/submissions?label=${encodeURIComponent(data.venue.label)}`,
-              { cache: "no-store" },
-            );
-            if (subsRes.ok) {
-              const subsJson = (await subsRes.json()) as {
-                submissions?: Submission[];
-              };
-              submissions = subsJson.submissions ?? [];
+          if (!locked) {
+            try {
+              const subsRes = await fetch(
+                `/api/submissions?label=${encodeURIComponent(data.venue.label)}`,
+                { cache: "no-store" },
+              );
+              if (subsRes.ok) {
+                const subsJson = (await subsRes.json()) as {
+                  submissions?: Submission[];
+                };
+                submissions = subsJson.submissions ?? [];
+              }
+            } catch {
+              // Soft-fail; the feed renders empty and polls.
             }
-          } catch {
-            // Soft-fail; the feed renders empty and polls.
           }
 
           setVenue({
@@ -183,6 +212,7 @@ export default function ScanClient() {
             label: data.venue.label,
             wordpressVenueParam: data.venue.wordpressVenueParam,
           });
+          setVenueLocked(locked);
           setInitialSubmissions(submissions);
         } catch {
           redirectToIg();
@@ -213,7 +243,9 @@ export default function ScanClient() {
   }
 
   if (venue) {
-    return (
+    return venueLocked ? (
+      <BlurredFeedView venue={venue} />
+    ) : (
       <VenueFeedView venue={venue} initialSubmissions={initialSubmissions} />
     );
   }

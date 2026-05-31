@@ -2,21 +2,23 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { unlock } from "@/lib/storage";
-import { slugFromLabel } from "@/lib/venues";
+import { markJustSubmitted } from "@/lib/storage";
 import { getDeviceId } from "@/lib/deviceId";
 import IgLanding from "./IgLanding";
 
 /**
- * The / route shell.
+ * The `/` route shell.
  *
  * - Ensures a device_id exists on every landing visit (functional analytics).
- * - If the URL has `?from=submission&venue=…`, unlocks the matching slug and
- *   redirects to that page (so post-submission flow ends up at the venue feed
- *   or the IG landing).
- * - Otherwise renders Screen 3 (the public IG-only landing).
+ * - If the URL has `?from=submission`, marks the device as having just
+ *   submitted (5-minute TTL) and forwards to /scan. The fresh geo check
+ *   on /scan resolves whichever venue the visitor is currently at; the
+ *   just-submitted flag tells /scan to skip the blurred-preview gate.
  *
- * Geo verification no longer happens here — that moved to GeoVerify on /[slug].
+ *   This stays compatible with the existing WPForms thank-you URL
+ *   (`https://plusnone.fetewell.com/?from=submission&venue=…`) — no
+ *   WordPress config change needed when new Airtable venues come online.
+ * - Otherwise renders Screen 3 (the public IG-only landing).
  */
 export default function LandingShell() {
   const router = useRouter();
@@ -27,16 +29,10 @@ export default function LandingShell() {
 
     const url = new URL(window.location.href);
     const fromSubmission = url.searchParams.get("from") === "submission";
-    const venueParam = url.searchParams.get("venue");
 
     if (fromSubmission) {
-      const slug = slugFromLabel(venueParam);
-      unlock(slug);
-      // For the IG label, pass a flag so the destination shows the
-      // "✓ you're in" confirmation pill. For feed venues the unlocked
-      // VenueShell is enough acknowledgement.
-      const dest = slug === "ig" ? "/ig?just_submitted=1" : `/${slug}`;
-      router.replace(dest);
+      markJustSubmitted();
+      router.replace("/scan");
       return;
     }
 
