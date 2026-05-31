@@ -62,7 +62,7 @@ export default async function LegalPage({ contentFile, navTag }: Props) {
           <Link href="/privacy-policy">Privacy</Link>
           <div className="footer-disclosure">
             Plus None LLC, registered in Maryland. Payments processed by
-            Stripe.
+            Lemon Squeezy.
           </div>
         </div>
       </div>

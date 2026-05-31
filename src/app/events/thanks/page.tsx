@@ -12,7 +12,9 @@ export default function EventsThanksPage() {
       showPlaybookDownload
       body={
         <>
-          To kick off design, send your event logo and any signage notes to{" "}
+          To kick off design and set up your geo-gate, send your event
+          date(s), event location address, event logo, and any signage notes
+          to{" "}
           <a href="mailto:plusnone@fetewell.com?subject=Event%20signage%20assets">
             plusnone@fetewell.com
           </a>

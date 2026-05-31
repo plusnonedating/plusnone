@@ -17,14 +17,16 @@ import { StatStrip } from "@/components/marketing/StatStrip";
 import { Statement } from "@/components/marketing/Statement";
 
 interface Props {
-  /** Stripe Payment Link the primary CTA points to. */
-  stripeUrl: string;
+  /** Lemon Squeezy Buy Link the primary CTA points to. */
+  checkoutUrl: string;
   /** Small uppercase tag in the pricing footer, e.g. "Founding partner" or "Welcome offer". */
   pricingFootTag: string;
   /** Pricing footer body — may include strong tags / coupon code chips. */
   pricingFootBody: React.ReactNode;
   /** Tiny disclosure line below the footer links. */
   footerDisclosure: string;
+  /** Optional muted note rendered directly under the hero CTA — typically the trial reminder ("First 30 days free. Cancel anytime."). */
+  heroCtaSubtext?: string;
 }
 
 /**
@@ -33,10 +35,11 @@ interface Props {
  * structure, copy, and CTAs are identical otherwise.
  */
 export default function PartnerSignup({
-  stripeUrl,
+  checkoutUrl,
   pricingFootTag,
   pricingFootBody,
   footerDisclosure,
+  heroCtaSubtext,
 }: Props) {
   return (
     <div className="partner-page">
@@ -56,14 +59,22 @@ export default function PartnerSignup({
               Plus None turns the room into a dating pool. Singles in the room
               can find each other.
             </p>
+            <p className="mt-3 text-sm font-medium text-stone-900 md:mt-4 md:text-base">
+              No app. No download. No messaging. Just IRL connections.
+            </p>
             <a
-              href={stripeUrl}
+              href={checkoutUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:mt-8 md:px-6 md:py-4 md:text-base"
             >
               Become a Plus None Location →
             </a>
+            {heroCtaSubtext && (
+              <p className="mt-3 text-xs text-stone-600 md:text-sm">
+                {heroCtaSubtext}
+              </p>
+            )}
 
             <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-[1fr_300px] md:items-start md:gap-12">
               <div className="order-2 md:order-1">
@@ -149,7 +160,7 @@ export default function PartnerSignup({
               <div className="step-title">Sign up &amp; submit your details</div>
               <div className="step-desc">
                 Business address, shipping address, payment method. Two minutes
-                via Stripe.
+                via Lemon Squeezy.
               </div>
             </div>
             <div className="step">
@@ -222,7 +233,7 @@ export default function PartnerSignup({
                 </div>
               </div>
               <a
-                href={stripeUrl}
+                href={checkoutUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
@@ -246,7 +257,7 @@ export default function PartnerSignup({
           <div>
             <Faq
               q="What do you need from me at signup?"
-              a="Business name and contact, the address you want geotagged (where guests will be scanning), a shipping address for signage if it's different, and payment via Stripe."
+              a="Business name and contact, the address you want geotagged (where guests will be scanning), a shipping address for signage if it's different, and payment via Lemon Squeezy."
             />
             <Faq
               q="How long until I'm live?"

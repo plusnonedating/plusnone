@@ -32,11 +32,11 @@ Information collected automatically:
 Information you give us directly:
 - Business name and legal entity name
 - Contact name, email, phone number
-- Billing address (collected by Stripe)
+- Billing address (collected by Lemon Squeezy)
 - Shipping address for signage
 - The address of the venue you want geo-tagged
 - For pop-ups: event name, dates, branding files (logo, brand colors)
-- Payment information (collected and stored by Stripe — we don't see or store full card numbers)
+- Payment information (collected and stored by Lemon Squeezy — we don't see or store full card numbers)
 
 ### When you visit our website or socials
 
@@ -68,7 +68,7 @@ We share information in the following limited ways:
 - **With other Plus None users in your venue's dating pool** — your submitted profile (name, age, video, ice-breaker) is visible to other patrons who scanned at the same venue, during the 6-hour window.
 - **On our social media accounts** (@plusnonedating, @TheVenueCEO) — if you opted in, your video and handle may be posted publicly.
 - **With partner venues, in aggregated form only** — partners receive anonymized scan and demographic data about who came through their venue. **Partners never see individual user profiles, names, or contact info.**
-- **With service providers** — Stripe (payments), Vercel (hosting), WordPress and Airtable (content and CRM), Zapier (workflow), Google Workspace (email). These vendors process data for us under their own privacy commitments.
+- **With service providers** — Lemon Squeezy (payments), Vercel (hosting), WordPress and Airtable (content and CRM), Zapier (workflow), Google Workspace (email). These vendors process data for us under their own privacy commitments.
 - **For legal reasons** — if required by law, subpoena, or to investigate violations of our Terms of Service.
 - **In a business transfer** — if Plus None LLC is sold, merged, or restructured, your information may transfer as part of that transaction.
 
@@ -104,7 +104,7 @@ The device ID persists in your browser until you clear your local storage for pl
 
 We use minimal cookies and similar technologies, all first-party:
 - The device ID described above (localStorage, not a traditional cookie)
-- Standard session and authentication tokens for partners using their Stripe customer portal
+- Standard session and authentication tokens for partners using their Lemon Squeezy customer portal
 
 We do not currently use Google Analytics, Facebook Pixel, or other third-party advertising trackers on plusnone.fetewell.com. (Note: the parent fetewell.com domain may use those — see their privacy policy.)
 
@@ -114,7 +114,7 @@ We do not currently respond to "Do Not Track" browser signals.
 
 - **Submitted profiles (consumer users)** may be retained indefinitely for archival, editorial, and promotional purposes, even after public visibility expires. The 6-hour window applies only to public visibility on the dating pool page — not to our internal records or backups.
 - **Partner records** are retained for as long as your account is active, plus 7 years for tax and financial recordkeeping.
-- **Payment records** are retained by Stripe under Stripe's policies.
+- **Payment records** are retained by Lemon Squeezy under Lemon Squeezy's policies.
 - **Device IDs** are retained until you clear your browser storage.
 
 You can ask us to delete your submitted profile at any time — see Section 9.
