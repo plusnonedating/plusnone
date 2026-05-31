@@ -13,7 +13,7 @@ import {
 import CheckIcon from "@/components/partners/CheckIcon";
 import Header from "@/components/partners/Header";
 import PopupDataSection from "@/components/partners/PopupDataSection";
-import { LiveFeedPreview } from "@/components/marketing/LiveFeedPreview";
+import { BlurredFeedMockup } from "@/components/marketing/BlurredFeedMockup";
 import { StatStrip } from "@/components/marketing/StatStrip";
 import { Statement } from "@/components/marketing/Statement";
 
@@ -82,7 +82,7 @@ export default function EventsPage() {
                 </div>
               </div>
               <div className="order-1 flex justify-center md:order-2 md:justify-end">
-                <LiveFeedPreview venueName="SXSW 2026" />
+                <BlurredFeedMockup venueName="SXSW 2026" count={27} />
               </div>
             </div>
           </div>
