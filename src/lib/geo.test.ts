@@ -127,3 +127,59 @@ describe("findNearestInList", () => {
     expect(match).toBeNull();
   });
 });
+
+describe("findNearestInList — downtown Frederick CB ↔ FNO overlap", () => {
+  // Real coords from the production Airtable Business table.
+  // CB and FNO centers sit ~176m apart, both with 150m radii — their
+  // geofences overlap in a lens ~124m across in downtown Frederick.
+  // The algorithm must pick the closer of the two, never first-wins.
+  const CB = {
+    slug: "cb",
+    lat: 39.414006,
+    lng: -77.410794,
+    radiusMeters: 150,
+  };
+  const FNO = {
+    slug: "fno",
+    lat: 39.415586,
+    lng: -77.411032,
+    radiusMeters: 150,
+  };
+  const overlapping = [CB, FNO];
+  const reverseOrder = [FNO, CB];
+
+  it("visitor closer to CB but inside both → matches CB", () => {
+    // ~45m from CB, ~132m from FNO — both within their 150m radii.
+    const visitor = { lat: 39.4144, lng: -77.4109 };
+    expect(findNearestInList(visitor.lat, visitor.lng, overlapping)?.slug).toBe(
+      "cb",
+    );
+    // Same result regardless of array order — proves it's not first-wins.
+    expect(
+      findNearestInList(visitor.lat, visitor.lng, reverseOrder)?.slug,
+    ).toBe("cb");
+  });
+
+  it("visitor closer to FNO but inside both → matches FNO", () => {
+    // ~120m from CB, ~50m from FNO — both within their 150m radii.
+    const visitor = { lat: 39.41515, lng: -77.41095 };
+    expect(findNearestInList(visitor.lat, visitor.lng, overlapping)?.slug).toBe(
+      "fno",
+    );
+    expect(
+      findNearestInList(visitor.lat, visitor.lng, reverseOrder)?.slug,
+    ).toBe("fno");
+  });
+
+  it("visitor at FNO center → matches FNO (only FNO covers them)", () => {
+    // FNO center is ~176m from CB center — beyond CB's 150m radius —
+    // so a visitor at FNO's exact center is NOT inside CB.
+    const match = findNearestInList(FNO.lat, FNO.lng, overlapping);
+    expect(match?.slug).toBe("fno");
+  });
+
+  it("visitor at CB center → matches CB (only CB covers them)", () => {
+    const match = findNearestInList(CB.lat, CB.lng, overlapping);
+    expect(match?.slug).toBe("cb");
+  });
+});
