@@ -12,7 +12,7 @@ import {
 import CheckIcon from "./CheckIcon";
 import Header from "./Header";
 import DataSection from "./DataSection";
-import { LiveFeedPreview } from "@/components/marketing/LiveFeedPreview";
+import { BlurredFeedMockup } from "@/components/marketing/BlurredFeedMockup";
 import { StatStrip } from "@/components/marketing/StatStrip";
 import { Statement } from "@/components/marketing/Statement";
 
@@ -101,7 +101,7 @@ export default function PartnerSignup({
                 </div>
               </div>
               <div className="order-1 flex justify-center md:order-2 md:justify-end">
-                <LiveFeedPreview venueName="Citizens Ballroom" />
+                <BlurredFeedMockup venueName="Citizens Ballroom" count={27} />
               </div>
             </div>
           </div>
