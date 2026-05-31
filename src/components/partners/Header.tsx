@@ -19,9 +19,8 @@ import { usePathname } from "next/navigation";
  */
 export default function Header() {
   const pathname = usePathname();
-  const isBusiness =
-    pathname?.startsWith("/business") ||
-    pathname?.startsWith("/founding-partner");
+  const isBusiness = pathname?.startsWith("/business");
+  const isFoundingPartner = pathname?.startsWith("/founding-partner");
   const isEvents = pathname?.startsWith("/events");
 
   return (
@@ -40,7 +39,7 @@ export default function Header() {
           </Link>
 
           <div className="flex flex-col items-end gap-3 md:flex-row md:items-center md:gap-6">
-            <nav className="flex items-center gap-4 text-xs md:gap-5 md:text-sm">
+            <nav className="flex items-center gap-3 whitespace-nowrap text-xs md:gap-5 md:text-sm">
               <Link
                 href="/business"
                 className={`pb-0.5 ${
@@ -50,6 +49,16 @@ export default function Header() {
                 }`}
               >
                 Business
+              </Link>
+              <Link
+                href="/founding-partner"
+                className={`pb-0.5 ${
+                  isFoundingPartner
+                    ? "border-b border-stone-900 font-medium text-stone-900"
+                    : "text-stone-600"
+                }`}
+              >
+                Founding partner
               </Link>
               <Link
                 href="/events"
