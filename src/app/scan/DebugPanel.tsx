@@ -4,6 +4,7 @@ interface DebugInfo {
   received: { lat: number; lng: number };
   activeVenueCount: number;
   error?: "airtable-fetch-failed";
+  errorMessage?: string;
   venues: Array<{
     slug: string;
     label: string;
@@ -69,11 +70,18 @@ export default function DebugPanel({ matchedSlug, debug }: Props) {
             Active venues ({debug.activeVenueCount})
           </p>
           {debug.activeVenueCount === 0 ? (
-            <p className="mt-1 font-mono text-stone-700">
-              {debug.error === "airtable-fetch-failed"
-                ? "Airtable fetch failed — check API key / base ID / table name."
-                : "Zero active rows returned. Check the Status filter or the Business table itself."}
-            </p>
+            <div className="mt-1 space-y-1 font-mono text-stone-700">
+              <p>
+                {debug.error === "airtable-fetch-failed"
+                  ? "Airtable fetch failed — check API key / base ID / table ID."
+                  : "Zero active rows returned. Check the Status filter or the Business table itself."}
+              </p>
+              {debug.errorMessage && (
+                <p className="text-xs text-rose-700">
+                  err: {debug.errorMessage}
+                </p>
+              )}
+            </div>
           ) : (
             <div className="mt-2 overflow-x-auto">
               <table className="w-full border-collapse text-xs">

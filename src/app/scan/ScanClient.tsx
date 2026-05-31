@@ -26,6 +26,7 @@ interface LocateResponse {
     received: { lat: number; lng: number };
     activeVenueCount: number;
     error?: "airtable-fetch-failed";
+    errorMessage?: string;
     venues: Array<{
       slug: string;
       label: string;

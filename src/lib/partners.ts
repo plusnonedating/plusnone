@@ -2,10 +2,13 @@ import { unstable_cache } from "next/cache";
 import { getBase } from "./airtable";
 
 // The "Business" table in Airtable holds the partner-venue rows that
-// /api/locate matches visitors against. The name reflects Kate's
-// Airtable schema (each partner IS a business); conceptually the rows
-// are still partner venues, hence the PartnerVenue type below.
-export const BUSINESS_TABLE = "Business";
+// /api/locate matches visitors against. We pass the table ID rather
+// than the display name — IDs survive renames and are case-stable,
+// where display-name lookups can fail silently if the table is
+// renamed or cased differently than the code expects.
+//
+// Table ID supplied by Kate; display name is "Business".
+export const BUSINESS_TABLE = "tblCjS56kFGGr1XYo";
 
 /**
  * Active partner venue with everything /api/locate needs to match a
