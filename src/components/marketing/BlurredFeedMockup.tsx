@@ -65,23 +65,24 @@ export function BlurredFeedMockup({ venueName, count }: Props) {
       {/* 2x2 grid of blurred profile squares — all cobalt-family for
           brand consistency. Four different gradient compositions
           (varying shade + direction) so the squares still read as 4
-          distinct blurred photos instead of a uniform blue blob. */}
+          distinct blurred photos instead of a uniform blue blob.
+          opacity-50 to lighten ~50% per Kate's call. */}
       <div className="grid grid-cols-2 gap-2.5 px-2.5 pb-2.5 pt-2">
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-br from-cobalt via-blue-700 to-blue-900 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-br from-cobalt via-blue-700 to-blue-900 opacity-50 blur-[3px] md:h-14"
         />
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-tl from-blue-800 via-cobalt to-blue-600 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-tl from-blue-800 via-cobalt to-blue-600 opacity-50 blur-[3px] md:h-14"
         />
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-tr from-blue-900 via-cobalt to-blue-700 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-tr from-blue-900 via-cobalt to-blue-700 opacity-50 blur-[3px] md:h-14"
         />
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-bl from-cobalt via-blue-600 to-blue-800 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-bl from-cobalt via-blue-600 to-blue-800 opacity-50 blur-[3px] md:h-14"
         />
       </div>
     </div>
