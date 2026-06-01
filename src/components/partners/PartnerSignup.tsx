@@ -56,7 +56,7 @@ export default function PartnerSignup({
               The best part of your business <em>isn&apos;t</em> on the menu.
             </h1>
             <p className="mt-4 text-base leading-relaxed text-stone-700 md:mt-6 md:text-lg">
-              Plus None turns the room into a dating pool. Singles in the room
+              Plus None turns the room into a social pool. Singles in the room
               can find each other.
             </p>
             <p className="mt-5 font-serif text-xl italic leading-snug text-stone-700 md:mt-6 md:text-2xl">
@@ -199,7 +199,7 @@ export default function PartnerSignup({
             />
             <Item
               title="Featured to a 1M+ audience"
-              desc="Your venue gets posted on @plusnonedating and our founder's @TheVenueCEO account — a combined audience of 1M+ followers across Instagram and TikTok, actively engaged with going-out content."
+              desc="Your venue gets posted on Plus None's Instagram and our founder's @TheVenueCEO account — a combined audience of 1M+ followers across Instagram and TikTok, actively engaged with going-out content."
             />
             <Item
               title="Printed signage, shipped to you"

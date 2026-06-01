@@ -4,7 +4,7 @@ import PartnerSignup from "@/components/partners/PartnerSignup";
 export const metadata: Metadata = {
   title: "Founding partner · Plus None",
   description:
-    "Turn your business into a dating pool. Plus None is geo-gated to your venue, featured to a 1M+ audience, and reports on your bar monthly.",
+    "Turn your business into a social pool. Plus None is geo-gated to your venue, featured to a 1M+ audience, and reports on your bar monthly.",
 };
 
 const CHECKOUT_URL =

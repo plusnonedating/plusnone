@@ -44,7 +44,7 @@ export default function EventsPage() {
               The best part of your event <em>isn&apos;t</em> on the schedule.
             </h1>
             <p className="mt-4 text-base leading-relaxed text-stone-700 md:mt-6 md:text-lg">
-              Plus None turns your event into a dating pool. The singles in
+              Plus None turns your event into a social pool. The singles in
               the room can find each other.
             </p>
             <p className="mt-5 font-serif text-xl italic leading-snug text-stone-700 md:mt-6 md:text-2xl">
@@ -160,7 +160,7 @@ export default function EventsPage() {
               <div className="step-title">Run your event. Watch it explode.</div>
               <div className="step-desc">
                 Plus None goes live the night of. We post your event to
-                @plusnonedating before, during, and after for buzz.
+                Plus None&apos;s Instagram before, during, and after for buzz.
               </div>
             </div>
           </div>
@@ -181,7 +181,7 @@ export default function EventsPage() {
             />
             <Item
               title="Featured to a 1M+ audience"
-              desc="Your event gets posted to @plusnonedating and @TheVenueCEO — before, during, and after — driving buzz and attendance."
+              desc="Your event gets posted to Plus None's Instagram and @TheVenueCEO — before, during, and after — driving buzz and attendance."
             />
             <Item
               title="Event-branded signage"
@@ -220,7 +220,7 @@ export default function EventsPage() {
               <ul>
                 <li>Geo-gated to your venue</li>
                 <li>Custom event-branded signage</li>
-                <li>Featured on @plusnonedating</li>
+                <li>Featured on Plus None&apos;s Instagram</li>
                 <li>Post-event data report</li>
               </ul>
               <a
