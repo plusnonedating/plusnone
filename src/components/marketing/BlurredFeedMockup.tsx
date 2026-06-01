@@ -62,28 +62,26 @@ export function BlurredFeedMockup({ venueName, count }: Props) {
         </div>
       </div>
 
-      {/* 2x2 grid of blurred profile squares — saturated muted colors
-          (stone, amber, rose, sky in the 400-600 range) so they
-          obviously read as 4 blurred profile photos rather than empty
-          loading cards. Gap-2.5 keeps blur halos from bleeding into
-          each other. Short fixed height so the whole phone matches
-          the how-it-works list to its left. */}
+      {/* 2x2 grid of blurred profile squares — all cobalt-family for
+          brand consistency. Four different gradient compositions
+          (varying shade + direction) so the squares still read as 4
+          distinct blurred photos instead of a uniform blue blob. */}
       <div className="grid grid-cols-2 gap-2.5 px-2.5 pb-2.5 pt-2">
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-br from-stone-500 via-stone-400 to-stone-600 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-br from-cobalt via-blue-700 to-blue-900 blur-[3px] md:h-14"
         />
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-br from-amber-400 via-amber-300 to-amber-500 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-tl from-blue-800 via-cobalt to-blue-600 blur-[3px] md:h-14"
         />
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-br from-rose-400 via-rose-300 to-rose-500 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-tr from-blue-900 via-cobalt to-blue-700 blur-[3px] md:h-14"
         />
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-br from-sky-500 via-sky-400 to-sky-600 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-bl from-cobalt via-blue-600 to-blue-800 blur-[3px] md:h-14"
         />
       </div>
     </div>
