@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface Props {
   venueName: string;
   /** Headline count, e.g. 27 → "27 people are here." */
@@ -8,49 +10,80 @@ interface Props {
  * BlurredFeedMockup — phone-style mockup of the locked /scan view used
  * on the /business and /events sales pages.
  *
- * Drop-in replacement for LiveFeedPreview: same phone-frame dimensions
- * (240/300px) so the existing hero grid layout doesn't shift. Content
- * mirrors the real BlurredFeedView a visitor sees on /scan before they
- * submit — count headline + venue + CTA + blurred placeholder bars.
+ * Drop-in replacement for LiveFeedPreview at the same 240/300px phone
+ * frame width. Faithfully mirrors the real `BlurredFeedView` a visitor
+ * sees on /scan: Plus None logo, "N people are here." headline, venue
+ * subtitle, cobalt "Add yourself to see them" CTA, and a 2x2 grid of
+ * blurred profile squares.
  *
- * The count is a marketing prop (hardcoded 27 on the sales pages) — it
+ * White phone background so the silhouette pops against the cream page.
+ * Typography intentionally compact + helper text dropped so the
+ * overall phone height roughly matches the "How it works" Statement
+ * list it sits beside in the hero grid.
+ *
+ * The count is a marketing prop (hardcoded on the sales pages) — it
  * has nothing to do with the live Airtable submission count. The whole
  * point is to show prospective business/event customers the kind of
  * social-proof number that the live system surfaces to their patrons.
  */
 export function BlurredFeedMockup({ venueName, count }: Props) {
   return (
-    <div className="w-[240px] rounded-t-[22px] border-[6px] border-b-0 border-stone-900 bg-[#f4ede4] px-3.5 pb-3.5 pt-4 md:w-[300px]">
-      {/* Big count headline — the social-proof beat. */}
-      <p className="text-center font-display text-[34px] leading-[0.95] tracking-[0.01em] text-stone-900 md:text-[42px]">
-        {count} people
+    <div className="w-[240px] overflow-hidden rounded-t-[22px] border-[6px] border-b-0 border-stone-900 bg-white md:w-[300px]">
+      {/* Logo — compact wordmark, scaled smaller than the real /scan
+          page so the whole mockup stays in the 'phone hero' height
+          ballpark. */}
+      <div className="flex justify-center pt-2 pb-0.5">
+        <Image
+          src="/plus-none-logo.png"
+          alt="Plus None"
+          width={660}
+          height={660}
+          className="h-auto w-[80px] md:w-[100px]"
+        />
+      </div>
+
+      {/* Count headline — two-line layout so 27 and 1,234 both look
+          balanced. Comma-formatted via toLocaleString. */}
+      <p className="px-2 text-center font-display text-[19px] leading-[0.95] tracking-[0.01em] text-ink md:text-[24px]">
+        {count.toLocaleString("en-US")} people
         <br />
         are here.
       </p>
-      <p className="mt-2.5 text-center text-[8px] uppercase tracking-[0.08em] text-stone-600 md:text-[9px]">
+
+      {/* Venue subtitle — uppercase, muted. */}
+      <p className="mt-1 px-2 text-center text-[6.5px] uppercase tracking-[0.08em] text-muted md:text-[7.5px]">
         {venueName}
       </p>
 
-      {/* CTA — mirrors the real cobalt button on /scan. */}
-      <div className="mt-3.5 flex justify-center">
-        <span className="block w-full text-center rounded-full bg-[#2647e8] px-3 py-2 font-display text-[11px] uppercase tracking-[0.05em] text-white md:py-2.5 md:text-[12px]">
+      {/* CTA — full-width cobalt pill, compact. */}
+      <div className="px-2.5 pt-2">
+        <div className="w-full rounded-full bg-cobalt px-2 py-1.5 text-center font-display text-[9px] uppercase tracking-[0.06em] text-white md:py-2 md:text-[11px]">
           Add yourself to see them
-        </span>
+        </div>
       </div>
 
-      {/* Blurred placeholder bars — pure visual stand-ins suggesting
-          "more profiles below the fold." Kept as short horizontal bars
-          rather than 9:16 portrait cards so the mockup stays compact
-          inside the phone-frame width on desktop. */}
-      <div className="mt-3 space-y-1.5">
-        {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            aria-hidden
-            className="w-full h-10 rounded-md bg-gradient-to-br from-stone-300 via-stone-200 to-stone-300 blur-sm md:h-12"
-            style={{ opacity: 0.75 - i * 0.15 }}
-          />
-        ))}
+      {/* 2x2 grid of blurred profile squares — all cobalt-family for
+          brand consistency. Four different gradient compositions
+          (varying shade + direction) so the squares still read as 4
+          distinct blurred photos instead of a uniform blue blob.
+          opacity-50 to lighten ~50% per Kate's call. */}
+      <div className="grid grid-cols-2 gap-2.5 px-2.5 pb-2.5 pt-2">
+        <div
+          aria-hidden
+          className="h-10 w-full rounded-md bg-gradient-to-br from-cobalt via-blue-700 to-blue-900 opacity-50 blur-[3px] md:h-14"
+        />
+        <div
+          aria-hidden
+          className="h-10 w-full rounded-md bg-gradient-to-tl from-blue-800 via-cobalt to-blue-600 opacity-50 blur-[3px] md:h-14"
+        />
+        <div
+          aria-hidden
+          className="h-10 w-full rounded-md bg-gradient-to-tr from-blue-900 via-cobalt to-blue-700 opacity-50 blur-[3px] md:h-14"
+        />
+        <div
+          aria-hidden
+          className="h-10 w-full rounded-md bg-gradient-to-bl from-cobalt via-blue-600 to-blue-800 opacity-50 blur-[3px] md:h-14"
+        />
       </div>
     </div>
   );

@@ -44,22 +44,27 @@ export default function EventsPage() {
               The best part of your event <em>isn&apos;t</em> on the schedule.
             </h1>
             <p className="mt-4 text-base leading-relaxed text-stone-700 md:mt-6 md:text-lg">
-              Plus None turns your event into a dating pool. The singles in
+              Plus None turns your event into a social pool. The singles in
               the room can find each other.
             </p>
             <p className="mt-5 font-serif text-xl italic leading-snug text-stone-700 md:mt-6 md:text-2xl">
               No app, no download, no messaging — just IRL connections.
             </p>
-            <a
-              href="#book"
-              className="mt-6 inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:mt-8 md:px-6 md:py-4 md:text-base"
-            >
-              Add Plus None to your event →
-            </a>
 
-            <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-[1fr_300px] md:items-start md:gap-12">
+            {/* Phone moves UP, CTA + how-it-works move DOWN. On mobile
+                (single column) the order: italic tagline → phone → CTA
+                → how-it-works. On desktop the phone sits to the right
+                of the CTA+how-it-works column. */}
+            <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-[1fr_300px] md:items-start md:gap-12">
               <div className="order-2 md:order-1">
-                <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
+                <a
+                  href="#book"
+                  className="inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:px-6 md:py-4 md:text-base"
+                >
+                  Add Plus None to your event →
+                </a>
+
+                <p className="mb-3 mt-8 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8] md:mt-10">
                   How it works
                 </p>
                 <div className="space-y-5 md:space-y-6">
@@ -82,7 +87,7 @@ export default function EventsPage() {
                 </div>
               </div>
               <div className="order-1 flex justify-center md:order-2 md:justify-end">
-                <BlurredFeedMockup venueName="SXSW 2026" count={27} />
+                <BlurredFeedMockup venueName="Comic Con" count={1234} />
               </div>
             </div>
           </div>
@@ -160,7 +165,7 @@ export default function EventsPage() {
               <div className="step-title">Run your event. Watch it explode.</div>
               <div className="step-desc">
                 Plus None goes live the night of. We post your event to
-                @plusnonedating before, during, and after for buzz.
+                Plus None&apos;s Instagram before, during, and after for buzz.
               </div>
             </div>
           </div>
@@ -181,7 +186,7 @@ export default function EventsPage() {
             />
             <Item
               title="Featured to a 1M+ audience"
-              desc="Your event gets posted to @plusnonedating and @TheVenueCEO — before, during, and after — driving buzz and attendance."
+              desc="Your event gets posted to Plus None's Instagram and @TheVenueCEO — before, during, and after — driving buzz and attendance."
             />
             <Item
               title="Event-branded signage"
@@ -220,7 +225,7 @@ export default function EventsPage() {
               <ul>
                 <li>Geo-gated to your venue</li>
                 <li>Custom event-branded signage</li>
-                <li>Featured on @plusnonedating</li>
+                <li>Featured on Plus None&apos;s Instagram</li>
                 <li>Post-event data report</li>
               </ul>
               <a

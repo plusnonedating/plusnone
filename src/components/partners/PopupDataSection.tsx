@@ -120,7 +120,7 @@ export default function PopupDataSection() {
           />
           <Quote
             headline="Get retargetable post-event attention."
-            sub="The @plusnonedating posts keep your event in front of single attendees for days afterward."
+            sub="The Plus None Instagram posts keep your event in front of single attendees for days afterward."
           />
           <Quote
             headline="Understand who actually showed up."
