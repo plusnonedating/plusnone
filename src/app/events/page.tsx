@@ -82,7 +82,7 @@ export default function EventsPage() {
                 </div>
               </div>
               <div className="order-1 flex justify-center md:order-2 md:justify-end">
-                <BlurredFeedMockup venueName="SXSW 2026" count={27} />
+                <BlurredFeedMockup venueName="Comic Con" count={1234} />
               </div>
             </div>
           </div>

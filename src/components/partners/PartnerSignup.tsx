@@ -101,7 +101,7 @@ export default function PartnerSignup({
                 </div>
               </div>
               <div className="order-1 flex justify-center md:order-2 md:justify-end">
-                <BlurredFeedMockup venueName="Citizens Ballroom" count={27} />
+                <BlurredFeedMockup venueName="The Local Brew" count={27} />
               </div>
             </div>
           </div>

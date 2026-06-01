@@ -37,9 +37,13 @@ export function BlurredFeedMockup({ venueName, count }: Props) {
         />
       </div>
 
-      {/* Count headline — display serif, mirrors `${count} people are here.` */}
-      <p className="px-2 text-center font-display text-[22px] leading-[1] tracking-[0.01em] text-ink md:text-[28px]">
-        {count} people are here.
+      {/* Count headline — display serif, mirrors `${count} people are here.`
+          Two-line layout so the number breathes at every scale (works
+          for 27 and 1,234 alike). Comma-formatted via toLocaleString. */}
+      <p className="px-2 text-center font-display text-[22px] leading-[0.95] tracking-[0.01em] text-ink md:text-[28px]">
+        {count.toLocaleString("en-US")} people
+        <br />
+        are here.
       </p>
 
       {/* Venue subtitle — uppercase, muted. */}
