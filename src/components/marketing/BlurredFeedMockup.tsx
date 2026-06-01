@@ -28,7 +28,7 @@ interface Props {
  */
 export function BlurredFeedMockup({ venueName, count }: Props) {
   return (
-    <div className="w-[240px] overflow-hidden rounded-t-[22px] border-[6px] border-b-0 border-stone-900 bg-white md:w-[300px]">
+    <div className="flex w-[240px] flex-col overflow-hidden rounded-t-[22px] border-[6px] border-b-0 border-stone-900 bg-white md:h-full md:w-[300px]">
       {/* Logo — compact wordmark, scaled smaller than the real /scan
           page so the whole mockup stays in the 'phone hero' height
           ballpark. */}
@@ -66,23 +66,28 @@ export function BlurredFeedMockup({ venueName, count }: Props) {
           brand consistency. Four different gradient compositions
           (varying shade + direction) so the squares still read as 4
           distinct blurred photos instead of a uniform blue blob.
-          opacity-50 to lighten ~50% per Kate's call. */}
-      <div className="grid grid-cols-2 gap-2.5 px-2.5 pb-2.5 pt-2">
+          opacity-50 to lighten ~50% per Kate's call.
+
+          On desktop the grid uses flex-1 + grid-rows-2 so the squares
+          fill whatever vertical space remains in the phone (which is
+          stretched to match the how-it-works column on its left).
+          On mobile the squares keep their fixed h-10 height. */}
+      <div className="grid grid-cols-2 gap-2.5 px-2.5 pb-2.5 pt-2 md:flex-1 md:grid-rows-2">
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-br from-cobalt via-blue-700 to-blue-900 opacity-50 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-br from-cobalt via-blue-700 to-blue-900 opacity-50 blur-[3px] md:h-full"
         />
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-tl from-blue-800 via-cobalt to-blue-600 opacity-50 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-tl from-blue-800 via-cobalt to-blue-600 opacity-50 blur-[3px] md:h-full"
         />
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-tr from-blue-900 via-cobalt to-blue-700 opacity-50 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-tr from-blue-900 via-cobalt to-blue-700 opacity-50 blur-[3px] md:h-full"
         />
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-bl from-cobalt via-blue-600 to-blue-800 opacity-50 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-bl from-cobalt via-blue-600 to-blue-800 opacity-50 blur-[3px] md:h-full"
         />
       </div>
     </div>

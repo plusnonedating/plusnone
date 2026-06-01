@@ -68,7 +68,7 @@ export default function PartnerSignup({
                 phone → CTA → subtext → how-it-works. On desktop the
                 phone sits to the right of the CTA+how-it-works
                 column. */}
-            <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-[1fr_300px] md:items-start md:gap-12">
+            <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-[1fr_300px] md:gap-12">
               <div className="order-2 md:order-1">
                 <a
                   href={checkoutUrl}
