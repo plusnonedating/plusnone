@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface Props {
   venueName: string;
   /** Headline count, e.g. 27 → "27 people are here." */
@@ -8,10 +10,13 @@ interface Props {
  * BlurredFeedMockup — phone-style mockup of the locked /scan view used
  * on the /business and /events sales pages.
  *
- * Drop-in replacement for LiveFeedPreview: same phone-frame dimensions
- * (240/300px) so the existing hero grid layout doesn't shift. Content
- * mirrors the real BlurredFeedView a visitor sees on /scan before they
- * submit — count headline + venue + CTA + blurred placeholder bars.
+ * Drop-in replacement for LiveFeedPreview at the same 240/300px phone
+ * frame dimensions. Faithfully mirrors the real `BlurredFeedView` a
+ * visitor sees on /scan: Plus None logo, big "N people are here."
+ * headline, venue subtitle, cobalt "Add yourself to see them" CTA,
+ * helper text, and a 9:16 portrait blurred card peeking up from the
+ * bottom of the phone frame — same as the top of the real page on a
+ * phone viewport (the rest scrolls).
  *
  * The count is a marketing prop (hardcoded 27 on the sales pages) — it
  * has nothing to do with the live Airtable submission count. The whole
@@ -20,37 +25,51 @@ interface Props {
  */
 export function BlurredFeedMockup({ venueName, count }: Props) {
   return (
-    <div className="w-[240px] rounded-t-[22px] border-[6px] border-b-0 border-stone-900 bg-[#f4ede4] px-3.5 pb-3.5 pt-4 md:w-[300px]">
-      {/* Big count headline — the social-proof beat. */}
-      <p className="text-center font-display text-[34px] leading-[0.95] tracking-[0.01em] text-stone-900 md:text-[42px]">
-        {count} people
-        <br />
-        are here.
+    <div className="w-[240px] overflow-hidden rounded-t-[22px] border-[6px] border-b-0 border-stone-900 bg-[#f4ede4] md:w-[300px]">
+      {/* Logo — matches the 330px logo on real /scan, scaled to phone width. */}
+      <div className="flex justify-center pt-3 pb-1">
+        <Image
+          src="/plus-none-logo.png"
+          alt="Plus None"
+          width={660}
+          height={660}
+          className="h-auto w-[140px] md:w-[180px]"
+        />
+      </div>
+
+      {/* Count headline — display serif, mirrors `${count} people are here.` */}
+      <p className="px-2 text-center font-display text-[22px] leading-[1] tracking-[0.01em] text-ink md:text-[28px]">
+        {count} people are here.
       </p>
-      <p className="mt-2.5 text-center text-[8px] uppercase tracking-[0.08em] text-stone-600 md:text-[9px]">
+
+      {/* Venue subtitle — uppercase, muted. */}
+      <p className="mt-1.5 px-2 text-center text-[7px] uppercase tracking-[0.08em] text-muted md:text-[8px]">
         {venueName}
       </p>
 
-      {/* CTA — mirrors the real cobalt button on /scan. */}
-      <div className="mt-3.5 flex justify-center">
-        <span className="block w-full text-center rounded-full bg-[#2647e8] px-3 py-2 font-display text-[11px] uppercase tracking-[0.05em] text-white md:py-2.5 md:text-[12px]">
+      {/* CTA — full-width cobalt pill, matches real /scan button shape. */}
+      <div className="px-3 pt-3">
+        <div className="w-full rounded-full bg-cobalt px-3 py-2 text-center font-display text-[11px] uppercase tracking-[0.06em] text-white md:py-2.5 md:text-[13px]">
           Add yourself to see them
-        </span>
+        </div>
       </div>
 
-      {/* Blurred placeholder bars — pure visual stand-ins suggesting
-          "more profiles below the fold." Kept as short horizontal bars
-          rather than 9:16 portrait cards so the mockup stays compact
-          inside the phone-frame width on desktop. */}
-      <div className="mt-3 space-y-1.5">
-        {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            aria-hidden
-            className="w-full h-10 rounded-md bg-gradient-to-br from-stone-300 via-stone-200 to-stone-300 blur-sm md:h-12"
-            style={{ opacity: 0.75 - i * 0.15 }}
-          />
-        ))}
+      {/* Helper text under CTA — same copy as the real page, scaled. */}
+      <p className="px-3 pt-2 pb-3 text-center text-[8px] leading-[1.4] text-muted md:text-[9px]">
+        Plus None&apos;s private. Drop a quick selfie video to see
+        everyone&nbsp;here.
+      </p>
+
+      {/* Peek of a 9:16 blurred portrait card — visually clipped by the
+          phone frame's overflow-hidden + border-b-0, suggesting "more
+          profiles scroll below." Matches the cards on the real
+          BlurredFeedView (same gradient + blur recipe). */}
+      <div className="px-3">
+        <div
+          aria-hidden
+          className="h-[150px] w-full rounded-t-2xl bg-gradient-to-br from-stone-300 via-stone-200 to-stone-300 blur-sm md:h-[190px]"
+          style={{ opacity: 0.85 }}
+        />
       </div>
     </div>
   );
