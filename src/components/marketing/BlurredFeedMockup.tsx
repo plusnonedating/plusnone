@@ -25,7 +25,7 @@ interface Props {
  */
 export function BlurredFeedMockup({ venueName, count }: Props) {
   return (
-    <div className="w-[240px] overflow-hidden rounded-t-[22px] border-[6px] border-b-0 border-stone-900 bg-[#f4ede4] md:w-[300px]">
+    <div className="w-[240px] overflow-hidden rounded-t-[22px] border-[6px] border-b-0 border-stone-900 bg-white md:w-[300px]">
       {/* Logo — matches the 330px logo on real /scan, scaled to phone width. */}
       <div className="flex justify-center pt-3 pb-1">
         <Image
@@ -64,16 +64,20 @@ export function BlurredFeedMockup({ venueName, count }: Props) {
         everyone&nbsp;here.
       </p>
 
-      {/* Peek of a 9:16 blurred portrait card — visually clipped by the
-          phone frame's overflow-hidden + border-b-0, suggesting "more
-          profiles scroll below." Matches the cards on the real
-          BlurredFeedView (same gradient + blur recipe). */}
-      <div className="px-3">
-        <div
-          aria-hidden
-          className="h-[150px] w-full rounded-t-2xl bg-gradient-to-br from-stone-300 via-stone-200 to-stone-300 blur-sm md:h-[190px]"
-          style={{ opacity: 0.85 }}
-        />
+      {/* Grid of 4 blurred square profile cards — visually conveys "this
+          is a real feed of people you can browse." Squares (not 9:16
+          portraits) so we can fit 2x2 inside the phone frame at
+          readable size. Slight opacity stagger gives depth without
+          looking like loading skeletons. */}
+      <div className="grid grid-cols-2 gap-1.5 px-3 pb-3">
+        {[0.9, 0.8, 0.75, 0.65].map((opacity, i) => (
+          <div
+            key={i}
+            aria-hidden
+            className="aspect-square w-full rounded-lg bg-gradient-to-br from-stone-300 via-stone-200 to-stone-300 blur-sm"
+            style={{ opacity }}
+          />
+        ))}
       </div>
     </div>
   );
