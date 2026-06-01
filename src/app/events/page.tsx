@@ -50,16 +50,21 @@ export default function EventsPage() {
             <p className="mt-5 font-serif text-xl italic leading-snug text-stone-700 md:mt-6 md:text-2xl">
               No app, no download, no messaging — just IRL connections.
             </p>
-            <a
-              href="#book"
-              className="mt-6 inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:mt-8 md:px-6 md:py-4 md:text-base"
-            >
-              Add Plus None to your event →
-            </a>
 
-            <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-[1fr_300px] md:items-start md:gap-12">
+            {/* Phone moves UP, CTA + how-it-works move DOWN. On mobile
+                (single column) the order: italic tagline → phone → CTA
+                → how-it-works. On desktop the phone sits to the right
+                of the CTA+how-it-works column. */}
+            <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-[1fr_300px] md:items-start md:gap-12">
               <div className="order-2 md:order-1">
-                <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
+                <a
+                  href="#book"
+                  className="inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:px-6 md:py-4 md:text-base"
+                >
+                  Add Plus None to your event →
+                </a>
+
+                <p className="mb-3 mt-8 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8] md:mt-10">
                   How it works
                 </p>
                 <div className="space-y-5 md:space-y-6">

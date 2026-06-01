@@ -62,27 +62,28 @@ export function BlurredFeedMockup({ venueName, count }: Props) {
         </div>
       </div>
 
-      {/* 2x2 grid of blurred profile squares — varied muted colors so
-          they read as 4 distinct profile photos rather than one big
-          blur. Bigger gap-3 so the blur halos don't bleed into each
-          other. Short fixed height so the whole phone matches the
-          how-it-works list to its left. */}
+      {/* 2x2 grid of blurred profile squares — saturated muted colors
+          (stone, amber, rose, sky in the 400-600 range) so they
+          obviously read as 4 blurred profile photos rather than empty
+          loading cards. Gap-2.5 keeps blur halos from bleeding into
+          each other. Short fixed height so the whole phone matches
+          the how-it-works list to its left. */}
       <div className="grid grid-cols-2 gap-2.5 px-2.5 pb-2.5 pt-2">
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-br from-stone-300 via-stone-200 to-stone-400 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-br from-stone-500 via-stone-400 to-stone-600 blur-[3px] md:h-14"
         />
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-br from-amber-400 via-amber-300 to-amber-500 blur-[3px] md:h-14"
         />
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-br from-rose-200 via-rose-100 to-rose-300 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-br from-rose-400 via-rose-300 to-rose-500 blur-[3px] md:h-14"
         />
         <div
           aria-hidden
-          className="h-10 w-full rounded-md bg-gradient-to-br from-sky-200 via-sky-100 to-sky-300 blur-[3px] md:h-14"
+          className="h-10 w-full rounded-md bg-gradient-to-br from-sky-500 via-sky-400 to-sky-600 blur-[3px] md:h-14"
         />
       </div>
     </div>
