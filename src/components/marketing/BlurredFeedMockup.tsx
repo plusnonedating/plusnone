@@ -32,13 +32,13 @@ export function BlurredFeedMockup({ venueName, count }: Props) {
       {/* Logo — compact wordmark, scaled smaller than the real /scan
           page so the whole mockup stays in the 'phone hero' height
           ballpark. */}
-      <div className="flex justify-center pt-2.5 pb-0.5">
+      <div className="flex justify-center pt-2 pb-0.5">
         <Image
           src="/plus-none-logo.png"
           alt="Plus None"
           width={660}
           height={660}
-          className="h-auto w-[95px] md:w-[120px]"
+          className="h-auto w-[80px] md:w-[100px]"
         />
       </div>
 
@@ -62,18 +62,28 @@ export function BlurredFeedMockup({ venueName, count }: Props) {
         </div>
       </div>
 
-      {/* 2x2 grid of blurred profile squares — short fixed height so
-          the whole phone matches the how-it-works list to its left.
-          Slight opacity stagger gives depth. */}
-      <div className="grid grid-cols-2 gap-1.5 px-2.5 pb-2.5 pt-2">
-        {[0.9, 0.8, 0.75, 0.65].map((opacity, i) => (
-          <div
-            key={i}
-            aria-hidden
-            className="h-14 w-full rounded-md bg-gradient-to-br from-stone-300 via-stone-200 to-stone-300 blur-sm md:h-[68px]"
-            style={{ opacity }}
-          />
-        ))}
+      {/* 2x2 grid of blurred profile squares — varied muted colors so
+          they read as 4 distinct profile photos rather than one big
+          blur. Bigger gap-3 so the blur halos don't bleed into each
+          other. Short fixed height so the whole phone matches the
+          how-it-works list to its left. */}
+      <div className="grid grid-cols-2 gap-2.5 px-2.5 pb-2.5 pt-2">
+        <div
+          aria-hidden
+          className="h-10 w-full rounded-md bg-gradient-to-br from-stone-300 via-stone-200 to-stone-400 blur-[3px] md:h-14"
+        />
+        <div
+          aria-hidden
+          className="h-10 w-full rounded-md bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 blur-[3px] md:h-14"
+        />
+        <div
+          aria-hidden
+          className="h-10 w-full rounded-md bg-gradient-to-br from-rose-200 via-rose-100 to-rose-300 blur-[3px] md:h-14"
+        />
+        <div
+          aria-hidden
+          className="h-10 w-full rounded-md bg-gradient-to-br from-sky-200 via-sky-100 to-sky-300 blur-[3px] md:h-14"
+        />
       </div>
     </div>
   );
