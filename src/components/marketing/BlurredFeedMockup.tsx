@@ -11,14 +11,17 @@ interface Props {
  * on the /business and /events sales pages.
  *
  * Drop-in replacement for LiveFeedPreview at the same 240/300px phone
- * frame dimensions. Faithfully mirrors the real `BlurredFeedView` a
- * visitor sees on /scan: Plus None logo, big "N people are here."
- * headline, venue subtitle, cobalt "Add yourself to see them" CTA,
- * helper text, and a 9:16 portrait blurred card peeking up from the
- * bottom of the phone frame — same as the top of the real page on a
- * phone viewport (the rest scrolls).
+ * frame width. Faithfully mirrors the real `BlurredFeedView` a visitor
+ * sees on /scan: Plus None logo, "N people are here." headline, venue
+ * subtitle, cobalt "Add yourself to see them" CTA, and a 2x2 grid of
+ * blurred profile squares.
  *
- * The count is a marketing prop (hardcoded 27 on the sales pages) — it
+ * White phone background so the silhouette pops against the cream page.
+ * Typography intentionally compact + helper text dropped so the
+ * overall phone height roughly matches the "How it works" Statement
+ * list it sits beside in the hero grid.
+ *
+ * The count is a marketing prop (hardcoded on the sales pages) — it
  * has nothing to do with the live Airtable submission count. The whole
  * point is to show prospective business/event customers the kind of
  * social-proof number that the live system surfaces to their patrons.
@@ -26,55 +29,48 @@ interface Props {
 export function BlurredFeedMockup({ venueName, count }: Props) {
   return (
     <div className="w-[240px] overflow-hidden rounded-t-[22px] border-[6px] border-b-0 border-stone-900 bg-white md:w-[300px]">
-      {/* Logo — matches the 330px logo on real /scan, scaled to phone width. */}
-      <div className="flex justify-center pt-3 pb-1">
+      {/* Logo — compact wordmark, scaled smaller than the real /scan
+          page so the whole mockup stays in the 'phone hero' height
+          ballpark. */}
+      <div className="flex justify-center pt-2.5 pb-0.5">
         <Image
           src="/plus-none-logo.png"
           alt="Plus None"
           width={660}
           height={660}
-          className="h-auto w-[140px] md:w-[180px]"
+          className="h-auto w-[95px] md:w-[120px]"
         />
       </div>
 
-      {/* Count headline — display serif, mirrors `${count} people are here.`
-          Two-line layout so the number breathes at every scale (works
-          for 27 and 1,234 alike). Comma-formatted via toLocaleString. */}
-      <p className="px-2 text-center font-display text-[22px] leading-[0.95] tracking-[0.01em] text-ink md:text-[28px]">
+      {/* Count headline — two-line layout so 27 and 1,234 both look
+          balanced. Comma-formatted via toLocaleString. */}
+      <p className="px-2 text-center font-display text-[19px] leading-[0.95] tracking-[0.01em] text-ink md:text-[24px]">
         {count.toLocaleString("en-US")} people
         <br />
         are here.
       </p>
 
       {/* Venue subtitle — uppercase, muted. */}
-      <p className="mt-1.5 px-2 text-center text-[7px] uppercase tracking-[0.08em] text-muted md:text-[8px]">
+      <p className="mt-1 px-2 text-center text-[6.5px] uppercase tracking-[0.08em] text-muted md:text-[7.5px]">
         {venueName}
       </p>
 
-      {/* CTA — full-width cobalt pill, matches real /scan button shape. */}
-      <div className="px-3 pt-3">
-        <div className="w-full rounded-full bg-cobalt px-3 py-2 text-center font-display text-[11px] uppercase tracking-[0.06em] text-white md:py-2.5 md:text-[13px]">
+      {/* CTA — full-width cobalt pill, compact. */}
+      <div className="px-2.5 pt-2">
+        <div className="w-full rounded-full bg-cobalt px-2 py-1.5 text-center font-display text-[9px] uppercase tracking-[0.06em] text-white md:py-2 md:text-[11px]">
           Add yourself to see them
         </div>
       </div>
 
-      {/* Helper text under CTA — same copy as the real page, scaled. */}
-      <p className="px-3 pt-2 pb-3 text-center text-[8px] leading-[1.4] text-muted md:text-[9px]">
-        Plus None&apos;s private. Drop a quick selfie video to see
-        everyone&nbsp;here.
-      </p>
-
-      {/* Grid of 4 blurred square profile cards — visually conveys "this
-          is a real feed of people you can browse." Squares (not 9:16
-          portraits) so we can fit 2x2 inside the phone frame at
-          readable size. Slight opacity stagger gives depth without
-          looking like loading skeletons. */}
-      <div className="grid grid-cols-2 gap-1.5 px-3 pb-3">
+      {/* 2x2 grid of blurred profile squares — short fixed height so
+          the whole phone matches the how-it-works list to its left.
+          Slight opacity stagger gives depth. */}
+      <div className="grid grid-cols-2 gap-1.5 px-2.5 pb-2.5 pt-2">
         {[0.9, 0.8, 0.75, 0.65].map((opacity, i) => (
           <div
             key={i}
             aria-hidden
-            className="aspect-square w-full rounded-lg bg-gradient-to-br from-stone-300 via-stone-200 to-stone-300 blur-sm"
+            className="h-14 w-full rounded-md bg-gradient-to-br from-stone-300 via-stone-200 to-stone-300 blur-sm md:h-[68px]"
             style={{ opacity }}
           />
         ))}
