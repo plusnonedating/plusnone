@@ -83,12 +83,8 @@ export default function AgreementForm() {
           You&apos;re locked in.
         </h3>
         <p className="mt-4 text-stone-700">
-          We&apos;ve recorded your agreement. Plus None will be deployed
-          at your business this week — Kate will be in touch within 24
-          hours to schedule signage delivery and confirm logistics.
-        </p>
-        <p className="mt-4 text-stone-700">
-          In the meantime, grab the playbook so you know what to expect:
+          Can&apos;t wait to see how this goes with you. Here&apos;s the
+          playbook to maximize your success:
         </p>
         <a
           href="/plus-none-playbook.pdf"
