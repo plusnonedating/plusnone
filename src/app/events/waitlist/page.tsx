@@ -48,10 +48,9 @@ export default async function EventsWaitlistPage({
               Get on the Plus None waitlist.
             </h1>
             <p className="mt-4 text-base leading-relaxed text-stone-700 md:mt-6 md:text-lg">
-              We&apos;re finalizing our payment processor and rolling
-              out in priority order. Tell us about your event and
-              we&apos;ll be in touch as soon as we open for new
-              activations.
+              We&apos;re rolling out in priority order. Tell us about
+              your event and we&apos;ll be in touch as soon as we open
+              for new activations.
             </p>
             <p className="mt-5 font-serif text-xl italic leading-snug text-stone-700 md:mt-6 md:text-2xl">
               Minimum 14 business days lead time once we launch.
