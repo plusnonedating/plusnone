@@ -1,0 +1,94 @@
+# Daily Airtable snapshot.
+#
+# Dumps both bases (Submissions + Partners) to CSV and commits them to the
+# `backups` branch. The backups branch is orphan — separate history from main —
+# so it doesn't bloat main's git log.
+#
+# Required repo secrets (Settings → Secrets and variables → Actions):
+#   AIRTABLE_API_KEY            — Submissions PAT (also fallback for partners)
+#   AIRTABLE_BASE_ID            — Submissions base ID (optional)
+#   AIRTABLE_BUSINESS_API_KEY   — Partners PAT
+#   AIRTABLE_BUSINESS_BASE_ID   — Partners base ID (optional)
+#
+# Trigger manually via Actions → Airtable backup → Run workflow.
+
+name: Airtable backup
+
+on:
+  schedule:
+    # Daily at 03:00 UTC (≈ 10–11pm Eastern depending on DST)
+    - cron: "0 3 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Dump Airtable to CSV
+        env:
+          AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          AIRTABLE_BUSINESS_API_KEY: ${{ secrets.AIRTABLE_BUSINESS_API_KEY }}
+          AIRTABLE_BUSINESS_BASE_ID: ${{ secrets.AIRTABLE_BUSINESS_BASE_ID }}
+        run: node scripts/backup-airtable.mjs
+
+      - name: Commit snapshot to backups branch
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Stash the freshly-generated CSVs (they're untracked on main)
+          mkdir -p /tmp/snapshot
+          cp backups/*.csv /tmp/snapshot/ 2>/dev/null || {
+            echo "No CSVs produced — script must have failed silently. Exiting."
+            exit 1
+          }
+
+          # Switch to (or initialize) the orphan backups branch
+          if git ls-remote --exit-code --heads origin backups; then
+            git fetch origin backups
+            git checkout backups
+          else
+            git checkout --orphan backups
+            git rm -rf . 2>/dev/null || true
+            cat > README.md <<'EOF'
+          # Backups branch
+
+          Daily Airtable snapshots written by `.github/workflows/airtable-backup.yml`
+          on the `main` branch. Each commit adds CSVs for the day's date.
+
+          To restore: `git checkout backups`, then read the latest dated CSV per table.
+          EOF
+            git add README.md
+            git commit -m "Initialize backups branch"
+          fi
+
+          # Drop today's snapshot in
+          mkdir -p backups
+          cp /tmp/snapshot/*.csv backups/
+          git add backups/
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit (already ran today?)"
+            exit 0
+          fi
+
+          git commit -m "Airtable backup $(date -u +%Y-%m-%d)"
+          git push origin backups
