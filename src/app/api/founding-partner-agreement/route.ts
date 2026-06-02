@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import Airtable from "airtable";
 
-const AGREEMENTS_TABLE = "Founding Partner Agreements";
+const FOUNDER_WAITLIST_TABLE = "Founder Waitlist";
 
 interface AgreementBody {
   venueName?: string;
@@ -16,8 +16,17 @@ interface AgreementBody {
  * POST /api/founding-partner-agreement
  *
  * Records a founding partner's acceptance of the Plus None Partner
- * Terms + Founding Partner offer. Writes a row to the Airtable
- * "Founding Partner Agreements" table in the Submissions base.
+ * Terms + Founding Partner offer.
+ *
+ * Writes to the "Founder Waitlist" table in the Plus None Sales base
+ * — the same table Kate hand-maintains with her active founder
+ * pipeline. If a row with this email already exists (she pre-loaded
+ * her 5 pitched founders), we UPDATE that row in place with the
+ * agreement data so the row stays canonical. Otherwise we CREATE a
+ * new row with Source = "Landing Page".
+ *
+ * Either way, the "Agreed At" timestamp becoming non-empty is Kate's
+ * signal that this row has signed the Partner Terms.
  *
  * The IP + User Agent fields are forensic — they're our record that
  * THIS person on THIS device at THIS time clicked agree. If a partner
@@ -25,15 +34,15 @@ interface AgreementBody {
  *
  * Expected request body (JSON):
  *   {
- *     venueName: string,
+ *     venueName: string,           // becomes Name in Airtable
  *     contactName: string,
  *     email: string,
  *     phone: string,
- *     venueAddress: string,
+ *     venueAddress: string,        // becomes Business Address
  *     agreedToTerms: true
  *   }
  *
- * 200 → { ok: true }
+ * 200 → { ok: true, mode: "created" | "updated" }
  * 400 → { error: <human-readable> }   (validation failure)
  * 500 → { error: <human-readable> }   (server/Airtable failure)
  */
@@ -68,11 +77,16 @@ export async function POST(req: Request) {
     );
   }
 
-  const apiKey = process.env.AIRTABLE_API_KEY;
-  const baseId = process.env.AIRTABLE_BASE_ID;
-  if (!apiKey || !baseId) {
+  // Founder Waitlist lives in the Plus None Sales base. PAT has
+  // read+write scope on all tables there since the recent rotation.
+  const apiKey =
+    process.env.AIRTABLE_BUSINESS_API_KEY ??
+    process.env.AIRTABLE_API_KEY;
+  const baseId =
+    process.env.AIRTABLE_BUSINESS_BASE_ID ?? "appNewsi5A4VKSs4g";
+  if (!apiKey) {
     console.error(
-      "[founding-partner-agreement] AIRTABLE_API_KEY or AIRTABLE_BASE_ID not set",
+      "[founding-partner-agreement] AIRTABLE_BUSINESS_API_KEY (or fallback AIRTABLE_API_KEY) not set",
     );
     return NextResponse.json(
       {
@@ -83,8 +97,7 @@ export async function POST(req: Request) {
     );
   }
 
-  // Best-effort forensic capture. Vercel terminates the TLS so the
-  // client IP shows up in x-forwarded-for (first entry).
+  // Forensic capture.
   const forwardedFor = req.headers.get("x-forwarded-for");
   const ip =
     forwardedFor?.split(",")[0]?.trim() ??
@@ -92,19 +105,50 @@ export async function POST(req: Request) {
     "unknown";
   const userAgent = req.headers.get("user-agent") ?? "unknown";
 
+  const agreementFields = {
+    Phone: phone,
+    "Business Address": venueAddress,
+    "Agreed At": new Date().toISOString(),
+    "IP Address": ip,
+    "User Agent": userAgent,
+  };
+
   try {
     const base = new Airtable({ apiKey }).base(baseId);
-    await base(AGREEMENTS_TABLE).create({
-      "Business Name": venueName,
+
+    // Find an existing row by email (Kate's manual entries should
+    // already have the founder's email set). Use the Airtable
+    // filterByFormula because the npm SDK doesn't expose the
+    // structured filter API.
+    const escapedEmail = email.replace(/"/g, '\\"');
+    const existing = await base(FOUNDER_WAITLIST_TABLE)
+      .select({
+        filterByFormula: `LOWER({Email}) = LOWER("${escapedEmail}")`,
+        maxRecords: 1,
+      })
+      .all();
+
+    if (existing.length > 0) {
+      // Update in place — only the new (agreement) fields. Leave
+      // Name, Contact Name, Status, Source, Notes, Business Type,
+      // Location alone so Kate's pre-existing context survives.
+      await base(FOUNDER_WAITLIST_TABLE).update(
+        existing[0].id,
+        agreementFields,
+      );
+      return NextResponse.json({ ok: true, mode: "updated" });
+    }
+
+    // No existing row — create one with everything we have.
+    await base(FOUNDER_WAITLIST_TABLE).create({
+      Name: venueName,
       "Contact Name": contactName,
       Email: email,
-      Phone: phone,
-      "Business Address": venueAddress,
-      "Agreed At": new Date().toISOString(),
-      "IP Address": ip,
-      "User Agent": userAgent,
+      Source: "Landing Page",
+      "Date Received": new Date().toISOString().slice(0, 10),
+      ...agreementFields,
     });
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, mode: "created" });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     console.error(
