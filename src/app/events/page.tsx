@@ -23,10 +23,13 @@ export const metadata: Metadata = {
     "One-night Plus None activations for conventions, weddings, festivals, and brand events. Geo-gated to your event, featured to a 1M+ audience.",
 };
 
-const CHECKOUT_URL_SINGLE_DAY =
-  "https://plusnone.lemonsqueezy.com/checkout/buy/1d01a2b0-9c4e-42fa-b8c4-37fbc1718aa3?discount=0";
-const CHECKOUT_URL_MULTI_DAY =
-  "https://plusnone.lemonsqueezy.com/checkout/buy/0e96c53a-c49a-4ab9-8dfd-10703f04d5d6?discount=0";
+// Waitlist mode — payment processor still pending. CTAs route to a
+// pre-filled email so we can collect interested event organizers'
+// contact info. Replace with Buy Links once we have a processor.
+const WAITLIST_URL_SINGLE_DAY =
+  "mailto:plusnone@fetewell.com?subject=Plus%20None%20Events%20Waitlist%20(Single%20Day)";
+const WAITLIST_URL_MULTI_DAY =
+  "mailto:plusnone@fetewell.com?subject=Plus%20None%20Events%20Waitlist%20(Multi%20Day)";
 
 export default function EventsPage() {
   return (
@@ -61,7 +64,7 @@ export default function EventsPage() {
                   href="#book"
                   className="inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:px-6 md:py-4 md:text-base"
                 >
-                  Add Plus None to your event →
+                  Get on the waitlist →
                 </a>
 
                 <p className="mb-3 mt-8 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8] md:mt-10">
@@ -148,7 +151,7 @@ export default function EventsPage() {
               <div className="step-title">Book your event date</div>
               <div className="step-desc">
                 Tell us your event name, venue address, and event date. Minimum
-                14 business days lead time. Payment via Lemon Squeezy.
+                14 business days lead time.
               </div>
             </div>
             <div className="step">
@@ -229,13 +232,11 @@ export default function EventsPage() {
                 <li>Post-event data report</li>
               </ul>
               <a
-                href={CHECKOUT_URL_SINGLE_DAY}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={WAITLIST_URL_SINGLE_DAY}
                 className="tier-btn"
                 style={{ justifyContent: "center" }}
               >
-                Sign up →
+                Get on the waitlist →
               </a>
             </div>
             <div className="tier featured">
@@ -254,13 +255,11 @@ export default function EventsPage() {
                 <li>Pre- and mid-event social posts</li>
               </ul>
               <a
-                href={CHECKOUT_URL_MULTI_DAY}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={WAITLIST_URL_MULTI_DAY}
                 className="tier-btn"
                 style={{ justifyContent: "center" }}
               >
-                Sign up →
+                Get on the waitlist →
               </a>
             </div>
           </div>
@@ -300,10 +299,10 @@ export default function EventsPage() {
           <a href="https://fetewell.com/plus-none-terms">User Terms</a> ·{" "}
           <Link href="/privacy-policy">Privacy</Link>
           <div className="footer-disclosure">
-            Payments processed by Lemon Squeezy. Events are one-time charges.
-            Reschedule free up to 7 days before; cancel for full refund up to
-            14 business days before. Cancellations inside 14 business days are
-            non-refundable. By signing up you agree to our Partner Terms.
+            Plus None Events is currently on a waitlist. Join via the
+            button above and we&apos;ll email you when we open bookings.
+            Pricing + cancellation terms above are what you&apos;ll see at
+            launch, subject to final Partner Terms.
           </div>
         </div>
       </div>
