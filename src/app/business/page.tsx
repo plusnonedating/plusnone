@@ -18,7 +18,7 @@ export default function BusinessPage() {
       checkoutUrl={WAITLIST_URL}
       primaryCtaLabel="Get on the waitlist →"
       pricingCtaLabel="Get on the waitlist →"
-      heroCtaSubtext="First 30 days free when we launch. No card needed to join the waitlist."
+      heroCtaSubtext="First 30 days free when we launch. Card on file required at signup; no charges for 30 days."
       pricingFootTag="Welcome offer"
       pricingFootBody={
         <>
