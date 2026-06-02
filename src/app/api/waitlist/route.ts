@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import Airtable from "airtable";
 
-const WAITLIST_TABLE = "Waitlist";
+const WAITLIST_TABLE = "Web Waitlist";
 
 type WaitlistType =
   | "Business"
@@ -76,11 +76,17 @@ export async function POST(req: Request) {
     );
   }
 
-  const apiKey = process.env.AIRTABLE_API_KEY;
-  const baseId = process.env.AIRTABLE_BASE_ID;
-  if (!apiKey || !baseId) {
+  // Web Waitlist lives in the Plus None Sales base, not the Content
+  // base — Kate keeps sales/CRM data separate from user-submitted
+  // content. Use the BUSINESS_* env vars (same PAT + base ID the
+  // /scan venue lookup uses).
+  const apiKey =
+    process.env.AIRTABLE_BUSINESS_API_KEY ?? process.env.AIRTABLE_API_KEY;
+  const baseId =
+    process.env.AIRTABLE_BUSINESS_BASE_ID ?? "appNewsi5A4VKSs4g";
+  if (!apiKey) {
     console.error(
-      "[waitlist] AIRTABLE_API_KEY or AIRTABLE_BASE_ID not set",
+      "[waitlist] AIRTABLE_BUSINESS_API_KEY (or fallback AIRTABLE_API_KEY) not set",
     );
     return NextResponse.json(
       {
