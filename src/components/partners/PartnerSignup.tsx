@@ -51,12 +51,16 @@ export default function PartnerSignup({
   primaryCtaLabel = "Become a Plus None Location →",
   pricingCtaLabel = "Sign up →",
 }: Props) {
-  // mailto links shouldn't open a new tab — they invoke the OS mail
-  // client. Skip target=_blank / rel=noopener for those.
-  const isMailto = checkoutUrl.startsWith("mailto:");
-  const linkExtras = isMailto
-    ? {}
-    : { target: "_blank", rel: "noopener noreferrer" };
+  // External links (e.g. Lemon Squeezy checkout) open in a new tab.
+  // Internal links (/business/waitlist, /founding-partner/agreement)
+  // and mailto: URLs stay in the same tab — new tabs feel wrong for
+  // both.
+  const isExternal =
+    !checkoutUrl.startsWith("mailto:") &&
+    !checkoutUrl.startsWith("/");
+  const linkExtras = isExternal
+    ? { target: "_blank", rel: "noopener noreferrer" }
+    : {};
   return (
     <div className="partner-page">
       <div className="page">

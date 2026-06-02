@@ -23,13 +23,13 @@ export const metadata: Metadata = {
     "One-night Plus None activations for conventions, weddings, festivals, and brand events. Geo-gated to your event, featured to a 1M+ audience.",
 };
 
-// Waitlist mode — payment processor still pending. CTAs route to a
-// pre-filled email so we can collect interested event organizers'
-// contact info. Replace with Buy Links once we have a processor.
-const WAITLIST_URL_SINGLE_DAY =
-  "mailto:plusnone@fetewell.com?subject=Plus%20None%20Events%20Waitlist%20(Single%20Day)";
-const WAITLIST_URL_MULTI_DAY =
-  "mailto:plusnone@fetewell.com?subject=Plus%20None%20Events%20Waitlist%20(Multi%20Day)";
+// Waitlist mode — payment processor still pending. CTAs route to
+// the waitlist form which writes to the Airtable "Waitlist" table.
+// The ?tier= query param pre-selects the matching radio button on
+// the form so the user doesn't have to re-pick what they already
+// clicked on. Replace with Buy Links once we have a processor.
+const WAITLIST_URL_SINGLE_DAY = "/events/waitlist?tier=single";
+const WAITLIST_URL_MULTI_DAY = "/events/waitlist?tier=multi";
 
 export default function EventsPage() {
   return (
@@ -61,7 +61,7 @@ export default function EventsPage() {
             <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-[1fr_300px] md:gap-12">
               <div className="order-2 md:order-1">
                 <a
-                  href="#book"
+                  href="/events/waitlist"
                   className="inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:px-6 md:py-4 md:text-base"
                 >
                   Get on the waitlist →
