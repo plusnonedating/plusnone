@@ -47,8 +47,8 @@ export default function FoundingPartnerAgreementPage() {
               Confirm your founding partner spot.
             </h1>
             <p className="mt-4 text-base leading-relaxed text-stone-700 md:mt-6 md:text-lg">
-              Plus None turns the room into a social pool. Singles in
-              your venue can find each other — no app, no download,
+              Plus None turns the room into a social pool. Singles at
+              your business can find each other — no app, no download,
               no messaging, just IRL connections.
             </p>
             <p className="mt-5 font-serif text-xl italic leading-snug text-stone-700 md:mt-6 md:text-2xl">
@@ -80,7 +80,7 @@ export default function FoundingPartnerAgreementPage() {
             <div className="mt-8 space-y-5 md:mt-10 md:space-y-6">
               <Statement
                 icon={MapPin}
-                title="Geo-gated exclusively to your venue."
+                title="Geo-gated exclusively to your business."
                 body="Only people physically at your business join the pool. The bar next door doesn't get your patrons. Period."
               />
               <Statement
@@ -96,7 +96,7 @@ export default function FoundingPartnerAgreementPage() {
               <Statement
                 icon={BarChart3}
                 title="Monthly data report."
-                body="Scans, submissions, unique visitors, repeat visit rates — at your venue specifically. Delivered by email."
+                body="Scans, submissions, unique visitors, repeat visit rates — at your business specifically. Delivered by email."
               />
             </div>
 
@@ -126,7 +126,7 @@ export default function FoundingPartnerAgreementPage() {
               <p>
                 <strong>What we ask.</strong> Place the signage somewhere
                 visible (bar top, mirror, host stand). Let us reference
-                your venue and the activation in our marketing — photos,
+                your business and the activation in our marketing — photos,
                 video, social posts, press.
               </p>
               <p>
@@ -137,7 +137,7 @@ export default function FoundingPartnerAgreementPage() {
                 >
                   plusnone@fetewell.com
                 </a>{" "}
-                anytime. We&apos;ll remove your venue from the geo-gated
+                anytime. We&apos;ll remove your business from the geo-gated
                 network at the end of the current billing cycle (or
                 immediately, if still inside the 365-day free window).
               </p>

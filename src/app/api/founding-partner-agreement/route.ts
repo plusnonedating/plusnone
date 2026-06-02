@@ -95,11 +95,11 @@ export async function POST(req: Request) {
   try {
     const base = new Airtable({ apiKey }).base(baseId);
     await base(AGREEMENTS_TABLE).create({
-      "Venue Name": venueName,
+      "Business Name": venueName,
       "Contact Name": contactName,
       Email: email,
       Phone: phone,
-      "Venue Address": venueAddress,
+      "Business Address": venueAddress,
       "Agreed At": new Date().toISOString(),
       "IP Address": ip,
       "User Agent": userAgent,
