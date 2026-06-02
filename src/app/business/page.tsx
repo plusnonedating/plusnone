@@ -7,22 +7,27 @@ export const metadata: Metadata = {
     "Turn your business into a social pool. Plus None is geo-gated to your venue, featured to a 1M+ audience, and reports on your bar monthly.",
 };
 
-const CHECKOUT_URL =
-  "https://plusnone.lemonsqueezy.com/checkout/buy/3d2daf8e-4bc4-47d6-90cc-7fab51225517?discount=0";
+// Waitlist mode — payment processor still pending. CTAs route to a
+// pre-filled email so we can collect interested venues' contact info
+// without a checkout. Replace with a Buy Link once we have a processor.
+const WAITLIST_URL =
+  "mailto:plusnone@fetewell.com?subject=Plus%20None%20Business%20Waitlist";
 
 export default function BusinessPage() {
   return (
     <PartnerSignup
-      checkoutUrl={CHECKOUT_URL}
-      heroCtaSubtext="First 30 days free. Cancel anytime."
+      checkoutUrl={WAITLIST_URL}
+      primaryCtaLabel="Get on the waitlist →"
+      pricingCtaLabel="Get on the waitlist →"
+      heroCtaSubtext="First 30 days free when we launch. No card needed to join the waitlist."
       pricingFootTag="Welcome offer"
       pricingFootBody={
         <>
-          First month free. Card on file, no charges for 30 days, auto-renews
-          unless you cancel.
+          First month free when we open in your city. We&apos;ll email you
+          before launch to confirm your spot.
         </>
       }
-      footerDisclosure="Payments processed by Lemon Squeezy. First month free; renews at $99/month unless cancelled before billing date. By signing up you agree to our Partner Terms."
+      footerDisclosure="By joining the waitlist you agree to receive launch updates by email. We won't charge you anything — payment + Partner Terms come when you confirm at launch."
     />
   );
 }

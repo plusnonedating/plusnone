@@ -17,7 +17,11 @@ import { StatStrip } from "@/components/marketing/StatStrip";
 import { Statement } from "@/components/marketing/Statement";
 
 interface Props {
-  /** Lemon Squeezy Buy Link the primary CTA points to. */
+  /**
+   * Where the primary + pricing CTAs point. Usually a Lemon Squeezy Buy
+   * Link, but can be a `mailto:` URL when running in waitlist mode
+   * while a payment processor is being sourced.
+   */
   checkoutUrl: string;
   /** Small uppercase tag in the pricing footer, e.g. "Founding partner" or "Welcome offer". */
   pricingFootTag: string;
@@ -27,6 +31,10 @@ interface Props {
   footerDisclosure: string;
   /** Optional muted note rendered directly under the hero CTA — typically the trial reminder ("First 30 days free. Cancel anytime."). */
   heroCtaSubtext?: string;
+  /** Hero CTA button label. Defaults to "Become a Plus None Location →". */
+  primaryCtaLabel?: string;
+  /** Pricing card CTA button label. Defaults to "Sign up →". */
+  pricingCtaLabel?: string;
 }
 
 /**
@@ -40,7 +48,15 @@ export default function PartnerSignup({
   pricingFootBody,
   footerDisclosure,
   heroCtaSubtext,
+  primaryCtaLabel = "Become a Plus None Location →",
+  pricingCtaLabel = "Sign up →",
 }: Props) {
+  // mailto links shouldn't open a new tab — they invoke the OS mail
+  // client. Skip target=_blank / rel=noopener for those.
+  const isMailto = checkoutUrl.startsWith("mailto:");
+  const linkExtras = isMailto
+    ? {}
+    : { target: "_blank", rel: "noopener noreferrer" };
   return (
     <div className="partner-page">
       <div className="page">
@@ -72,11 +88,10 @@ export default function PartnerSignup({
               <div className="order-2 md:order-1">
                 <a
                   href={checkoutUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...linkExtras}
                   className="inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:px-6 md:py-4 md:text-base"
                 >
-                  Become a Plus None Location →
+                  {primaryCtaLabel}
                 </a>
                 {heroCtaSubtext && (
                   <p className="mt-3 text-xs text-stone-600 md:text-sm">
@@ -240,11 +255,10 @@ export default function PartnerSignup({
               </div>
               <a
                 href={checkoutUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...linkExtras}
                 className="btn-primary"
               >
-                Sign up →
+                {pricingCtaLabel}
               </a>
             </div>
             <div className="pricing-foot">
