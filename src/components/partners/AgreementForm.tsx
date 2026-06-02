@@ -84,7 +84,7 @@ export default function AgreementForm() {
         </h3>
         <p className="mt-4 text-stone-700">
           We&apos;ve recorded your agreement. Plus None will be deployed
-          at your venue this week — Kate will be in touch within 24
+          at your business this week — Kate will be in touch within 24
           hours to schedule signage delivery and confirm logistics.
         </p>
         <p className="mt-4 text-stone-700">
@@ -104,7 +104,7 @@ export default function AgreementForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5" noValidate>
       <Field
-        label="Venue name"
+        label="Business name"
         value={form.venueName}
         onChange={handleChange("venueName")}
         required
@@ -134,7 +134,7 @@ export default function AgreementForm() {
         autoComplete="tel"
       />
       <Field
-        label="Venue address (for signage shipping)"
+        label="Business address (for geotagging)"
         value={form.venueAddress}
         onChange={handleChange("venueAddress")}
         required
