@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AtSign, BarChart3, MapPin, Megaphone } from "lucide-react";
 import Header from "@/components/partners/Header";
 import AgreementForm from "@/components/partners/AgreementForm";
+import { StatStrip } from "@/components/marketing/StatStrip";
+import { Statement } from "@/components/marketing/Statement";
 
 export const metadata: Metadata = {
   title: "Founding Partner Agreement · Plus None",
@@ -24,6 +27,9 @@ export const metadata: Metadata = {
  * No payment is collected at this step. Once Kate has an approved
  * payment processor, she'll separately reach out to convert each
  * agreement record into a billing setup.
+ *
+ * The page mirrors the "what you get" pitch from /founding-partner so
+ * partners hit the agreement re-energized, not just doing paperwork.
  */
 export default function FoundingPartnerAgreementPage() {
   return (
@@ -33,7 +39,7 @@ export default function FoundingPartnerAgreementPage() {
 
         {/* HERO */}
         <section className="bg-[#f4ede4] px-5 pt-6 pb-10 md:px-8 md:pt-16 md:pb-16">
-          <div className="mx-auto max-w-2xl">
+          <div className="mx-auto max-w-3xl">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
               Founding partner
             </p>
@@ -41,16 +47,71 @@ export default function FoundingPartnerAgreementPage() {
               Confirm your founding partner spot.
             </h1>
             <p className="mt-4 text-base leading-relaxed text-stone-700 md:mt-6 md:text-lg">
-              Plus None deploys at your venue this week. Confirm the
-              founding partner agreement below — no payment today; we&apos;ll
-              be in touch before your free year ends to set up billing.
+              Plus None turns the room into a social pool. Singles in
+              your venue can find each other — no app, no download,
+              no messaging, just IRL connections.
+            </p>
+            <p className="mt-5 font-serif text-xl italic leading-snug text-stone-700 md:mt-6 md:text-2xl">
+              You&apos;re one of our first five. We deploy at your
+              venue this week.
             </p>
           </div>
         </section>
 
-        {/* AGREEMENT BODY + FORM */}
-        <section className="px-5 py-12 md:px-8 md:py-16">
+        {/* STAT STRIP — visual social proof */}
+        <StatStrip
+          items={[
+            { value: "1M+", label: "Social reach" },
+            { value: "Yours", label: "Geo-gated" },
+            { value: "Monthly", label: "Data report" },
+          ]}
+        />
+
+        {/* WHAT YOU'RE GETTING — concrete deliverables */}
+        <section className="bg-[#f4ede4] px-5 pt-12 pb-8 md:px-8 md:pt-20 md:pb-12">
+          <div className="mx-auto max-w-3xl">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
+              What you&apos;re getting
+            </p>
+            <h2 className="font-serif text-3xl leading-[1.02] tracking-tight text-stone-900 md:text-5xl">
+              Built to run itself. Designed not to bug you.
+            </h2>
+
+            <div className="mt-8 space-y-5 md:mt-10 md:space-y-6">
+              <Statement
+                icon={MapPin}
+                title="Geo-gated exclusively to your venue."
+                body="Only people physically at your business join the pool. The bar next door doesn't get your patrons. Period."
+              />
+              <Statement
+                icon={AtSign}
+                title="Featured to 1M+."
+                body="Your venue posted on Plus None's Instagram and our founder's @TheVenueCEO — combined 1M+ followers actively engaged with going-out content."
+              />
+              <Statement
+                icon={Megaphone}
+                title="Printed signage, shipped to you."
+                body="Designed, printed, delivered. Table tents + bathroom-mirror stickers, ready to place. Within 10 business days of signing."
+              />
+              <Statement
+                icon={BarChart3}
+                title="Monthly data report."
+                body="Scans, submissions, unique visitors, repeat visit rates — at your venue specifically. Delivered by email."
+              />
+            </div>
+
+            <p className="mt-10 font-serif text-2xl italic leading-snug text-[#2647e8] md:mt-12 md:text-3xl">
+              Build the place they tell stories about for the next decade.
+            </p>
+          </div>
+        </section>
+
+        {/* WHAT YOU'RE AGREEING TO — formal bullets */}
+        <section className="px-5 pt-12 pb-8 md:px-8 md:pt-16 md:pb-10">
           <div className="mx-auto max-w-2xl">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8]">
+              The fine print
+            </p>
             <h2 className="font-serif text-2xl leading-tight text-stone-900 md:text-3xl">
               What you&apos;re agreeing to
             </h2>
@@ -63,18 +124,9 @@ export default function FoundingPartnerAgreementPage() {
                 fees, ever.
               </p>
               <p>
-                <strong>What you get.</strong> Geo-gated venue
-                deployment; custom-printed signage (table tents +
-                bathroom-mirror stickers) shipped within 10 business
-                days; monthly social posts on Plus None&apos;s Instagram +
-                @TheVenueCEO (1M+ combined audience); monthly data
-                report on scans, submissions, demographics, and
-                repeat-visit rates at your venue.
-              </p>
-              <p>
                 <strong>What we ask.</strong> Place the signage somewhere
                 visible (bar top, mirror, host stand). Let us reference
-                your venue + the activation in our marketing — photos,
+                your venue and the activation in our marketing — photos,
                 video, social posts, press.
               </p>
               <p>
@@ -101,10 +153,13 @@ export default function FoundingPartnerAgreementPage() {
                 .
               </p>
             </div>
+          </div>
+        </section>
 
-            <div className="mt-10">
-              <AgreementForm />
-            </div>
+        {/* FORM */}
+        <section className="px-5 pb-16 md:px-8 md:pb-20">
+          <div className="mx-auto max-w-2xl">
+            <AgreementForm />
           </div>
         </section>
 

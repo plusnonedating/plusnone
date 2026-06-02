@@ -134,7 +134,7 @@ export default function AgreementForm() {
         autoComplete="tel"
       />
       <Field
-        label="Venue address (for signage shipping)"
+        label="Business address (for geotagging)"
         value={form.venueAddress}
         onChange={handleChange("venueAddress")}
         required
