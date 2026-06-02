@@ -106,9 +106,16 @@ export function currentBusinessBaseId(): string {
 
 async function fetchActivePartnersImpl(): Promise<PartnerVenue[]> {
   const base = getBusinessBase();
+  // Two statuses count as "scannable":
+  //   - Geo-Tag Configured: geo coords are set; venue is in the network
+  //     but physical signage hasn't shipped yet. Still scannable so
+  //     founders can demo + soft-launch.
+  //   - Active: signage delivered + placed, fully launched.
+  // Anything else (New Signup, Signage Ordered/Shipped, Payment
+  // Failed, Cancelled, Live) is excluded.
   const records = await base(BUSINESS_TABLE_ID)
     .select({
-      filterByFormula: `{Status} = 'Active'`,
+      filterByFormula: `OR({Status} = 'Active', {Status} = 'Geo-Tag Configured')`,
       pageSize: 100,
     })
     .all();
