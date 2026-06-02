@@ -38,8 +38,8 @@ export default function BusinessWaitlistPage() {
               we&apos;ll be in touch the moment we open in your city.
             </p>
             <p className="mt-5 font-serif text-xl italic leading-snug text-stone-700 md:mt-6 md:text-2xl">
-              First 30 days free when we launch. No card needed to
-              join.
+              First 30 days free when we launch. Card on file required
+              at signup; no charges for 30 days.
             </p>
           </div>
         </section>
