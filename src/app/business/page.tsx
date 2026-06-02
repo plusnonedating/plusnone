@@ -7,11 +7,10 @@ export const metadata: Metadata = {
     "Turn your business into a social pool. Plus None is geo-gated to your venue, featured to a 1M+ audience, and reports on your bar monthly.",
 };
 
-// Waitlist mode — payment processor still pending. CTAs route to a
-// pre-filled email so we can collect interested venues' contact info
-// without a checkout. Replace with a Buy Link once we have a processor.
-const WAITLIST_URL =
-  "mailto:plusnone@fetewell.com?subject=Plus%20None%20Business%20Waitlist";
+// Waitlist mode — payment processor still pending. CTAs route to
+// the waitlist form which writes to the Airtable "Waitlist" table.
+// Replace with a Buy Link once we have a processor.
+const WAITLIST_URL = "/business/waitlist";
 
 export default function BusinessPage() {
   return (
