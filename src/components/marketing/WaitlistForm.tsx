@@ -107,17 +107,6 @@ export default function WaitlistForm({
             : "new event activations"}
           , you&apos;ll be among the first we reach out to.
         </p>
-        <p className="mt-4 text-stone-700">
-          In the meantime, take a look at the playbook so you know
-          what to expect:
-        </p>
-        <a
-          href="/plus-none-playbook.pdf"
-          download
-          className="mt-4 inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:px-6 md:py-4 md:text-base"
-        >
-          Download the Plus None Playbook →
-        </a>
       </div>
     );
   }
