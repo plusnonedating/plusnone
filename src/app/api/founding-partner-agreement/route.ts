@@ -120,7 +120,15 @@ export async function POST(req: Request) {
     // already have the founder's email set). Use the Airtable
     // filterByFormula because the npm SDK doesn't expose the
     // structured filter API.
-    const escapedEmail = email.replace(/"/g, '\\"');
+    //
+    // Escape both backslash and double-quote so that pathological
+    // user input (e.g. an email ending in `\`) can't break out of the
+    // string literal in the formula. Order matters: backslash first,
+    // then quotes, so the doubled backslashes from step 1 aren't
+    // re-escaped in step 2.
+    const escapedEmail = email
+      .replace(/\\/g, "\\\\")
+      .replace(/"/g, '\\"');
     const existing = await base(FOUNDER_WAITLIST_TABLE)
       .select({
         filterByFormula: `LOWER({Email}) = LOWER("${escapedEmail}")`,

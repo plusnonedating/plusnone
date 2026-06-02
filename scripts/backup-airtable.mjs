@@ -43,9 +43,15 @@ function recordsToCsv(records) {
 }
 
 async function dump({ apiKey, baseId, tableId, label }) {
+  // Throw rather than skip when the key is missing — a silently-empty
+  // backup is worse than a loud failure. The workflow step exits
+  // non-zero, GitHub Actions marks the run as failed, and the commit
+  // step never runs (so we don't end up pushing an empty CSV that
+  // looks like a successful backup).
   if (!apiKey) {
-    console.error(`✗ ${label}: no API key set, skipping`);
-    return;
+    throw new Error(
+      `${label}: no API key set — refusing to write empty backup`,
+    );
   }
   const base = new Airtable({ apiKey }).base(baseId);
   const records = await base(tableId).select().all();
