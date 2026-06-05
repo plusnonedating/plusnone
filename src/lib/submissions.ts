@@ -47,9 +47,15 @@ async function fetchRecentSubmissionsImpl(
     const firstName = firstNameOf(r.get("Submitter Name"));
     const age = asNumber(r.get("Age"));
     const gender = asTrimmed(r.get("Gender"));
-    const videoUrl = asTrimmed(r.get("Video URL"));
+    // Support both column names during the rollover window — Kate is
+    // renaming "Video URL" → "Photo URL" in Airtable as part of the
+    // video → photo switch. Prefer the new name; fall back to the
+    // old one until the rename propagates so we don't blank out the
+    // feed mid-deploy.
+    const photoUrl =
+      asTrimmed(r.get("Photo URL")) ?? asTrimmed(r.get("Video URL"));
 
-    if (!firstName || age === null || !gender || !videoUrl) continue;
+    if (!firstName || age === null || !gender || !photoUrl) continue;
 
     submissions.push({
       id: r.id,
@@ -59,7 +65,7 @@ async function fetchRecentSubmissionsImpl(
       interestedIn: asTrimmed(r.get("Interested In")),
       lookingFor: asTrimmed(r.get("Looking For")),
       pitch: asTrimmed(r.get("Ice Breaker")),
-      videoUrl,
+      photoUrl,
     });
   }
   return submissions;
