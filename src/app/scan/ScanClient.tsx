@@ -8,6 +8,7 @@ import VenueFeedView, {
 } from "@/components/VenueFeedView";
 import BlurredFeedView from "@/components/BlurredFeedView";
 import { FORM_URL } from "@/lib/form";
+import { IG_VENUE } from "@/lib/venues";
 import {
   clearJustSubmitted,
   isUnlocked,
@@ -85,7 +86,9 @@ export default function ScanClient() {
   // The IG fallback link gets the page-level IG venue param so the
   // WPForm still knows it came from a scan attempt rather than an
   // organic IG landing.
-  const igFallbackUrl = `${FORM_URL}?venue=${encodeURIComponent("Not at a Fêtewell event right now")}`;
+  // Driven by IG_VENUE.label so future renames of the Airtable
+  // singleSelect option only need one source-of-truth edit.
+  const igFallbackUrl = `${FORM_URL}?venue=${encodeURIComponent(IG_VENUE.label)}`;
 
   const redirectToIg = useCallback(() => {
     router.push("/ig");

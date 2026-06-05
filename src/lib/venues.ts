@@ -70,7 +70,13 @@ export const FEED_VENUES: FeedVenue[] = [
 
 export const IG_VENUE: IgVenue = {
   slug: "ig",
-  label: "Not at a Fêtewell event right now",
+  // Must match the renamed singleSelect option in the Airtable
+  // Submissions Venue field exactly. Same option ID
+  // (self2xC3q7SmMEnQi) — only the display string changed
+  // (2026-06-05, "Not at a Fêtewell event right now" → "Not at a
+  // Plus None location"). Existing rows tagged with the old label
+  // were automatically remapped by Airtable.
+  label: "Not at a Plus None location",
   hasFeed: false,
 };
 
