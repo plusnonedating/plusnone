@@ -6,5 +6,5 @@ export interface Submission {
   interestedIn?: string;
   lookingFor?: string;
   pitch?: string;
-  videoUrl: string;
+  photoUrl: string;
 }

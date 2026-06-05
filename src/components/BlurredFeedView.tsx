@@ -24,7 +24,7 @@ interface Props {
  * at the WPForm.
  *
  * Privacy: this component only ever fetches `/api/submissions?count_only=1`.
- * It never receives the real profile data — video URLs, names, pitches
+ * It never receives the real profile data — photo URLs, names, pitches
  * stay server-side until the visitor commits via the form. The N
  * placeholders shown here are stand-ins, not blurred real cards.
  */
@@ -103,7 +103,7 @@ export default function BlurredFeedView({ venue, overrideCount }: Props) {
         </a>
       </div>
       <p className="px-5 pt-3 pb-4 text-center text-[13px] leading-[1.5] text-muted">
-        Plus None&apos;s private. Drop a quick selfie video and you&apos;ll see
+        Plus None&apos;s private. Drop a live selfie and you&apos;ll see
         everyone else who&apos;s in here right now.
       </p>
 

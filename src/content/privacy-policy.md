@@ -16,7 +16,7 @@ Information you give us directly:
 - Age
 - Gender and who you're interested in
 - Email address
-- A 10-30 second selfie video
+- A live selfie photo
 - A one-line "ask me about..." prompt
 - Instagram or TikTok handle (only if you opt in to social posting)
 
@@ -65,8 +65,8 @@ Information you give us directly:
 
 We share information in the following limited ways:
 
-- **With other Plus None users in your venue's dating pool** — your submitted profile (name, age, video, ice-breaker) is visible to other patrons who scanned at the same venue, during the 6-hour window.
-- **On our social media accounts** (@plusnonedating, @TheVenueCEO) — if you opted in, your video and handle may be posted publicly.
+- **With other Plus None users in your venue's dating pool** — your submitted profile (name, age, photo, ice-breaker) is visible to other patrons who scanned at the same venue, during the 6-hour window.
+- **On our social media accounts** (@plusnonedating, @TheVenueCEO) — if you opted in, your photo and handle may be posted publicly.
 - **With partner venues, in aggregated form only** — partners receive anonymized scan and demographic data about who came through their venue. **Partners never see individual user profiles, names, or contact info.**
 - **With service providers** — Lemon Squeezy (payments), Vercel (hosting), WordPress and Airtable (content and CRM), Zapier (workflow), Google Workspace (email). These vendors process data for us under their own privacy commitments.
 - **For legal reasons** — if required by law, subpoena, or to investigate violations of our Terms of Service.
@@ -137,7 +137,7 @@ To exercise any of these rights, email **plusnone@fetewell.com** with the subjec
 
 You have specific rights including: right to know what we collect, right to delete, right to opt out of "sale" or "sharing" (we don't do either), and right to non-discrimination for exercising these rights.
 
-Categories of personal information we collect: identifiers, audio/visual information (your submitted video), commercial information (partner billing), internet activity (device ID, pages viewed), geolocation (one-time at submission), and inferences from any of the above.
+Categories of personal information we collect: identifiers, visual information (your submitted photo), commercial information (partner billing), internet activity (device ID, pages viewed), geolocation (one-time at submission), and inferences from any of the above.
 
 We don't sell or share personal information for cross-context behavioral advertising.
 

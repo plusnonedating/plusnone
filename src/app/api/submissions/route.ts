@@ -48,7 +48,7 @@ export async function GET(request: Request) {
   try {
     const submissions = await fetchRecentSubmissions(venueLabel);
     if (countOnly) {
-      // Don't ship video URLs / names / pitches to non-submitted viewers
+      // Don't ship photo URLs / names / pitches to non-submitted viewers
       // hitting /scan in blurred-preview mode. Count is enough to render
       // the "N profiles in the room" badge.
       return NextResponse.json({ count: submissions.length });

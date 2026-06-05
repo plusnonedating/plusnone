@@ -1,84 +1,31 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import type { Submission } from "@/lib/types";
 
 interface Props {
   submission: Submission;
-  isAudible: boolean;
-  onRequestAudible: () => void;
-  onLeftView: () => void;
 }
 
-export default function ProfileCard({
-  submission,
-  isAudible,
-  onRequestAudible,
-  onLeftView,
-}: Props) {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = !isAudible;
-    if (isAudible) {
-      void video.play().catch(() => {});
-    }
-  }, [isAudible]);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.intersectionRatio < 0.5 && isAudible) {
-            onLeftView();
-          }
-        }
-      },
-      { threshold: [0, 0.5, 1] }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [isAudible, onLeftView]);
-
-  const handleTap = () => {
-    onRequestAudible();
-  };
-
+/**
+ * Single profile card on a venue feed.
+ *
+ * Renders a static portrait selfie photo on top, name + age + opt-in
+ * fields below. The selfie is a live photo captured via WPForms'
+ * Camera widget — no library uploads, no video.
+ *
+ * No audio, no playback state, no IntersectionObserver — those went
+ * away when we switched the submission flow from a selfie video to a
+ * live selfie photo.
+ */
+export default function ProfileCard({ submission }: Props) {
   return (
-    <article
-      ref={containerRef}
-      className="w-full max-w-md mx-auto rounded-2xl overflow-hidden bg-ink shadow-sm"
-    >
-      <button
-        type="button"
-        onClick={handleTap}
-        className="relative block w-full aspect-[9/16] bg-ink focus:outline-none"
-        aria-label={isAudible ? "Mute video" : "Unmute video"}
-      >
-        <video
-          ref={videoRef}
-          src={submission.videoUrl}
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          loop
-          muted={!isAudible}
-          playsInline
-          preload="metadata"
-        />
-        <span
-          aria-hidden
-          className="absolute bottom-3 right-3 rounded-full bg-ink/70 px-3 py-1 text-xs text-cream font-medium tracking-wide"
-        >
-          {isAudible ? "TAP TO MUTE" : "TAP FOR SOUND"}
-        </span>
-      </button>
+    <article className="w-full max-w-md mx-auto rounded-2xl overflow-hidden bg-ink shadow-sm">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={submission.photoUrl}
+        alt={submission.firstName}
+        className="block w-full aspect-[9/16] object-cover bg-ink"
+        loading="lazy"
+        decoding="async"
+      />
       <div className="bg-cream text-ink px-4 py-4">
         <div className="flex items-baseline gap-2">
           <h2 className="font-display text-3xl tracking-wide leading-none">
