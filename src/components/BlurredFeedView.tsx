@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FORM_URL } from "@/lib/form";
+import { formUrlForVenue } from "@/lib/form";
+import { getDeviceId } from "@/lib/deviceId";
 import type { FeedVenueData } from "./VenueFeedView";
 
 interface Props {
@@ -32,6 +33,15 @@ export default function BlurredFeedView({ venue, overrideCount }: Props) {
   const [count, setCount] = useState<number | null>(
     overrideCount ?? null,
   );
+  const [deviceId, setDeviceId] = useState<string | null>(null);
+
+  // Read the device ID from localStorage once on mount so we can append
+  // it to the WPForms URL. Without this, the form's hidden Device ID
+  // field falls back to the smart-tag literal "device_id" instead of
+  // the actual UUID, which kills repeat-scanner analytics.
+  useEffect(() => {
+    setDeviceId(getDeviceId());
+  }, []);
 
   useEffect(() => {
     if (overrideCount !== undefined) return;
@@ -56,7 +66,11 @@ export default function BlurredFeedView({ venue, overrideCount }: Props) {
     };
   }, [venue.label, overrideCount]);
 
-  const addYourselfUrl = `${FORM_URL}?venue=${venue.wordpressVenueParam}`;
+  // Goes through formUrlForVenue so the device_id query param lands on
+  // the WPForms URL. Without it, the form's hidden Device ID field
+  // falls back to the smart-tag literal "device_id" instead of the
+  // actual UUID, breaking repeat-scanner analytics.
+  const addYourselfUrl = formUrlForVenue(venue.label, deviceId);
 
   // Render a small grid of placeholder cards. Cap at 4 so the page
   // doesn't get visually crowded — the headline count is the source of
