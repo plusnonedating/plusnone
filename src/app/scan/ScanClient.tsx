@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import LocationGate from "@/components/LocationGate";
 import VenueFeedView, {
@@ -232,6 +232,24 @@ export default function ScanClient() {
       },
     );
   }, [redirectToIg]);
+
+  // When the user just submitted the WPForms form, LandingShell sets
+  // the just-submitted flag and forwards us here. They've already
+  // granted geolocation in this browser session (it's how they got to
+  // /scan the first time), so re-showing the "Allow location" button
+  // is pointless UX friction — it just confuses people who think the
+  // form already finished. Auto-fire onAllow once on mount in that
+  // case; the browser silently reuses the cached permission and we
+  // skip straight to the matched feed.
+  const autoFireRanRef = useRef(false);
+  useEffect(() => {
+    if (autoFireRanRef.current) return;
+    if (phase !== "idle") return;
+    if (typeof window === "undefined") return;
+    if (!wasJustSubmitted()) return;
+    autoFireRanRef.current = true;
+    onAllow();
+  }, [phase, onAllow]);
 
   if (debugResult) {
     return (

@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { Submission } from "@/lib/types";
-import { FORM_URL } from "@/lib/form";
+import { formUrlForVenue } from "@/lib/form";
+import { getDeviceId } from "@/lib/deviceId";
 import { shuffle } from "@/lib/shuffle";
 import Feed from "./Feed";
 import EmptyState from "./EmptyState";
@@ -39,7 +40,16 @@ interface Props {
  */
 export default function VenueFeedView({ venue, initialSubmissions }: Props) {
   const [ordered, setOrdered] = useState<Submission[] | null>(null);
+  const [deviceId, setDeviceId] = useState<string | null>(null);
   const initialAppliedRef = useRef(false);
+
+  // Read the device ID from localStorage once on mount so we can append
+  // it to the WPForms URL. Without this, the form's hidden Device ID
+  // field falls back to the smart-tag literal "device_id" instead of
+  // the actual UUID, which kills repeat-scanner analytics.
+  useEffect(() => {
+    setDeviceId(getDeviceId());
+  }, []);
 
   useEffect(() => {
     if (initialAppliedRef.current) return;
@@ -85,7 +95,12 @@ export default function VenueFeedView({ venue, initialSubmissions }: Props) {
     };
   }, [venue.label]);
 
-  const addYourselfUrl = `${FORM_URL}?venue=${venue.wordpressVenueParam}`;
+  // Goes through formUrlForVenue so the device_id query param is set
+  // when localStorage has one — same encoding rules + same helper that
+  // /ig uses. The wordpressVenueParam field on FeedVenueData is no
+  // longer the source of truth here, but kept on the interface for
+  // back-compat with other callers.
+  const addYourselfUrl = formUrlForVenue(venue.label, deviceId);
 
   if (ordered === null) {
     return (
