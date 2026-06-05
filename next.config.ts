@@ -19,13 +19,13 @@ const nextConfig: NextConfig = {
         destination: "/events/thanks",
         permanent: true,
       },
-      // Venue feed consolidation (2026-05-30) — the four hardcoded
-      // per-venue routes collapse into a single geo-aware /scan. Old
-      // printed QR codes / shared links keep working via these 308s.
-      { source: "/cb", destination: "/scan", permanent: true },
-      { source: "/msb", destination: "/scan", permanent: true },
-      { source: "/csq", destination: "/scan", permanent: true },
-      { source: "/sbw", destination: "/scan", permanent: true },
+      // /cb, /msb, /csq, /sbw previously 308'd to /scan after the
+      // venue feed consolidation (PR #36). Reinstated as direct
+      // routes when /[slug] landed (2026-06-05) so all 7 active
+      // venues — cb, msb, csq, sbw, tsd, fno, sr — render their feed
+      // inline without a redirect or a geo prompt. /scan still works
+      // for geo-aware discovery; the /[slug] route is for direct
+      // links (e.g. printed QR codes).
     ];
   },
 };
