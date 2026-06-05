@@ -1,8 +1,14 @@
 const SLUG_PREFIX = "plusnone_submitted_";
 const LEGACY_KEY = "plusnone_submitted";
 const JUST_SUBMITTED_KEY = "plusnone_just_submitted";
+const ADMIN_KEY = "plusnone_admin";
 const SLUG_TTL_MS = 24 * 60 * 60 * 1000;
 const JUST_SUBMITTED_TTL_MS = 5 * 60 * 1000;
+// 30 days. Admin is intended for the founder monitoring flow — bookmarks
+// like /cb?admin=<token> stamp this flag so subsequent visits without
+// the token still bypass the blur gate. Long enough to survive a normal
+// usage cycle, short enough that an old laptop eventually re-prompts.
+const ADMIN_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
 function keyFor(slug: string): string {
   return `${SLUG_PREFIX}${slug}`;
@@ -92,6 +98,53 @@ export function clearJustSubmitted(): void {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.removeItem(JUST_SUBMITTED_KEY);
+  } catch {
+    // ignored
+  }
+}
+
+/**
+ * Founder-only "monitor any venue without submitting" flag.
+ *
+ * Server-side validates the `?admin=<token>` query in /[slug] against
+ * the `ADMIN_TOKEN` env var, then passes `adminGranted={true}` down to
+ * the client which calls `setAdmin()`. The flag persists for 30 days
+ * on this browser so subsequent visits to any /[slug] without the
+ * query still skip the blur gate.
+ *
+ * Anyone with the token can also call setAdmin(); that's the whole
+ * point (Kate is the only intended user). To revoke, rotate
+ * ADMIN_TOKEN in Vercel and call clearAdmin() on each authorized
+ * browser.
+ */
+export function setAdmin(): void {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(
+      ADMIN_KEY,
+      String(Date.now() + ADMIN_TTL_MS),
+    );
+  } catch {
+    // ignored
+  }
+}
+
+export function isAdmin(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const raw = window.localStorage.getItem(ADMIN_KEY);
+    if (!raw) return false;
+    const expiresAt = Number(raw);
+    return Number.isFinite(expiresAt) && Date.now() < expiresAt;
+  } catch {
+    return false;
+  }
+}
+
+export function clearAdmin(): void {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.removeItem(ADMIN_KEY);
   } catch {
     // ignored
   }
