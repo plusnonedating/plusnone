@@ -8,7 +8,18 @@ function escapeFormulaString(value: string): string {
 
 function freshFormula(venueLabel: string): string {
   const escaped = escapeFormulaString(venueLabel);
-  return `AND(NOT({Consent Acknowledged} = BLANK()), {Venue} = '${escaped}', DATETIME_DIFF(NOW(), CREATED_TIME(), 'hours') < 6)`;
+  // LAST_MODIFIED_TIME — not CREATED_TIME — because Kate's Zapier
+  // currently does a Find-or-Update pattern that re-uses old records
+  // when names match. Those rows have stale `createdTime` values
+  // (weeks/months old) but get their Photo URL + other fields updated
+  // on a fresh submission. Using LAST_MODIFIED_TIME lets the feed
+  // recognize those updates as fresh.
+  //
+  // Trade-off: editing any field on an old record (e.g. tagging it
+  // with a Note) makes it re-appear in the feed. Mitigate by either
+  // (a) avoiding manual edits inside the 6h window, or (b) switching
+  // the Zap to always-create so this filter is unambiguous.
+  return `AND(NOT({Consent Acknowledged} = BLANK()), {Venue} = '${escaped}', DATETIME_DIFF(NOW(), LAST_MODIFIED_TIME(), 'hours') < 6)`;
 }
 
 function firstNameOf(full: unknown): string {
