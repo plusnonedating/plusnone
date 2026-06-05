@@ -5,6 +5,7 @@ import VenuePageClient from "./VenuePageClient";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ admin?: string }>;
 }
 
 /**
@@ -39,14 +40,24 @@ interface PageProps {
  * URL; treating them as "at the venue" is more useful than gating on
  * geo permission and confusing the QR-scan flow.
  */
-export default async function VenuePage({ params }: PageProps) {
+export default async function VenuePage({ params, searchParams }: PageProps) {
   const { slug } = await params;
+  const { admin } = await searchParams;
 
   const venues = await fetchActivePartners();
   const venue = venues.find((v) => v.slug === slug);
   if (!venue) {
     notFound();
   }
+
+  // Server-side admin handshake: only the founder, who set
+  // ADMIN_TOKEN in Vercel and knows the value, can pass it through
+  // the ?admin query string. We don't echo the comparison result
+  // anywhere user-controlled (no error message, no DOM marker) so a
+  // probing visitor can't brute-force the token from response diffs.
+  const expected = process.env.ADMIN_TOKEN;
+  const adminGranted =
+    !!expected && expected.length > 0 && admin === expected;
 
   const initialSubmissions = await fetchRecentSubmissions(venue.label);
 
@@ -59,6 +70,7 @@ export default async function VenuePage({ params }: PageProps) {
         wordpressVenueParam: venue.wordpressVenueParam,
       }}
       initialSubmissions={initialSubmissions}
+      adminGranted={adminGranted}
     />
   );
 }
