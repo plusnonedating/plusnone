@@ -9,7 +9,10 @@ import { shuffle } from "@/lib/shuffle";
 import Feed from "./Feed";
 import EmptyState from "./EmptyState";
 
-const POLL_INTERVAL_MS = 30_000;
+// 5 minutes — matches the server-side unstable_cache TTL in
+// src/lib/submissions.ts. Anything tighter just hits Airtable's
+// monthly quota without surfacing fresher data.
+const POLL_INTERVAL_MS = 5 * 60 * 1000;
 
 export interface FeedVenueData {
   /** Internal slug — used as a stable key for the polling effect. */

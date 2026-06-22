@@ -152,8 +152,15 @@ async function fetchActivePartnersImpl(): Promise<PartnerVenue[]> {
  * "partners" tag so manual revalidation is possible if you push a hot
  * Airtable change.
  */
+// 24 hours. Venues are added / edited maybe once a week in practice,
+// and the Airtable read for the Business table is what dominates our
+// monthly API call budget (~980/mo on the free 1k limit at 60s TTL).
+// If you need an immediate refresh after editing a venue in Airtable,
+// hit POST /api/admin/revalidate with the admin token — that
+// calls revalidateTag("partners") and the next /api/locate or
+// /[slug] render pulls fresh data.
 export const fetchActivePartners = unstable_cache(
   fetchActivePartnersImpl,
   ["active-partners-v2"],
-  { revalidate: 60, tags: ["partners"] },
+  { revalidate: 60 * 60 * 24, tags: ["partners"] },
 );
