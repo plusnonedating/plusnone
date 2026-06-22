@@ -57,12 +57,14 @@ export async function POST(req: Request) {
   // Choose which tags to bust. Default to both.
   const tag = (tagInput ?? "all").toLowerCase();
   const revalidated: string[] = [];
+  // Next 16's revalidateTag requires a profile arg; "default" maps to
+  // the standard cache lifetime so the next read pulls fresh.
   if (tag === "partners" || tag === "all") {
-    revalidateTag("partners");
+    revalidateTag("partners", "default");
     revalidated.push("partners");
   }
   if (tag === "submissions" || tag === "all") {
-    revalidateTag("submissions");
+    revalidateTag("submissions", "default");
     revalidated.push("submissions");
   }
   if (revalidated.length === 0) {
