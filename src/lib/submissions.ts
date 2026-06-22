@@ -76,10 +76,17 @@ async function fetchRecentSubmissionsImpl(
   return submissions;
 }
 
+// 5 minutes. Submissions trickle in over hours/days, not in
+// real-time bursts — a 5-minute lag on the venue feed is fine and
+// dramatically reduces Airtable read volume vs the previous 30s.
+// The client poll in VenueFeedView is on the same 5-minute interval
+// so we don't waste polls between cache refreshes. To force-refresh
+// (e.g. after manually deleting a row in Airtable), hit
+// POST /api/admin/revalidate with the admin token.
 export const fetchRecentSubmissions = unstable_cache(
   fetchRecentSubmissionsImpl,
   ["recent-submissions-v2"],
-  { revalidate: 30, tags: ["submissions"] },
+  { revalidate: 60 * 5, tags: ["submissions"] },
 );
 
 export async function fetchAllRecordIds(): Promise<string[]> {
