@@ -16,6 +16,7 @@ import PopupDataSection from "@/components/partners/PopupDataSection";
 import { BlurredFeedMockup } from "@/components/marketing/BlurredFeedMockup";
 import { StatStrip } from "@/components/marketing/StatStrip";
 import { Statement } from "@/components/marketing/Statement";
+import { isLiveCheckout } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Plus None Events · Event activations",
@@ -23,15 +24,21 @@ export const metadata: Metadata = {
     "One-night Plus None activations for conventions, weddings, festivals, and brand events. Geo-gated to your event, featured to a 1M+ audience.",
 };
 
-// Waitlist mode — payment processor still pending. CTAs route to
-// the waitlist form which writes to the Airtable "Waitlist" table.
-// The ?tier= query param pre-selects the matching radio button on
-// the form so the user doesn't have to re-pick what they already
-// clicked on. Replace with Buy Links once we have a processor.
-const WAITLIST_URL_SINGLE_DAY = "/events/waitlist?tier=single";
-const WAITLIST_URL_MULTI_DAY = "/events/waitlist?tier=multi";
-
 export default function EventsPage() {
+  // CTA URLs switch on LIVE_CHECKOUT: waitlist form vs paid booking.
+  // The `?tier=` query param pre-selects the matching radio button on
+  // whichever form the user lands on.
+  const live = isLiveCheckout();
+  const heroCtaUrl = live ? "/events/booking" : "/events/waitlist";
+  const heroCtaLabel = live ? "Book your event →" : "Get on the waitlist →";
+  const singleDayUrl = live
+    ? "/events/booking?tier=single"
+    : "/events/waitlist?tier=single";
+  const multiDayUrl = live
+    ? "/events/booking?tier=multi"
+    : "/events/waitlist?tier=multi";
+  const pricingCtaLabel = live ? "Book Now →" : "Get on the waitlist →";
+
   return (
     <div className="partner-page">
       <div className="page">
@@ -61,10 +68,10 @@ export default function EventsPage() {
             <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-[1fr_300px] md:gap-12">
               <div className="order-2 md:order-1">
                 <a
-                  href="/events/waitlist"
+                  href={heroCtaUrl}
                   className="inline-block bg-black px-5 py-3 text-sm text-[#f4ede4] md:px-6 md:py-4 md:text-base"
                 >
-                  Get on the waitlist →
+                  {heroCtaLabel}
                 </a>
 
                 <p className="mb-3 mt-8 text-xs font-medium uppercase tracking-[0.18em] text-[#2647e8] md:mt-10">
@@ -232,11 +239,11 @@ export default function EventsPage() {
                 <li>Post-event data report</li>
               </ul>
               <a
-                href={WAITLIST_URL_SINGLE_DAY}
+                href={singleDayUrl}
                 className="tier-btn"
                 style={{ justifyContent: "center" }}
               >
-                Get on the waitlist →
+                {pricingCtaLabel}
               </a>
             </div>
             <div className="tier featured">
@@ -255,11 +262,11 @@ export default function EventsPage() {
                 <li>Pre- and mid-event social posts</li>
               </ul>
               <a
-                href={WAITLIST_URL_MULTI_DAY}
+                href={multiDayUrl}
                 className="tier-btn"
                 style={{ justifyContent: "center" }}
               >
-                Get on the waitlist →
+                {pricingCtaLabel}
               </a>
             </div>
           </div>

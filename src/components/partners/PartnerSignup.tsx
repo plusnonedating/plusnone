@@ -18,9 +18,10 @@ import { Statement } from "@/components/marketing/Statement";
 
 interface Props {
   /**
-   * Where the primary + pricing CTAs point. Usually a Lemon Squeezy Buy
-   * Link, but can be a `mailto:` URL when running in waitlist mode
-   * while a payment processor is being sourced.
+   * Where the primary + pricing CTAs point. Either the paid signup
+   * form (/business/signup, on Authorize.net) or the waitlist form
+   * (/business/waitlist) — controlled by the `LIVE_CHECKOUT` env flag.
+   * Can also be a `mailto:` URL.
    */
   checkoutUrl: string;
   /** Small uppercase tag in the pricing footer, e.g. "Founding partner" or "Welcome offer". */
@@ -51,7 +52,7 @@ export default function PartnerSignup({
   primaryCtaLabel = "Become a Plus None Location →",
   pricingCtaLabel = "Sign up →",
 }: Props) {
-  // External links (e.g. Lemon Squeezy checkout) open in a new tab.
+  // External links (e.g. an external processor's checkout URL) open in a new tab.
   // Internal links (/business/waitlist, /founding-partner/agreement)
   // and mailto: URLs stay in the same tab — new tabs feel wrong for
   // both.
@@ -185,7 +186,7 @@ export default function PartnerSignup({
               <div className="step-title">Sign up &amp; submit your details</div>
               <div className="step-desc">
                 Business address, shipping address, payment method. Two minutes
-                via Lemon Squeezy.
+                via our secure checkout.
               </div>
             </div>
             <div className="step">
@@ -281,7 +282,7 @@ export default function PartnerSignup({
           <div>
             <Faq
               q="What do you need from me at signup?"
-              a="Business name and contact, the address you want geotagged (where guests will be scanning), a shipping address for signage if it's different, and payment via Lemon Squeezy."
+              a="Business name and contact, the address you want geotagged (where guests will be scanning), a shipping address for signage if it's different, and a card. Card entry happens on our processor's secure page."
             />
             <Faq
               q="How long until I'm live?"

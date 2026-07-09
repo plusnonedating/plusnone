@@ -58,7 +58,7 @@ Pricing is what's posted on the signup page at the time you purchase.
 - **Monthly subscriptions** are charged in advance every 30 days from your signup date (or after a free trial, where applicable). Subscriptions auto-renew monthly unless you cancel.
 - **Pop-up events** are paid in full at booking. The fee is non-refundable within 7 days of your event date.
 
-Payments are processed by **Lemon Squeezy**. By purchasing, you also agree to Lemon Squeezy's [Terms of Service](https://www.lemonsqueezy.com/legal/terms-of-service). We don't store full card numbers.
+Payments are processed by **Authorize.net** (our gateway) and settled through **Kurv** (our acquirer). Card entry happens on Authorize.net's PCI-compliant hosted pages; Plus None never sees or stores full card numbers.
 
 If your payment fails, we may suspend your service until the issue is resolved.
 
@@ -75,7 +75,7 @@ You're responsible for tracking when your trial ends and cancelling if you don't
 ## 4. Cancellation
 
 **Monthly subscriptions:**
-- You can cancel anytime through your Lemon Squeezy customer portal (link emailed to you with your receipt) or by emailing plusnone@fetewell.com.
+- To cancel, email plusnone@fetewell.com. We'll confirm cancellation within one business day.
 - Cancellation takes effect at the end of your current billing cycle. You retain access until then.
 - We don't issue prorated refunds for partial months.
 
