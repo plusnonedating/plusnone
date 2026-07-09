@@ -8,23 +8,6 @@
  */
 
 /**
- * Feature flag: when `true`, the `/business` + `/events` CTAs route to
- * the paid signup flows (Authorize.net). When `false` (default), they
- * route to the existing `/business/waitlist` + `/events/waitlist`
- * forms and no payment code runs.
- *
- * Kate flips `LIVE_CHECKOUT=true` in the Vercel env var UI once she's
- * verified everything in sandbox. The waitlist forms + Web Waitlist
- * Airtable table remain intact as a fallback — if we ever need to
- * turn checkout off (Auth.net outage, PCI incident, etc.) she flips
- * the var back to `false` and CTAs revert to the waitlist immediately
- * on the next request.
- */
-export function isLiveCheckout(): boolean {
-  return process.env.LIVE_CHECKOUT === "true";
-}
-
-/**
  * Which Authorize.net environment to target.
  *
  * - "sandbox" (default) → apitest.authorize.net + test.authorize.net

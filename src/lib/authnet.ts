@@ -92,15 +92,23 @@ async function postJson<TReq, TRes>(
   const text = (await res.text()).replace(/^﻿/, "");
   const parsed = JSON.parse(text) as Record<string, unknown>;
   const responseKey = `${requestName.replace(/Request$/, "")}Response`;
-  const inner = parsed[responseKey] as {
+  const wrapped = parsed[responseKey] as
+    | ({
+        messages?: {
+          resultCode?: string;
+          message?: { code?: string; text?: string }[];
+        };
+      } & Record<string, unknown>)
+    | undefined;
+  const inner = wrapped ?? (parsed as {
     messages?: {
       resultCode?: string;
       message?: { code?: string; text?: string }[];
     };
-  } & Record<string, unknown>;
-  if (!inner) {
+  } & Record<string, unknown>);
+  if (!inner.messages) {
     throw new Error(
-      `Auth.net response missing expected key ${responseKey}. Body: ${text.slice(0, 500)}`,
+      `Auth.net response missing messages field. Body: ${text.slice(0, 500)}`,
     );
   }
   if (inner.messages?.resultCode !== "Ok") {

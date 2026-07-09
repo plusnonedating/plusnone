@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createHostedPaymentPageToken } from "@/lib/authnet";
 import { getSalesBase } from "@/lib/sales-base";
-import { isLiveCheckout, siteOrigin } from "@/lib/site-config";
+import { siteOrigin } from "@/lib/site-config";
 
 const EVENTS_TABLE = "Events";
 
@@ -76,20 +76,9 @@ function businessDaysBetween(from: Date, to: Date): number {
  *   200 { formUrl, token, rowId }
  *   400 { error }        validation failure (missing fields, bad tier,
  *                        or event date within 14 business days)
- *   403 { error }        LIVE_CHECKOUT=false
  *   500 { error }        Airtable / Auth.net failure
  */
 export async function POST(req: Request) {
-  if (!isLiveCheckout()) {
-    return NextResponse.json(
-      {
-        error:
-          "Bookings aren't live yet. Please join the waitlist at /events/waitlist.",
-      },
-      { status: 403 },
-    );
-  }
-
   let body: BookingBody;
   try {
     body = (await req.json()) as BookingBody;
