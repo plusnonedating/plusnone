@@ -170,34 +170,36 @@ export async function createHostedProfilePageToken(input: {
   customerProfileId: string;
   returnUrl: string;
   returnUrlText?: string;
+  /**
+   * When set, Auth.net renders the page for iframe embedding: on
+   * completion it navigates the iframe to this URL with query params
+   * (action + response), which lets a same-origin page postMessage
+   * the parent instead of doing a full-page redirect.
+   */
+  iframeCommunicatorUrl?: string;
 }): Promise<{ token: string; formUrl: string }> {
   const merchantAuth = getMerchantAuth();
+  const setting: Array<{ settingName: string; settingValue: string }> = [
+    { settingName: "hostedProfileReturnUrl", settingValue: input.returnUrl },
+    {
+      settingName: "hostedProfileReturnUrlText",
+      settingValue: input.returnUrlText ?? "Continue to Plus None",
+    },
+    { settingName: "hostedProfilePageBorderVisible", settingValue: "false" },
+    { settingName: "hostedProfileHeadingBgColor", settingValue: "#2647e8" },
+  ];
+  if (input.iframeCommunicatorUrl) {
+    setting.push({
+      settingName: "hostedProfileIFrameCommunicatorUrl",
+      settingValue: input.iframeCommunicatorUrl,
+    });
+  }
   const res = await postJson<unknown, HostedProfilePageTokenResponse>(
     "getHostedProfilePageRequest",
     {
       merchantAuthentication: merchantAuth,
       customerProfileId: input.customerProfileId,
-      hostedProfileSettings: {
-        setting: [
-          {
-            settingName: "hostedProfileReturnUrl",
-            settingValue: input.returnUrl,
-          },
-          {
-            settingName: "hostedProfileReturnUrlText",
-            settingValue: input.returnUrlText ?? "Continue to Plus None",
-          },
-          {
-            settingName: "hostedProfilePageBorderVisible",
-            settingValue: "false",
-          },
-          {
-            // Skip the customer-info edit step; we only want a card.
-            settingName: "hostedProfileHeadingBgColor",
-            settingValue: "#2647e8",
-          },
-        ],
-      },
+      hostedProfileSettings: { setting },
     },
   );
   return {
@@ -341,8 +343,41 @@ export async function createHostedPaymentPageToken(input: {
   description: string; // event name + tier
   returnUrl: string;
   cancelUrl: string;
+  /**
+   * When set, Auth.net renders the payment page for iframe embedding:
+   * on completion it navigates the iframe to this URL with query
+   * params, letting a same-origin page postMessage the parent instead
+   * of a full-page redirect.
+   */
+  iframeCommunicatorUrl?: string;
 }): Promise<{ token: string; formUrl: string }> {
   const merchantAuth = getMerchantAuth();
+  const setting: Array<{ settingName: string; settingValue: string }> = [
+    {
+      settingName: "hostedPaymentReturnOptions",
+      settingValue: JSON.stringify({
+        showReceipt: false,
+        url: input.returnUrl,
+        cancelUrl: input.cancelUrl,
+        urlText: "Continue to Plus None",
+        cancelUrlText: "Back to /events",
+      }),
+    },
+    {
+      settingName: "hostedPaymentButtonOptions",
+      settingValue: JSON.stringify({ text: "Pay Now" }),
+    },
+    {
+      settingName: "hostedPaymentStyleOptions",
+      settingValue: JSON.stringify({ bgColor: "#2647e8" }),
+    },
+  ];
+  if (input.iframeCommunicatorUrl) {
+    setting.push({
+      settingName: "hostedPaymentIFrameCommunicatorUrl",
+      settingValue: input.iframeCommunicatorUrl,
+    });
+  }
   const res = await postJson<unknown, HostedPaymentPageTokenResponse>(
     "getHostedPaymentPageRequest",
     {
@@ -355,28 +390,7 @@ export async function createHostedPaymentPageToken(input: {
           description: input.description.slice(0, 255),
         },
       },
-      hostedPaymentSettings: {
-        setting: [
-          {
-            settingName: "hostedPaymentReturnOptions",
-            settingValue: JSON.stringify({
-              showReceipt: false,
-              url: input.returnUrl,
-              cancelUrl: input.cancelUrl,
-              urlText: "Continue to Plus None",
-              cancelUrlText: "Back to /events",
-            }),
-          },
-          {
-            settingName: "hostedPaymentButtonOptions",
-            settingValue: JSON.stringify({ text: "Pay Now" }),
-          },
-          {
-            settingName: "hostedPaymentStyleOptions",
-            settingValue: JSON.stringify({ bgColor: "#2647e8" }),
-          },
-        ],
-      },
+      hostedPaymentSettings: { setting },
     },
   );
   return {

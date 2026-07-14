@@ -1,7 +1,6 @@
-import { NextResponse } from "next/server";
 import { getTransactionDetails } from "@/lib/authnet";
 import { getSalesBase } from "@/lib/sales-base";
-import { siteOrigin } from "@/lib/site-config";
+import { topRedirect } from "@/lib/iframe-breakout";
 
 const EVENTS_TABLE = "Events";
 
@@ -23,10 +22,7 @@ async function handle(req: Request) {
   const url = new URL(req.url);
   const rowId = url.searchParams.get("rowId");
   if (!rowId) {
-    return NextResponse.redirect(
-      new URL("/events?error=missing-row", siteOrigin()),
-      { status: 303 },
-    );
+    return topRedirect("/events?error=missing-row");
   }
 
   // Auth.net can POST body form-encoded on the return; parse both.
@@ -51,39 +47,27 @@ async function handle(req: Request) {
   try {
     row = await base(EVENTS_TABLE).find(rowId);
   } catch {
-    return NextResponse.redirect(
-      new URL("/events?error=row-not-found", siteOrigin()),
-      { status: 303 },
-    );
+    return topRedirect("/events?error=row-not-found");
   }
 
   const currentStatus = row.get("Status") as string | undefined;
 
   // Idempotency guard.
   if (currentStatus === "Booked") {
-    return NextResponse.redirect(
-      new URL("/events/booking/thanks", siteOrigin()),
-      { status: 303 },
-    );
+    return topRedirect("/events/booking/thanks");
   }
   if (currentStatus !== "Pending Payment") {
     console.error(
       `[/events/booking/callback] row ${rowId} in unexpected state "${currentStatus}"`,
     );
-    return NextResponse.redirect(
-      new URL("/events?error=bad-state", siteOrigin()),
-      { status: 303 },
-    );
+    return topRedirect("/events?error=bad-state");
   }
 
   if (!transIdHint) {
     console.error(
       `[/events/booking/callback] row ${rowId} callback missing transactionId hint`,
     );
-    return NextResponse.redirect(
-      new URL("/events?error=missing-transaction", siteOrigin()),
-      { status: 303 },
-    );
+    return topRedirect("/events?error=missing-transaction");
   }
 
   try {
@@ -97,10 +81,7 @@ async function handle(req: Request) {
         Status: "Refunded", // best available reject state; Kate reviews manually
         Notes: `${row.get("Notes") ?? ""}\nDeclined at ${new Date().toISOString()} — ${transaction.responseReasonDescription ?? "unknown"}`.trim(),
       });
-      return NextResponse.redirect(
-        new URL("/events?error=declined", siteOrigin()),
-        { status: 303 },
-      );
+      return topRedirect("/events?error=declined");
     }
 
     const amount = Number(transaction.settleAmount ?? transaction.authAmount ?? "0");
@@ -116,16 +97,10 @@ async function handle(req: Request) {
       `[/events/booking/callback] verification failed for row ${rowId}:`,
       message,
     );
-    return NextResponse.redirect(
-      new URL("/events?error=verify-failed", siteOrigin()),
-      { status: 303 },
-    );
+    return topRedirect("/events?error=verify-failed");
   }
 
-  return NextResponse.redirect(
-    new URL("/events/booking/thanks", siteOrigin()),
-    { status: 303 },
-  );
+  return topRedirect("/events/booking/thanks");
 }
 
 export const GET = handle;
