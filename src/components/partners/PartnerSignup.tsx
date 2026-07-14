@@ -18,10 +18,8 @@ import { Statement } from "@/components/marketing/Statement";
 
 interface Props {
   /**
-   * Where the primary + pricing CTAs point. Either the paid signup
-   * form (/business/signup, on Authorize.net) or the waitlist form
-   * (/business/waitlist) — controlled by the `LIVE_CHECKOUT` env flag.
-   * Can also be a `mailto:` URL.
+   * Where the primary + pricing CTAs point. Typically /business/signup
+   * (the paid Authorize.net flow) or a `mailto:` URL.
    */
   checkoutUrl: string;
   /** Small uppercase tag in the pricing footer, e.g. "Founding partner" or "Welcome offer". */
@@ -53,7 +51,7 @@ export default function PartnerSignup({
   pricingCtaLabel = "Sign up →",
 }: Props) {
   // External links (e.g. an external processor's checkout URL) open in a new tab.
-  // Internal links (/business/waitlist, /founding-partner/agreement)
+  // Internal links (/business/signup, /founding-partner/agreement)
   // and mailto: URLs stay in the same tab — new tabs feel wrong for
   // both.
   const isExternal =

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CheckoutIframe } from "./CheckoutIframe";
 
 interface FormState {
   businessName: string;
@@ -9,6 +10,12 @@ interface FormState {
   phone: string;
   geotagAddress: string;
   shippingAddress: string;
+}
+
+interface CheckoutState {
+  formUrl: string;
+  token: string;
+  rowId: string;
 }
 
 const initialState: FormState = {
@@ -40,6 +47,7 @@ export default function BusinessSignupForm() {
   const [agreed, setAgreed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [checkout, setCheckout] = useState<CheckoutState | null>(null);
 
   const handleChange =
     (field: keyof FormState) =>
@@ -78,32 +86,49 @@ export default function BusinessSignupForm() {
           data.error ?? "Something went wrong. Try again in a moment.",
         );
       }
-      const { formUrl, token } = (await res.json()) as {
+      const { formUrl, token, rowId } = (await res.json()) as {
         formUrl: string;
         token: string;
+        rowId: string;
       };
 
-      // Build and auto-submit a hidden form that POSTs the user to
-      // Auth.net's hosted CIM page. This is the required handoff
-      // pattern per Auth.net docs — the token is single-use and
-      // short-lived, so we can't just redirect via GET.
-      const postForm = document.createElement("form");
-      postForm.method = "POST";
-      postForm.action = formUrl;
-
-      const tokenInput = document.createElement("input");
-      tokenInput.type = "hidden";
-      tokenInput.name = "token";
-      tokenInput.value = token;
-      postForm.appendChild(tokenInput);
-
-      document.body.appendChild(postForm);
-      postForm.submit();
+      // Swap the form for a Plus None-branded checkout view that
+      // embeds the Auth.net hosted card entry as an iframe. URL bar
+      // stays on plusnone.fetewell.com; cards enter on the iframe,
+      // which is served from accept.authorize.net. PCI SAQ A holds.
+      setCheckout({ formUrl, token, rowId });
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
       setSubmitting(false);
     }
   };
+
+  if (checkout) {
+    return (
+      <div className="space-y-4">
+        <div className="rounded border border-stone-200 bg-white/70 px-4 py-3 text-sm text-stone-700">
+          <p className="font-medium text-stone-900">Secure card entry</p>
+          <p className="mt-0.5 text-xs text-stone-600">
+            Card is entered on our processor&apos;s secure page (embedded
+            below). Plus None never sees or stores your card number.
+          </p>
+        </div>
+        <CheckoutIframe
+          formUrl={checkout.formUrl}
+          token={checkout.token}
+          onSuccess={() => {
+            window.location.href = `/business/signup/callback?rowId=${encodeURIComponent(
+              checkout.rowId,
+            )}`;
+          }}
+          onCancel={() => {
+            setCheckout(null);
+            setSubmitting(false);
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5" noValidate>

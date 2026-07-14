@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import Header from "@/components/partners/Header";
 import EventsBookingForm from "@/components/marketing/EventsBookingForm";
-import { isLiveCheckout } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Book Plus None for your event",
@@ -16,18 +14,7 @@ interface PageProps {
   searchParams: Promise<{ tier?: string }>;
 }
 
-/**
- * /events/booking — paid booking form for the one-time event tiers.
- *
- * When LIVE_CHECKOUT=false, we redirect to /events/waitlist so the
- * old CTA URLs work during either mode without the user hitting a
- * broken payment page.
- */
 export default async function EventsBookingPage({ searchParams }: PageProps) {
-  if (!isLiveCheckout()) {
-    redirect("/events/waitlist");
-  }
-
   const params = await searchParams;
   const initialTier = params.tier === "multi" ? "multi" : "single";
 

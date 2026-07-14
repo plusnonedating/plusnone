@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createCustomerProfile, createHostedProfilePageToken } from "@/lib/authnet";
 import { getSalesBase } from "@/lib/sales-base";
-import { isLiveCheckout, siteOrigin } from "@/lib/site-config";
+import { siteOrigin } from "@/lib/site-config";
 
 const BUSINESS_TABLE = "Business";
 
@@ -29,20 +29,9 @@ interface SignupBody {
  * Returns:
  *   200 { formUrl, token, rowId } on success
  *   400 { error }                 on validation failure
- *   403 { error }                 when LIVE_CHECKOUT=false (waitlist mode)
  *   500 { error }                 on Airtable or Auth.net failure
  */
 export async function POST(req: Request) {
-  if (!isLiveCheckout()) {
-    return NextResponse.json(
-      {
-        error:
-          "Paid signup is not currently active. Please join the waitlist at /business/waitlist.",
-      },
-      { status: 403 },
-    );
-  }
-
   let body: SignupBody;
   try {
     body = (await req.json()) as SignupBody;
@@ -90,7 +79,7 @@ export async function POST(req: Request) {
     );
   }
 
-  // Forensic capture (same pattern as /api/waitlist and
+  // Forensic capture (same pattern as
   // /api/founding-partner-agreement).
   const forwardedFor = req.headers.get("x-forwarded-for");
   const ip =

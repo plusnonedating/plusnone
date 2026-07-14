@@ -2,29 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/partners/Header";
 import BusinessSignupForm from "@/components/marketing/BusinessSignupForm";
-import { isLiveCheckout } from "@/lib/site-config";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Sign up · Plus None for Business",
   description:
     "Add Plus None to your bar, restaurant, or venue. $99/month, 30 days free.",
-  // Not linked from public nav until Kate flips LIVE_CHECKOUT=true.
   robots: { index: false, follow: false },
 };
 
-/**
- * /business/signup — the paid Business subscription signup form.
- *
- * Guarded by `LIVE_CHECKOUT`; if the flag isn't set, we redirect to
- * /business/waitlist so anyone who bookmarks this URL during waitlist
- * mode lands somewhere useful instead of a broken page.
- */
 export default function BusinessSignupPage() {
-  if (!isLiveCheckout()) {
-    redirect("/business/waitlist");
-  }
-
   return (
     <div className="partner-page">
       <div className="page">

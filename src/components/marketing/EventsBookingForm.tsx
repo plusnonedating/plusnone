@@ -1,8 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { CheckoutIframe } from "./CheckoutIframe";
 
 type Tier = "single" | "multi";
+
+interface CheckoutState {
+  formUrl: string;
+  token: string;
+  rowId: string;
+}
 
 interface FormState {
   eventName: string;
@@ -63,6 +70,7 @@ export default function EventsBookingForm({ initialTier }: Props) {
   const [agreed, setAgreed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [checkout, setCheckout] = useState<CheckoutState | null>(null);
 
   const businessDaysOut = useMemo(() => {
     if (!form.eventStartDate) return null;
@@ -116,28 +124,50 @@ export default function EventsBookingForm({ initialTier }: Props) {
         };
         throw new Error(data.error ?? "Something went wrong. Try again in a moment.");
       }
-      const { formUrl, token } = (await res.json()) as {
+      const { formUrl, token, rowId } = (await res.json()) as {
         formUrl: string;
         token: string;
+        rowId: string;
       };
 
-      const postForm = document.createElement("form");
-      postForm.method = "POST";
-      postForm.action = formUrl;
-
-      const tokenInput = document.createElement("input");
-      tokenInput.type = "hidden";
-      tokenInput.name = "token";
-      tokenInput.value = token;
-      postForm.appendChild(tokenInput);
-
-      document.body.appendChild(postForm);
-      postForm.submit();
+      // Swap the form for a Plus None-branded checkout view that
+      // embeds the Auth.net hosted payment page as an iframe. URL bar
+      // stays on plusnone.fetewell.com; cards enter on the iframe.
+      setCheckout({ formUrl, token, rowId });
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
       setSubmitting(false);
     }
   };
+
+  if (checkout) {
+    return (
+      <div className="space-y-4">
+        <div className="rounded border border-stone-200 bg-white/70 px-4 py-3 text-sm text-stone-700">
+          <p className="font-medium text-stone-900">
+            Complete your ${tier === "single" ? "499" : "799"} booking
+          </p>
+          <p className="mt-0.5 text-xs text-stone-600">
+            Card entered on our processor&apos;s secure page (embedded
+            below). Plus None never sees or stores your card number.
+          </p>
+        </div>
+        <CheckoutIframe
+          formUrl={checkout.formUrl}
+          token={checkout.token}
+          onSuccess={() => {
+            window.location.href = `/events/booking/callback?rowId=${encodeURIComponent(
+              checkout.rowId,
+            )}`;
+          }}
+          onCancel={() => {
+            setCheckout(null);
+            setSubmitting(false);
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5" noValidate>

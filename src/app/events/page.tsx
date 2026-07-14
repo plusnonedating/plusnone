@@ -16,7 +16,6 @@ import PopupDataSection from "@/components/partners/PopupDataSection";
 import { BlurredFeedMockup } from "@/components/marketing/BlurredFeedMockup";
 import { StatStrip } from "@/components/marketing/StatStrip";
 import { Statement } from "@/components/marketing/Statement";
-import { isLiveCheckout } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Plus None Events · Event activations",
@@ -25,19 +24,11 @@ export const metadata: Metadata = {
 };
 
 export default function EventsPage() {
-  // CTA URLs switch on LIVE_CHECKOUT: waitlist form vs paid booking.
-  // The `?tier=` query param pre-selects the matching radio button on
-  // whichever form the user lands on.
-  const live = isLiveCheckout();
-  const heroCtaUrl = live ? "/events/booking" : "/events/waitlist";
-  const heroCtaLabel = live ? "Book your event →" : "Get on the waitlist →";
-  const singleDayUrl = live
-    ? "/events/booking?tier=single"
-    : "/events/waitlist?tier=single";
-  const multiDayUrl = live
-    ? "/events/booking?tier=multi"
-    : "/events/waitlist?tier=multi";
-  const pricingCtaLabel = live ? "Book Now →" : "Get on the waitlist →";
+  const heroCtaUrl = "/events/booking";
+  const heroCtaLabel = "Book your event →";
+  const singleDayUrl = "/events/booking?tier=single";
+  const multiDayUrl = "/events/booking?tier=multi";
+  const pricingCtaLabel = "Book Now →";
 
   return (
     <div className="partner-page">
@@ -306,10 +297,10 @@ export default function EventsPage() {
           <a href="https://fetewell.com/plus-none-terms">User Terms</a> ·{" "}
           <Link href="/privacy-policy">Privacy</Link>
           <div className="footer-disclosure">
-            Plus None Events is currently on a waitlist. Join via the
-            button above and we&apos;ll email you when we open bookings.
-            Pricing + cancellation terms above are what you&apos;ll see at
-            launch, subject to final Partner Terms.
+            Payments processed by Authorize.net. Card entry happens on
+            our processor&apos;s secure page; Plus None never sees or
+            stores your card number. By booking you agree to our Partner
+            Terms.
           </div>
         </div>
       </div>

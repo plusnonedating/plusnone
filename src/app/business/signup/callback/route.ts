@@ -1,11 +1,10 @@
-import { NextResponse } from "next/server";
 import {
   createArbSubscription,
   getCustomerProfile,
   newestPaymentProfile,
 } from "@/lib/authnet";
 import { getSalesBase } from "@/lib/sales-base";
-import { siteOrigin } from "@/lib/site-config";
+import { topRedirect } from "@/lib/iframe-breakout";
 
 const BUSINESS_TABLE = "Business";
 const TRIAL_DAYS = 30;
@@ -32,10 +31,7 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
   const rowId = url.searchParams.get("rowId");
   if (!rowId) {
-    return NextResponse.redirect(
-      new URL("/business/signup?error=missing-row", siteOrigin()),
-      { status: 303 },
-    );
+    return topRedirect("/business/signup?error=missing-row");
   }
 
   const base = getSalesBase();
@@ -44,10 +40,7 @@ export async function GET(req: Request) {
   try {
     row = await base(BUSINESS_TABLE).find(rowId);
   } catch {
-    return NextResponse.redirect(
-      new URL("/business/signup?error=row-not-found", siteOrigin()),
-      { status: 303 },
-    );
+    return topRedirect("/business/signup?error=row-not-found");
   }
 
   const currentStatus = row.get("Status") as string | undefined;
@@ -58,30 +51,21 @@ export async function GET(req: Request) {
   // Idempotency: if we've already flipped this row to Active — Trial,
   // don't re-issue the subscription. Just show the thanks page.
   if (currentStatus === "Active — Trial") {
-    return NextResponse.redirect(
-      new URL("/business/signup/thanks", siteOrigin()),
-      { status: 303 },
-    );
+    return topRedirect("/business/signup/thanks");
   }
 
   if (currentStatus !== "Pending Payment") {
     console.error(
       `[/business/signup/callback] row ${rowId} in unexpected state "${currentStatus}"`,
     );
-    return NextResponse.redirect(
-      new URL("/business/signup?error=bad-state", siteOrigin()),
-      { status: 303 },
-    );
+    return topRedirect("/business/signup?error=bad-state");
   }
 
   if (!customerProfileId) {
     console.error(
       `[/business/signup/callback] row ${rowId} missing Auth.net Customer Profile ID`,
     );
-    return NextResponse.redirect(
-      new URL("/business/signup?error=no-profile", siteOrigin()),
-      { status: 303 },
-    );
+    return topRedirect("/business/signup?error=no-profile");
   }
 
   try {
@@ -116,14 +100,8 @@ export async function GET(req: Request) {
       `[/business/signup/callback] Auth.net or Airtable failure for row ${rowId}:`,
       message,
     );
-    return NextResponse.redirect(
-      new URL("/business/signup?error=arb-failed", siteOrigin()),
-      { status: 303 },
-    );
+    return topRedirect("/business/signup?error=arb-failed");
   }
 
-  return NextResponse.redirect(
-    new URL("/business/signup/thanks", siteOrigin()),
-    { status: 303 },
-  );
+  return topRedirect("/business/signup/thanks");
 }
