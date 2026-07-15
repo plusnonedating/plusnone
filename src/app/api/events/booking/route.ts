@@ -3,9 +3,8 @@ import { createHostedPaymentPageToken } from "@/lib/authnet";
 import { getSalesBase } from "@/lib/sales-base";
 import {
   SALES_TAX_LABEL,
-  applyTax,
+  computeSalesTax,
   siteOrigin,
-  taxOn,
 } from "@/lib/site-config";
 
 const EVENTS_TABLE = "Events";
@@ -201,15 +200,20 @@ export async function POST(req: Request) {
 
     const returnUrl = `${siteOrigin()}/events/booking/callback?rowId=${encodeURIComponent(rowId)}`;
     const cancelUrl = `${siteOrigin()}/events?canceled=1`;
-    const totalUsd = applyTax(tierConfig.amountUsd);
-    const taxUsd = taxOn(tierConfig.amountUsd);
+    // Destination-based sales tax: MD venue → 6%, elsewhere → $0.
+    const { totalUsd, taxUsd, taxable } = computeSalesTax(
+      tierConfig.amountUsd,
+      venueAddress,
+    );
     const { token, formUrl } = await createHostedPaymentPageToken({
       amountUsd: totalUsd,
       invoiceNumber: rowId,
       description: `${tierConfig.description} — ${eventName}`,
       returnUrl,
       cancelUrl,
-      tax: { amount: taxUsd, name: SALES_TAX_LABEL },
+      ...(taxable
+        ? { tax: { amount: taxUsd, name: SALES_TAX_LABEL } }
+        : {}),
     });
 
     return NextResponse.json({ formUrl, token, rowId });

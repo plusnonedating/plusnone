@@ -5,10 +5,8 @@ import {
 } from "@/lib/authnet";
 import { getSalesBase } from "@/lib/sales-base";
 import { topRedirect } from "@/lib/iframe-breakout";
-import { applyTax } from "@/lib/site-config";
 
 const BUSINESS_TABLE = "Business";
-const BUSINESS_BASE_USD = 99;
 const TRIAL_DAYS = 30;
 
 /**
@@ -85,7 +83,9 @@ export async function GET(req: Request) {
     const { subscriptionId } = await createArbSubscription({
       customerProfileId,
       paymentProfileId,
-      amountUsd: applyTax(BUSINESS_BASE_USD),
+      // Monthly Amount was written at signup with destination-based
+      // tax already applied (MD address → $104.94, elsewhere → $99).
+      amountUsd: Number(row.get("Monthly Amount")) || 99,
       startDate,
       billingCycleName: "Plus None Business",
     });

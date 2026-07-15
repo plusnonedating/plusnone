@@ -253,8 +253,8 @@ export default function PartnerSignup({
                   <span className="pricing-per">/ month</span>
                 </div>
                 <div className="pricing-note">
-                  Plus 6% MD sales tax ($104.94/mo total). Billed monthly.
-                  Cancel anytime. No setup fees.
+                  Billed monthly. Cancel anytime. No setup fees.
+                  Maryland venues: +6% MD sales tax.
                 </div>
               </div>
               <a

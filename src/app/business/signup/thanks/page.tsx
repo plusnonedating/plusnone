@@ -23,9 +23,9 @@ export default function BusinessSignupThanksPage() {
       body={
         <>
           You&apos;re all set. Your card is on file, but we won&apos;t
-          charge you for the first 30 days — day 31 is when the
-          $104.94 monthly billing kicks in ($99 base + 6% MD sales
-          tax), and you can cancel anytime before then.
+          charge you for the first 30 days — day 31 is when the $99
+          monthly billing kicks in (Maryland venues also pay 6% MD
+          sales tax), and you can cancel anytime before then.
           <br />
           <br />
           We&apos;ll email you within 48 hours to schedule signage
