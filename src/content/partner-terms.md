@@ -60,6 +60,8 @@ Pricing is what's posted on the signup page at the time you purchase.
 
 Payments are processed by **Authorize.net** (our gateway) and settled through **Kurv** (our acquirer). Card entry happens on Authorize.net's PCI-compliant hosted pages; Plus None never sees or stores full card numbers.
 
+**Sales tax.** Plus None LLC is registered in Maryland and collects **6% Maryland sales and use tax** on all subscription and event fees. The tax is added to every charge and shown on your receipt.
+
 If your payment fails, we may suspend your service until the issue is resolved.
 
 ## 3. Free Trials
@@ -68,7 +70,7 @@ If you signed up under a free trial (e.g., the 30-day Business trial or the 365-
 
 - We require a valid payment method on file at signup.
 - You won't be charged during the trial period.
-- At the end of the trial, your subscription **automatically renews at the full rate** ($99/month) unless you cancel before the trial ends.
+- At the end of the trial, your subscription **automatically renews at the full rate** ($99/month + 6% Maryland sales tax = $104.94/month) unless you cancel before the trial ends.
 
 You're responsible for tracking when your trial ends and cancelling if you don't want to continue.
 

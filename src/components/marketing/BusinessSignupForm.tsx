@@ -213,7 +213,7 @@ export default function BusinessSignupForm() {
           >
             Partner Terms
           </a>
-          . First 30 days are free; my card is charged $99/month starting
+          . First 30 days are free; my card is charged $104.94/month ($99 base + 6% MD sales tax) starting
           day 31 unless I cancel.
         </span>
       </label>

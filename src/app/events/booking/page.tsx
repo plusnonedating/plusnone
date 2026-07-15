@@ -33,9 +33,9 @@ export default async function EventsBookingPage({ searchParams }: PageProps) {
             </h1>
             <p className="mt-4 text-base leading-relaxed text-stone-700 md:mt-6 md:text-lg">
               $499 for a 24-hour single-day activation, or $799 for a
-              72-hour multi-day. Charged in full at booking. Free
-              reschedule up to 7 days before your event; non-refundable
-              within 7 days.
+              72-hour multi-day. Plus 6% MD sales tax ($528.94 / $846.94
+              total). Charged in full at booking. Free reschedule up to
+              7 days before your event; non-refundable within 7 days.
             </p>
           </div>
         </section>

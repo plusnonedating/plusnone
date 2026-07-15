@@ -145,7 +145,7 @@ export default function EventsBookingForm({ initialTier }: Props) {
       <div className="space-y-4">
         <div className="rounded border border-stone-200 bg-white/70 px-4 py-3 text-sm text-stone-700">
           <p className="font-medium text-stone-900">
-            Complete your ${tier === "single" ? "499" : "799"} booking
+            Complete your ${tier === "single" ? "528.94" : "846.94"} booking
           </p>
           <p className="mt-0.5 text-xs text-stone-600">
             Card entered on our processor&apos;s secure page (embedded
@@ -322,8 +322,8 @@ export default function EventsBookingForm({ initialTier }: Props) {
         {submitting
           ? "Redirecting to checkout…"
           : tier === "single"
-            ? "Continue to checkout — $499 →"
-            : "Continue to checkout — $799 →"}
+            ? "Continue to checkout — $528.94 →"
+            : "Continue to checkout — $846.94 →"}
       </button>
 
       <p className="text-xs leading-snug text-stone-500">

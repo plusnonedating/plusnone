@@ -338,11 +338,20 @@ interface HostedPaymentPageTokenResponse {
 }
 
 export async function createHostedPaymentPageToken(input: {
+  /**
+   * Total amount to charge, INCLUDING tax. Auth.net charges this exact
+   * amount; the optional `tax` object below is display-only (receipts
+   * show the breakdown but the charge is still `amountUsd`).
+   */
   amountUsd: number;
   invoiceNumber: string; // our Airtable row id
   description: string; // event name + tier
   returnUrl: string;
   cancelUrl: string;
+  tax?: {
+    amount: number; // tax portion in USD (e.g. 29.94 on $499 base)
+    name: string; // "MD Sales Tax"
+  };
   /**
    * When set, Auth.net renders the payment page for iframe embedding:
    * on completion it navigates the iframe to this URL with query
@@ -385,10 +394,26 @@ export async function createHostedPaymentPageToken(input: {
       transactionRequest: {
         transactionType: "authCaptureTransaction",
         amount: input.amountUsd.toFixed(2),
+        ...(input.tax
+          ? {
+              tax: {
+                amount: input.tax.amount.toFixed(2),
+                name: input.tax.name.slice(0, 31),
+              },
+            }
+          : {}),
         order: {
           invoiceNumber: input.invoiceNumber.slice(0, 20),
           description: input.description.slice(0, 255),
         },
+        ...(input.tax
+          ? {
+              tax: {
+                amount: input.tax.amount.toFixed(2),
+                name: input.tax.name.slice(0, 31),
+              },
+            }
+          : {}),
       },
       hostedPaymentSettings: { setting },
     },
