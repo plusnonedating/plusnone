@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import { createHostedPaymentPageToken } from "@/lib/authnet";
 import { getSalesBase } from "@/lib/sales-base";
-import { siteOrigin } from "@/lib/site-config";
+import {
+  SALES_TAX_LABEL,
+  applyTax,
+  siteOrigin,
+  taxOn,
+} from "@/lib/site-config";
 
 const EVENTS_TABLE = "Events";
 
@@ -196,12 +201,15 @@ export async function POST(req: Request) {
 
     const returnUrl = `${siteOrigin()}/events/booking/callback?rowId=${encodeURIComponent(rowId)}`;
     const cancelUrl = `${siteOrigin()}/events?canceled=1`;
+    const totalUsd = applyTax(tierConfig.amountUsd);
+    const taxUsd = taxOn(tierConfig.amountUsd);
     const { token, formUrl } = await createHostedPaymentPageToken({
-      amountUsd: tierConfig.amountUsd,
+      amountUsd: totalUsd,
       invoiceNumber: rowId,
       description: `${tierConfig.description} — ${eventName}`,
       returnUrl,
       cancelUrl,
+      tax: { amount: taxUsd, name: SALES_TAX_LABEL },
     });
 
     return NextResponse.json({ formUrl, token, rowId });

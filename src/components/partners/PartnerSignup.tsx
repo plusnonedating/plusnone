@@ -253,7 +253,8 @@ export default function PartnerSignup({
                   <span className="pricing-per">/ month</span>
                 </div>
                 <div className="pricing-note">
-                  Billed monthly. Cancel anytime. No setup fees.
+                  Plus 6% MD sales tax ($104.94/mo total). Billed monthly.
+                  Cancel anytime. No setup fees.
                 </div>
               </div>
               <a

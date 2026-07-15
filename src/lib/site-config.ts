@@ -1,4 +1,35 @@
 /**
+ * Sales tax collected on every checkout.
+ *
+ * Plus None LLC is registered in Maryland, so we collect MD's 6% sales
+ * and use tax rate on all sales. We fold it into the subscription
+ * amount (ARB has no separate tax field) and pass a tax line to
+ * Auth.net for one-time transactions (so receipts show subtotal + tax
+ * breakdown).
+ *
+ * If Kate ever changes state or moves to destination-based sourcing,
+ * this constant is the one place to update.
+ */
+export const SALES_TAX_RATE = 0.06;
+export const SALES_TAX_LABEL = "MD Sales Tax";
+
+/**
+ * Rounds a base amount to cents with tax applied. `applyTax(99)` →
+ * 104.94. Uses cents rounding to avoid floating-point cruft in the
+ * amount sent to Auth.net.
+ */
+export function applyTax(baseUsd: number): number {
+  return Math.round(baseUsd * (1 + SALES_TAX_RATE) * 100) / 100;
+}
+
+/**
+ * The tax-only portion for a base amount. `taxOn(99)` → 5.94.
+ */
+export function taxOn(baseUsd: number): number {
+  return Math.round(baseUsd * SALES_TAX_RATE * 100) / 100;
+}
+
+/**
  * Global site configuration read from env vars. Server-side only.
  *
  * Each function reads its env var at call time (not module init) so

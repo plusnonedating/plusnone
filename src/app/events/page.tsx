@@ -221,7 +221,8 @@ export default function EventsPage() {
                 <span className="per">/ event</span>
               </div>
               <div className="tier-note">
-                Plus None active for 24 hours.
+                Plus None active for 24 hours. Plus 6% MD sales tax
+                ($528.94 total).
               </div>
               <ul>
                 <li>Geo-gated to your venue</li>
@@ -245,7 +246,8 @@ export default function EventsPage() {
                 <span className="per">/ event</span>
               </div>
               <div className="tier-note">
-                Plus None active for 72 hours.
+                Plus None active for 72 hours. Plus 6% MD sales tax
+                ($846.94 total).
               </div>
               <ul>
                 <li>Everything in Single Day</li>
