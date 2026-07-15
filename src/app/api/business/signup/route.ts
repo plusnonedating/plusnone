@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createCustomerProfile, createHostedProfilePageToken } from "@/lib/authnet";
 import { getSalesBase } from "@/lib/sales-base";
-import { applyTax, siteOrigin } from "@/lib/site-config";
+import { computeSalesTax, siteOrigin } from "@/lib/site-config";
 
 const BUSINESS_TABLE = "Business";
 const BUSINESS_BASE_USD = 99;
@@ -114,7 +114,8 @@ export async function POST(req: Request) {
           "Shipping Address": shippingAddress,
           "Geotag Address": geotagAddress,
           "Signup Date": new Date().toISOString().slice(0, 10),
-          "Monthly Amount": applyTax(BUSINESS_BASE_USD),
+          "Monthly Amount": computeSalesTax(BUSINESS_BASE_USD, geotagAddress)
+            .totalUsd,
           "Payment Provider": "authnet",
           Notes: notesLines.join("\n"),
         },

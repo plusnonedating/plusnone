@@ -25,9 +25,9 @@ export default function BusinessSignupPage() {
               Sign up for Plus None.
             </h1>
             <p className="mt-4 text-base leading-relaxed text-stone-700 md:mt-6 md:text-lg">
-              $99/month + 6% MD sales tax = $104.94/month. Your first 30
-              days are on us — we won&apos;t charge you a cent until day
-              31. Cancel anytime.
+              $99/month. Your first 30 days are on us — we won&apos;t
+              charge you a cent until day 31. Cancel anytime. Maryland
+              venues also pay 6% MD sales tax.
             </p>
             <p className="mt-5 font-serif text-xl italic leading-snug text-stone-700 md:mt-6 md:text-2xl">
               Card required at signup to hold your spot. No charges for

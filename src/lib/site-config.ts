@@ -30,6 +30,42 @@ export function taxOn(baseUsd: number): number {
 }
 
 /**
+ * Does this address look like a Maryland one? We use destination-based
+ * sourcing — MD sales tax only applies when the buyer's venue is in
+ * Maryland. Anywhere else, no tax (we have no nexus in other states).
+ *
+ * Matches "MD" or "Maryland" as a whole word anywhere in the address
+ * string. Doesn't try to disambiguate weird cases like "Maryland Ave,
+ * DC" — real customer addresses almost always end in "…, STATE ZIP"
+ * so the state token is unambiguous in practice. Case-insensitive.
+ */
+export function isMdAddress(address: string | null | undefined): boolean {
+  if (!address) return false;
+  return /\b(MD|Maryland)\b/i.test(address);
+}
+
+/**
+ * Resolves the tax + total for a purchase given the destination
+ * address. In-MD: 6% tax. Anywhere else: $0 tax.
+ *
+ * `taxUsd` is what shows on the receipt as the tax line; `totalUsd`
+ * is what the card is actually charged.
+ */
+export function computeSalesTax(
+  baseUsd: number,
+  address: string | null | undefined,
+): { taxUsd: number; totalUsd: number; taxable: boolean } {
+  if (isMdAddress(address)) {
+    return {
+      taxable: true,
+      taxUsd: taxOn(baseUsd),
+      totalUsd: applyTax(baseUsd),
+    };
+  }
+  return { taxable: false, taxUsd: 0, totalUsd: baseUsd };
+}
+
+/**
  * Global site configuration read from env vars. Server-side only.
  *
  * Each function reads its env var at call time (not module init) so
