@@ -38,6 +38,21 @@ export default function DataSection() {
           gives you that.
         </p>
 
+        {/* Founding-partner callout — bar owner rejected an enterprise data
+            pitch, chose Plus None instead. High-contrast cobalt block so it
+            catches the eye before the sample report. */}
+        <figure className="mt-8 rounded-xl bg-cobalt p-6 md:mt-10 md:p-8">
+          <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.18em] text-cream/70">
+            From a founding partner
+          </p>
+          <blockquote className="font-serif text-2xl leading-[1.15] text-cream md:text-3xl">
+            &ldquo;They tried to sell me a data service for thousands a
+            month. I passed. Plus None gives me the numbers that actually
+            matter&mdash;who&rsquo;s single, who&rsquo;s coming
+            back&mdash;for $99.&rdquo;
+          </blockquote>
+        </figure>
+
         {/* Sample monthly report */}
         <div className="mt-8 rounded-xl bg-stone-900 p-5 md:mt-10 md:p-6">
           <div className="mb-4 flex items-center justify-between">
