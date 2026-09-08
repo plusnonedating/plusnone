@@ -25,8 +25,8 @@ export default function BusinessSignupPage() {
               Sign up for Plus None.
             </h1>
             <p className="mt-4 text-base leading-relaxed text-stone-700 md:mt-6 md:text-lg">
-              $199/month, billed today and every month after. Cancel
-              anytime. Maryland venues also pay 6% MD sales tax.
+              $199/month + 6% MD sales tax = $210.94/month. Billed
+              today and every month after. Cancel anytime.
             </p>
             <p className="mt-5 font-serif text-xl italic leading-snug text-stone-700 md:mt-6 md:text-2xl">
               You&apos;re live within 48 hours. Cancel anytime.

@@ -141,7 +141,7 @@ export default function EventsBookingForm({ initialTier }: Props) {
       <div className="space-y-4">
         <div className="rounded border border-stone-200 bg-white/70 px-4 py-3 text-sm text-stone-700">
           <p className="font-medium text-stone-900">
-            Complete your ${tier === "single" ? "499" : "799"} booking (Maryland venues: +6% MD sales tax)
+            Complete your ${tier === "single" ? "1,590" : "2,118.94"} booking ($1,{tier === "single" ? "500" : "999"} + 6% MD sales tax)
           </p>
           <p className="mt-0.5 text-xs text-stone-600">
             Card entered on our processor&apos;s secure page (embedded

@@ -60,7 +60,7 @@ Pricing is what's posted on the signup page at the time you purchase.
 
 Payments are processed by **Authorize.net** (our gateway) and settled through **Kurv** (our acquirer). Card entry happens on Authorize.net's PCI-compliant hosted pages; Plus None never sees or stores full card numbers.
 
-**Sales tax.** Plus None LLC is registered in Maryland. We collect **6% Maryland sales and use tax** on subscription and event fees when the venue address is in Maryland. Venues located outside of Maryland pay no sales tax on Plus None services (destination-based sourcing). Tax, when applicable, is shown as a line item on your receipt.
+**Sales tax.** Plus None LLC is registered in Maryland. We collect **6% Maryland sales and use tax** on all subscription and event fees, regardless of venue location. Tax is shown as a line item on your receipt and included in the recurring subscription amount.
 
 If your payment fails, we may suspend your service until the issue is resolved.
 
@@ -71,7 +71,7 @@ Founding Partner subscriptions include a 365-day free trial. (Founding Partner i
 If you're on a Founding Partner trial:
 - We require a valid payment method on file at signup.
 - You won't be charged during the trial period.
-- At the end of the trial, your subscription **automatically renews at the full rate** ($199/month, plus 6% Maryland sales tax for Maryland-based venues) unless you cancel before the trial ends.
+- At the end of the trial, your subscription **automatically renews at the full rate** ($199/month + 6% Maryland sales tax = $210.94/month) unless you cancel before the trial ends.
 
 You're responsible for tracking when your trial ends and cancelling if you don't want to continue.
 

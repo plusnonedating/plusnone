@@ -13,7 +13,7 @@ export default function BusinessPage() {
       checkoutUrl="/business/signup"
       primaryCtaLabel="Sign up →"
       pricingCtaLabel="Sign up →"
-      heroCtaSubtext="$199/mo, billed monthly. Cancel anytime. Maryland venues also pay 6% MD sales tax."
+      heroCtaSubtext="$199/mo + 6% MD sales tax ($210.94/mo). Billed monthly. Cancel anytime."
       pricingFootTag="What you get"
       pricingFootBody={
         <>A digital kit — your unique QR code plus Plus None-branded print templates. Print your own stickers, table tents, and flyers, at whatever size and quantity fits your venue.</>

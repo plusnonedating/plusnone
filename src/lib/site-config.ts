@@ -30,39 +30,27 @@ export function taxOn(baseUsd: number): number {
 }
 
 /**
- * Does this address look like a Maryland one? We use destination-based
- * sourcing — MD sales tax only applies when the buyer's venue is in
- * Maryland. Anywhere else, no tax (we have no nexus in other states).
+ * Resolves the tax + total for a purchase.
  *
- * Matches "MD" or "Maryland" as a whole word anywhere in the address
- * string. Doesn't try to disambiguate weird cases like "Maryland Ave,
- * DC" — real customer addresses almost always end in "…, STATE ZIP"
- * so the state token is unambiguous in practice. Case-insensitive.
- */
-export function isMdAddress(address: string | null | undefined): boolean {
-  if (!address) return false;
-  return /\b(MD|Maryland)\b/i.test(address);
-}
-
-/**
- * Resolves the tax + total for a purchase given the destination
- * address. In-MD: 6% tax. Anywhere else: $0 tax.
+ * Kate opted (2026-09-08) to apply MD's 6% sales tax uniformly to all
+ * customers regardless of buyer location — trading strict
+ * destination-based sourcing correctness for pricing simplicity. The
+ * `address` argument is kept in the signature for API stability but
+ * no longer affects the outcome. If we ever revert to destination-
+ * based, restore the `isMdAddress` guard here.
  *
  * `taxUsd` is what shows on the receipt as the tax line; `totalUsd`
  * is what the card is actually charged.
  */
 export function computeSalesTax(
   baseUsd: number,
-  address: string | null | undefined,
+  _address: string | null | undefined,
 ): { taxUsd: number; totalUsd: number; taxable: boolean } {
-  if (isMdAddress(address)) {
-    return {
-      taxable: true,
-      taxUsd: taxOn(baseUsd),
-      totalUsd: applyTax(baseUsd),
-    };
-  }
-  return { taxable: false, taxUsd: 0, totalUsd: baseUsd };
+  return {
+    taxable: true,
+    taxUsd: taxOn(baseUsd),
+    totalUsd: applyTax(baseUsd),
+  };
 }
 
 /**

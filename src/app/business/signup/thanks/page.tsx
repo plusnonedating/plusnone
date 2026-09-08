@@ -22,9 +22,9 @@ export default function BusinessSignupThanksPage() {
       showPlaybookDownload
       body={
         <>
-          You&apos;re all set. Your card was charged $199 today
-          (Maryland venues also paid 6% MD sales tax), and every month
-          from now on. Cancel anytime.
+          You&apos;re all set. Your card was charged $210.94 today
+          ($199 base + 6% MD sales tax), and every month from now on.
+          Cancel anytime.
           <br />
           <br />
           We&apos;ll email you within 48 hours with your digital brand
