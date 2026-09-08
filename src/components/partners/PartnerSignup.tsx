@@ -249,7 +249,7 @@ export default function PartnerSignup({
               <div>
                 <div className="pricing-name">Plus None Business</div>
                 <div className="pricing-row">
-                  <span className="pricing-price">$99</span>
+                  <span className="pricing-price">$199</span>
                   <span className="pricing-per">/ month</span>
                 </div>
                 <div className="pricing-note">

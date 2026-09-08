@@ -6,7 +6,7 @@ import BusinessSignupForm from "@/components/marketing/BusinessSignupForm";
 export const metadata: Metadata = {
   title: "Sign up · Plus None for Business",
   description:
-    "Add Plus None to your bar, restaurant, or venue. $99/month, 30 days free.",
+    "Add Plus None to your bar, restaurant, or venue. $199/month, 30 days free.",
   robots: { index: false, follow: false },
 };
 
@@ -25,7 +25,7 @@ export default function BusinessSignupPage() {
               Sign up for Plus None.
             </h1>
             <p className="mt-4 text-base leading-relaxed text-stone-700 md:mt-6 md:text-lg">
-              $99/month. Your first 30 days are on us — we won&apos;t
+              $199/month. Your first 30 days are on us — we won&apos;t
               charge you a cent until day 31. Cancel anytime. Maryland
               venues also pay 6% MD sales tax.
             </p>

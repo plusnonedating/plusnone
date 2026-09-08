@@ -217,7 +217,7 @@ export default function EventsPage() {
             <div className="tier">
               <div className="tier-name">Event Activation — Single Day</div>
               <div className="tier-price">
-                <span className="num">$499</span>
+                <span className="num">$1,500</span>
                 <span className="per">/ event</span>
               </div>
               <div className="tier-note">
@@ -242,7 +242,7 @@ export default function EventsPage() {
               <div className="tier-badge">Most popular</div>
               <div className="tier-name">Event Activation — Multi-Day</div>
               <div className="tier-price">
-                <span className="num">$799</span>
+                <span className="num">$1,999</span>
                 <span className="per">/ event</span>
               </div>
               <div className="tier-note">
