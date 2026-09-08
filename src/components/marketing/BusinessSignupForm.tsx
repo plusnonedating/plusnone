@@ -213,7 +213,7 @@ export default function BusinessSignupForm() {
           >
             Partner Terms
           </a>
-          . First 30 days are free; my card is charged $99/month (Maryland venues: +6% MD sales tax = $104.94) starting
+          . First 30 days are free; my card is charged $199/month (Maryland venues: +6% MD sales tax = $210.94) starting
           day 31 unless I cancel.
         </span>
       </label>

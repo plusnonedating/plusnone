@@ -6,7 +6,7 @@ import EventsBookingForm from "@/components/marketing/EventsBookingForm";
 export const metadata: Metadata = {
   title: "Book Plus None for your event",
   description:
-    "One-time Plus None activation for your festival, conference, or brand event. $499 (24h) or $799 (72h).",
+    "One-time Plus None activation for your festival, conference, or brand event. $1,500 (24h) or $1,999 (72h).",
   robots: { index: false, follow: false },
 };
 
@@ -32,8 +32,8 @@ export default async function EventsBookingPage({ searchParams }: PageProps) {
               Book Plus None for your event.
             </h1>
             <p className="mt-4 text-base leading-relaxed text-stone-700 md:mt-6 md:text-lg">
-              $499 for a 24-hour single-day activation, or $799 for a
-              72-hour multi-day. Charged in full at booking. Free
+              $1,500 for a 24-hour single-day activation, or $1,999 for
+              a 72-hour multi-day. Charged in full at booking. Free
               reschedule up to 7 days before your event; non-refundable
               within 7 days. Maryland venues also pay 6% MD sales tax.
             </p>

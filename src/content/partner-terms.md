@@ -70,7 +70,7 @@ If you signed up under a free trial (e.g., the 30-day Business trial or the 365-
 
 - We require a valid payment method on file at signup.
 - You won't be charged during the trial period.
-- At the end of the trial, your subscription **automatically renews at the full rate** ($99/month, plus 6% Maryland sales tax for Maryland-based venues) unless you cancel before the trial ends.
+- At the end of the trial, your subscription **automatically renews at the full rate** ($199/month, plus 6% Maryland sales tax for Maryland-based venues) unless you cancel before the trial ends.
 
 You're responsible for tracking when your trial ends and cancelling if you don't want to continue.
 

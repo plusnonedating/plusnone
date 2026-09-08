@@ -4,7 +4,7 @@ import { getSalesBase } from "@/lib/sales-base";
 import { computeSalesTax, siteOrigin } from "@/lib/site-config";
 
 const BUSINESS_TABLE = "Business";
-const BUSINESS_BASE_USD = 99;
+const BUSINESS_BASE_USD = 199;
 
 interface SignupBody {
   businessName?: string;

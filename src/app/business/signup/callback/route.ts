@@ -84,8 +84,8 @@ export async function GET(req: Request) {
       customerProfileId,
       paymentProfileId,
       // Monthly Amount was written at signup with destination-based
-      // tax already applied (MD address → $104.94, elsewhere → $99).
-      amountUsd: Number(row.get("Monthly Amount")) || 99,
+      // tax already applied (MD address → $210.94, elsewhere → $199).
+      amountUsd: Number(row.get("Monthly Amount")) || 199,
       startDate,
       billingCycleName: "Plus None Business",
     });

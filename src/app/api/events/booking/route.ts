@@ -30,13 +30,13 @@ const TIER_CONFIG: Record<
   { amountUsd: number; tierLabel: string; description: string }
 > = {
   single: {
-    amountUsd: 499,
-    tierLabel: "Single Night ($499)",
+    amountUsd: 1500,
+    tierLabel: "Single Night ($1500)",
     description: "Plus None Event Activation — Single Day (24 hours)",
   },
   multi: {
-    amountUsd: 799,
-    tierLabel: "Weekend ($799)",
+    amountUsd: 1999,
+    tierLabel: "Weekend ($1999)",
     description: "Plus None Event Activation — Multi-Day (72 hours)",
   },
 };
@@ -195,7 +195,12 @@ export async function POST(req: Request) {
           Notes: notesLines.join("\n"),
         },
       },
-    ]);
+    ], {
+      // typecast lets Airtable auto-add missing singleSelect options
+      // (e.g. new Tier labels when prices change) instead of rejecting
+      // the write.
+      typecast: true,
+    });
     const rowId = row.id;
 
     const returnUrl = `${siteOrigin()}/events/booking/callback?rowId=${encodeURIComponent(rowId)}`;

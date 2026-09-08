@@ -23,7 +23,7 @@ export default function BusinessSignupThanksPage() {
       body={
         <>
           You&apos;re all set. Your card is on file, but we won&apos;t
-          charge you for the first 30 days — day 31 is when the $99
+          charge you for the first 30 days — day 31 is when the $199
           monthly billing kicks in (Maryland venues also pay 6% MD
           sales tax), and you can cancel anytime before then.
           <br />

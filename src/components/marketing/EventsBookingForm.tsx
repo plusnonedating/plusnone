@@ -179,14 +179,14 @@ export default function EventsBookingForm({ initialTier }: Props) {
           value="single"
           current={tier}
           onChange={setTier}
-          label="Single Day ($499)"
+          label="Single Day ($1,500)"
           desc="24-hour activation"
         />
         <TierRadio
           value="multi"
           current={tier}
           onChange={setTier}
-          label="Multi-Day ($799)"
+          label="Multi-Day ($1,999)"
           desc="72-hour activation"
         />
       </fieldset>
@@ -322,8 +322,8 @@ export default function EventsBookingForm({ initialTier }: Props) {
         {submitting
           ? "Redirecting to checkout…"
           : tier === "single"
-            ? "Continue to checkout — $499 →"
-            : "Continue to checkout — $799 →"}
+            ? "Continue to checkout — $1,500 →"
+            : "Continue to checkout — $1,999 →"}
       </button>
 
       <p className="text-xs leading-snug text-stone-500">

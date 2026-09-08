@@ -49,7 +49,7 @@ export default function DataSection() {
             &ldquo;They tried to sell me a data service for thousands a
             month. I passed. Plus None gives me the numbers that actually
             matter&mdash;who&rsquo;s single, who&rsquo;s coming
-            back&mdash;for $99.&rdquo;
+            back&mdash;for a fraction of that.&rdquo;
           </blockquote>
         </figure>
 
