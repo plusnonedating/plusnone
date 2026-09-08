@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 /**
  * /business/signup/thanks — final confirmation after Auth.net's
  * hosted CIM form + our callback route successfully create the ARB
- * subscription with a 30-day trial start date.
+ * subscription with an immediate first charge.
  *
  * Airtable automation (Kate's setup, not our code) fires on the row
- * transition to "Active — Trial" and sends the customer email + the
+ * transition to "Active" and sends the customer email + the
  * plusnone@fetewell.com admin notification.
  */
 export default function BusinessSignupThanksPage() {
@@ -22,14 +22,15 @@ export default function BusinessSignupThanksPage() {
       showPlaybookDownload
       body={
         <>
-          You&apos;re all set. Your card is on file, but we won&apos;t
-          charge you for the first 30 days — day 31 is when the $199
-          monthly billing kicks in (Maryland venues also pay 6% MD
-          sales tax), and you can cancel anytime before then.
+          You&apos;re all set. Your card was charged $199 today
+          (Maryland venues also paid 6% MD sales tax), and every month
+          from now on. Cancel anytime.
           <br />
           <br />
-          We&apos;ll email you within 48 hours to schedule signage
-          delivery and geo-config for your venue.
+          We&apos;ll email you within 48 hours with your digital brand
+          kit — your unique QR code plus Plus None-branded templates
+          for stickers, table tents, and flyers — and confirm your
+          geo-config is live.
         </>
       }
     />

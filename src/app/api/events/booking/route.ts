@@ -155,7 +155,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         error:
-          "Event must be at least 14 business days out to allow signage design + shipping. Pick a later date.",
+          "Event must be at least 14 business days out to prep your event kit + geo-config and slot your social posts. Pick a later date.",
       },
       { status: 400 },
     );

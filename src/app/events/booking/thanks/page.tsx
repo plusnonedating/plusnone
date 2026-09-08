@@ -18,8 +18,10 @@ export default function EventsBookingThanksPage() {
       showPlaybookDownload
       body={
         <>
-          Payment is confirmed. We&apos;ll email you within 48 hours to
-          finalize signage design and schedule geo-config for your venue.
+          Payment is confirmed. We&apos;ll email you within 48 hours
+          with your event brand kit — QR code + Plus None-branded
+          templates for stickers, table tents, and flyers — and
+          confirm your geo-config schedule for the event.
           <br />
           <br />
           <strong>Reschedule / cancellation:</strong> free reschedule

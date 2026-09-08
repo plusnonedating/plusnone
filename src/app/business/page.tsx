@@ -13,10 +13,10 @@ export default function BusinessPage() {
       checkoutUrl="/business/signup"
       primaryCtaLabel="Sign up →"
       pricingCtaLabel="Sign up →"
-      heroCtaSubtext="First 30 days free. Card on file required; no charges until day 31. $199/mo starting day 31 (Maryland venues: +6% MD sales tax)."
-      pricingFootTag="Welcome offer"
+      heroCtaSubtext="$199/mo, billed monthly. Cancel anytime. Maryland venues also pay 6% MD sales tax."
+      pricingFootTag="What you get"
       pricingFootBody={
-        <>First 30 days free. Cancel anytime before day 31 and you won&apos;t be charged. $199/mo starting day 31; Maryland venues also pay 6% MD sales tax.</>
+        <>A digital kit — your unique QR code plus Plus None-branded print templates. Print your own stickers, table tents, and flyers, at whatever size and quantity fits your venue.</>
       }
       footerDisclosure="Payments processed by Authorize.net. Card entry happens on our processor's secure page; Plus None never sees or stores your card number. By signing up you agree to our Partner Terms."
     />

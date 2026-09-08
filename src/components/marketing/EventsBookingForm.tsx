@@ -19,7 +19,6 @@ interface FormState {
   venueAddress: string;
   eventStartDate: string;
   eventEndDate: string;
-  shippingAddress: string;
   logoUrl: string;
 }
 
@@ -31,7 +30,6 @@ const initialState: FormState = {
   venueAddress: "",
   eventStartDate: "",
   eventEndDate: "",
-  shippingAddress: "",
   logoUrl: "",
 };
 
@@ -66,7 +64,6 @@ function businessDaysBetween(from: Date, to: Date): number {
 export default function EventsBookingForm({ initialTier }: Props) {
   const [form, setForm] = useState<FormState>(initialState);
   const [tier, setTier] = useState<Tier>(initialTier);
-  const [shippingSameAsVenue, setShippingSameAsVenue] = useState(true);
   const [agreed, setAgreed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -105,15 +102,14 @@ export default function EventsBookingForm({ initialTier }: Props) {
     }
     setSubmitting(true);
 
-    const shipping = shippingSameAsVenue ? form.venueAddress : form.shippingAddress;
-
     try {
       const res = await fetch("/api/events/booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          shippingAddress: shipping,
+          // Kit is digital — venue doubles as the address of record.
+          shippingAddress: form.venueAddress,
           tier,
           agreedToTerms: true,
         }),
@@ -247,32 +243,10 @@ export default function EventsBookingForm({ initialTier }: Props) {
       {dateTooClose && (
         <p className="rounded border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-900">
           Heads up — that&apos;s only {businessDaysOut} business days
-          away. We need at least 14 business days for signage design +
-          shipping. Please pick a later date.
+          away. We need at least 14 business days to prep your event
+          kit + geo-gate and slot your pre-event social posts. Please
+          pick a later date.
         </p>
-      )}
-
-      <label className="flex cursor-pointer items-start gap-3">
-        <input
-          type="checkbox"
-          checked={shippingSameAsVenue}
-          onChange={(e) => setShippingSameAsVenue(e.target.checked)}
-          className="mt-1 h-5 w-5 flex-shrink-0 cursor-pointer accent-[#2647e8]"
-        />
-        <span className="text-sm text-stone-700">
-          Ship signage to the same address as the event venue.
-        </span>
-      </label>
-
-      {!shippingSameAsVenue && (
-        <Field
-          label="Shipping address for signage"
-          value={form.shippingAddress}
-          onChange={handleChange("shippingAddress")}
-          required
-          textarea
-          autoComplete="shipping street-address"
-        />
       )}
 
       <Field

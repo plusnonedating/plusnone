@@ -28,7 +28,7 @@ interface Props {
   pricingFootBody: React.ReactNode;
   /** Tiny disclosure line below the footer links. */
   footerDisclosure: string;
-  /** Optional muted note rendered directly under the hero CTA — typically the trial reminder ("First 30 days free. Cancel anytime."). */
+  /** Optional muted note rendered directly under the hero CTA — typically pricing + cancellation ("$199/mo, cancel anytime."). */
   heroCtaSubtext?: string;
   /** Hero CTA button label. Defaults to "Become a Plus None Location →". */
   primaryCtaLabel?: string;
@@ -176,33 +176,35 @@ export default function PartnerSignup({
         <div className="section">
           <div className="section-head">
             <div className="section-eyebrow">Your launch</div>
-            <h2 className="section-h2">Three steps. Live in 10 business days.</h2>
+            <h2 className="section-h2">Three steps. Live within 48 hours.</h2>
           </div>
           <div className="steps">
             <div className="step">
               <div className="step-num">1.</div>
               <div className="step-title">Sign up &amp; submit your details</div>
               <div className="step-desc">
-                Business address, shipping address, payment method. Two minutes
-                via our secure checkout.
+                Business address, payment method. Two minutes via our
+                secure checkout.
               </div>
             </div>
             <div className="step">
               <div className="step-num">2.</div>
               <div className="step-title">We set up your location</div>
               <div className="step-desc">
-                Your venue is added to the geo-gated network within 48 hours.
-                Printed signage arrives within 10 business days of signup.
+                Your venue is added to the geo-gated network within 48
+                hours. Your digital kit lands in your inbox: your
+                unique QR code plus Plus None-branded print templates.
               </div>
             </div>
             <div className="step">
               <div className="step-num">3.</div>
               <div className="step-title">
-                Place signage. Watch scans roll in.
+                Print, place, watch scans roll in.
               </div>
               <div className="step-desc">
-                Bathroom mirrors, bar tops, table tents. Monthly report lands
-                in your inbox.
+                Bathroom mirrors, bar tops, table tents, event flyers —
+                print at whatever size, quantity, and material fits
+                your venue. Monthly report lands in your inbox.
               </div>
             </div>
           </div>
@@ -226,8 +228,8 @@ export default function PartnerSignup({
               desc="Your venue gets posted on Plus None's Instagram and our founder's @TheVenueCEO account — a combined audience of 1M+ followers across Instagram and TikTok, actively engaged with going-out content."
             />
             <Item
-              title="Printed signage, shipped to you"
-              desc="Designed, printed, and delivered. Table tents and bathroom-mirror stickers, ready to place."
+              title="Ready-to-print brand kit"
+              desc="Your unique QR code and Plus None-branded templates for table tents, stickers, and flyers. Print at whatever size, quantity, and material fits your venue."
             />
             <Item
               title="Monthly data report"
@@ -281,11 +283,11 @@ export default function PartnerSignup({
           <div>
             <Faq
               q="What do you need from me at signup?"
-              a="Business name and contact, the address you want geotagged (where guests will be scanning), a shipping address for signage if it's different, and a card. Card entry happens on our processor's secure page."
+              a="Business name and contact, the address you want geotagged (where guests will be scanning), and a card. Card entry happens on our processor's secure page."
             />
             <Faq
               q="How long until I'm live?"
-              a="Your location is configured manually within 48 hours of signup. Signage arrives within 10 business days of signup."
+              a="Your location is configured manually within 48 hours of signup. Your digital brand kit — QR code + Plus None-branded print templates — arrives by email in the same window."
             />
             <Faq
               q="Can I cancel?"

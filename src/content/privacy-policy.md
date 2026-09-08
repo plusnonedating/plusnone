@@ -3,7 +3,7 @@
 *Effective Date: May 29, 2026*
 *Last Updated: May 29, 2026*
 
-This Privacy Policy describes how **Plus None LLC** ("Plus None," "we," "us," or "our") collects, uses, shares, and protects information about you when you use Plus None — including plusnone.fetewell.com, our QR codes and signage at partner venues, our @plusnonedating Instagram and TikTok accounts, and any related services.
+This Privacy Policy describes how **Plus None LLC** ("Plus None," "we," "us," or "our") collects, uses, shares, and protects information about you when you use Plus None — including plusnone.fetewell.com, our QR codes displayed at partner venues, our @plusnonedating Instagram and TikTok accounts, and any related services.
 
 This policy is separate from the privacy policy of Fêtewell venues (operated by Dear Properties LLC at fetewell.com/privacy-policy), even though Plus None currently lives on a subdomain of fetewell.com.
 
@@ -33,7 +33,7 @@ Information you give us directly:
 - Business name and legal entity name
 - Contact name, email, phone number
 - Billing address (collected by Lemon Squeezy)
-- Shipping address for signage
+- Venue address for geo-gating (used as your address of record)
 - The address of the venue you want geo-tagged
 - For pop-ups: event name, dates, branding files (logo, brand colors)
 - Payment information (collected and stored by Lemon Squeezy — we don't see or store full card numbers)
@@ -55,7 +55,7 @@ Information you give us directly:
 - Legal and safety: investigate abuse, take down content, comply with law
 
 **For partners:**
-- Provision your geo-gating and ship signage
+- Provision your geo-gating and deliver your digital brand kit
 - Bill your subscription or one-time event fee
 - Deliver your monthly or post-event report
 - Promote your venue on @plusnonedating
