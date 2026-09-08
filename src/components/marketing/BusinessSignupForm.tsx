@@ -187,7 +187,7 @@ export default function BusinessSignupForm() {
           >
             Partner Terms
           </a>
-          . My card is charged $199/month today and every month after (Maryland venues: +6% MD sales tax = $210.94) unless I cancel.
+          . My card is charged $210.94/month ($199 base + 6% MD sales tax) today and every month after, unless I cancel.
         </span>
       </label>
 
