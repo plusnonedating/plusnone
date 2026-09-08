@@ -9,7 +9,6 @@ interface FormState {
   email: string;
   phone: string;
   geotagAddress: string;
-  shippingAddress: string;
 }
 
 interface CheckoutState {
@@ -24,7 +23,6 @@ const initialState: FormState = {
   email: "",
   phone: "",
   geotagAddress: "",
-  shippingAddress: "",
 };
 
 /**
@@ -37,13 +35,12 @@ const initialState: FormState = {
  *      hosted CIM URL with the token. The user is bounced to Auth.net
  *      to enter their card. Card data never touches our origin.
  *
- * The "same as geotag" checkbox toggles a mirror mode where the
- * shipping field is hidden and its value is copied from the geotag
- * field at submit time.
+ * No shipping address — Plus None ships a digital brand kit, not
+ * physical signage. The venue geotag address doubles as the billing
+ * address of record on the Airtable row.
  */
 export default function BusinessSignupForm() {
   const [form, setForm] = useState<FormState>(initialState);
-  const [shippingSameAsGeotag, setShippingSameAsGeotag] = useState(true);
   const [agreed, setAgreed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -66,15 +63,15 @@ export default function BusinessSignupForm() {
     }
     setSubmitting(true);
 
-    const shipping = shippingSameAsGeotag ? form.geotagAddress : form.shippingAddress;
-
     try {
       const res = await fetch("/api/business/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          shippingAddress: shipping,
+          // Kit is digital — server falls back to geotag if
+          // shippingAddress is omitted, keeping the API contract stable.
+          shippingAddress: form.geotagAddress,
           agreedToTerms: true,
         }),
       });
@@ -171,29 +168,6 @@ export default function BusinessSignupForm() {
         autoComplete="street-address"
       />
 
-      <label className="flex cursor-pointer items-start gap-3">
-        <input
-          type="checkbox"
-          checked={shippingSameAsGeotag}
-          onChange={(e) => setShippingSameAsGeotag(e.target.checked)}
-          className="mt-1 h-5 w-5 flex-shrink-0 cursor-pointer accent-[#2647e8]"
-        />
-        <span className="text-sm text-stone-700">
-          Ship signage to the same address.
-        </span>
-      </label>
-
-      {!shippingSameAsGeotag && (
-        <Field
-          label="Shipping address for signage"
-          value={form.shippingAddress}
-          onChange={handleChange("shippingAddress")}
-          required
-          textarea
-          autoComplete="shipping street-address"
-        />
-      )}
-
       <label className="flex cursor-pointer items-start gap-3 pt-2">
         <input
           type="checkbox"
@@ -213,8 +187,7 @@ export default function BusinessSignupForm() {
           >
             Partner Terms
           </a>
-          . First 30 days are free; my card is charged $199/month (Maryland venues: +6% MD sales tax = $210.94) starting
-          day 31 unless I cancel.
+          . My card is charged $199/month today and every month after (Maryland venues: +6% MD sales tax = $210.94) unless I cancel.
         </span>
       </label>
 

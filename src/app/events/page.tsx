@@ -156,9 +156,10 @@ export default function EventsPage() {
               <div className="step-num">2.</div>
               <div className="step-title">We set up your event</div>
               <div className="step-desc">
-                Geo-gating configured to your venue + event window. Custom
-                event branding on your signage. Shipped to arrive 3 days
-                before.
+                Geo-gating configured to your venue + event window. Your
+                event branding kit — QR code, logos, and Plus
+                None-branded print templates — lands in your inbox
+                within 48 hours.
               </div>
             </div>
             <div className="step">
@@ -190,8 +191,8 @@ export default function EventsPage() {
               desc="Your event gets posted to Plus None's Instagram and @TheVenueCEO — before, during, and after — driving buzz and attendance."
             />
             <Item
-              title="Event-branded signage"
-              desc="Custom-printed table tents and bathroom-mirror stickers featuring your event name and brand. Shipped to arrive 3 days before."
+              title="Ready-to-print event brand kit"
+              desc="Your event's unique QR code, logos, and Plus None-branded templates. Print your own table tents, bathroom-mirror stickers, and flyers — sized and materialed however you like."
             />
             <Item
               title="Post-event data report"
@@ -226,7 +227,7 @@ export default function EventsPage() {
               </div>
               <ul>
                 <li>Geo-gated to your venue</li>
-                <li>Custom event-branded signage</li>
+                <li>Ready-to-print brand kit</li>
                 <li>Featured on Plus None&apos;s Instagram</li>
                 <li>Post-event data report</li>
               </ul>
@@ -274,19 +275,19 @@ export default function EventsPage() {
           <div>
             <Faq
               q="What's the minimum lead time?"
-              a="14 business days from signup to event date. This covers geo configuration, custom signage design, printing, and shipping."
+              a="14 business days from signup to event date. This gives us time to configure your geo-gate, prep your event's digital brand kit, and slot your pre-event social posts into our IG calendar."
             />
             <Faq
               q="What types of events are this for?"
               a="Conferences and conventions, weddings, festivals, brand activations, pop-up bars, networking nights, charity events, hotel events — anywhere a critical mass of single attendees show up for a defined window."
             />
             <Faq
-              q="Can we use our event branding on the signage?"
-              a="Yes. Send us your logo and brand colors at signup. We'll integrate them with the Plus None brand on your table tents and stickers."
+              q="Can we use our event branding on the print kit?"
+              a="Yes. Send us your logo and brand colors at signup. We'll integrate them with the Plus None brand on your ready-to-print templates."
             />
             <Faq
               q="What if our event gets cancelled or rescheduled?"
-              a="Reschedule for free up to 7 days before your event date. Cancellations within 7 days are non-refundable due to signage already being printed."
+              a="Reschedule for free up to 7 days before your event date. Cancellations within 7 days are non-refundable — by then we've committed the geo-config work and social posts."
             />
           </div>
         </div>

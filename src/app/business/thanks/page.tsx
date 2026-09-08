@@ -16,8 +16,9 @@ export default function BusinessThanksPage() {
           <a href="mailto:plusnone@fetewell.com?subject=Plus%20None%20venue%20setup">
             plusnone@fetewell.com
           </a>{" "}
-          so we can set up your geo-gate. Signage arrives within 10 business
-          days of signup. Your first 30 days are on us.
+          so we can set up your geo-gate. Your digital brand kit — QR
+          code and Plus None-branded print templates for stickers,
+          table tents, and flyers — arrives by email within 48 hours.
         </>
       }
     />

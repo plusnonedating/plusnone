@@ -7,7 +7,6 @@ import { getSalesBase } from "@/lib/sales-base";
 import { topRedirect } from "@/lib/iframe-breakout";
 
 const BUSINESS_TABLE = "Business";
-const TRIAL_DAYS = 30;
 
 /**
  * GET /business/signup/callback?rowId=…
@@ -18,7 +17,7 @@ const TRIAL_DAYS = 30;
  *   2. Retrieves the customer profile from Auth.net to find the
  *      payment profile the user just created.
  *   3. Creates the ARB subscription with startDate = today+30 days.
- *   4. Updates the Airtable row to Status = "Active — Trial".
+ *   4. Updates the Airtable row to Status = "Active".
  *   5. Redirects the visitor to /business/signup/thanks.
  *
  * Trust model: rowId in the URL is opaque but tamperable. We do NOT
@@ -48,9 +47,9 @@ export async function GET(req: Request) {
     | string
     | undefined;
 
-  // Idempotency: if we've already flipped this row to Active — Trial,
+  // Idempotency: if we've already flipped this row to Active,
   // don't re-issue the subscription. Just show the thanks page.
-  if (currentStatus === "Active — Trial") {
+  if (currentStatus === "Active") {
     return topRedirect("/business/signup/thanks");
   }
 
@@ -75,10 +74,9 @@ export async function GET(req: Request) {
     const paymentProfile = newestPaymentProfile(profile);
     const paymentProfileId = paymentProfile.customerPaymentProfileId;
 
-    // 30-day trial mechanic: first real charge lands day 31.
-    const start = new Date();
-    start.setUTCDate(start.getUTCDate() + TRIAL_DAYS);
-    const startDate = start.toISOString().slice(0, 10);
+    // First charge lands today. ARB requires an explicit startDate;
+    // "today" (UTC) yields an immediate charge on the customer's card.
+    const startDate = new Date().toISOString().slice(0, 10);
 
     const { subscriptionId } = await createArbSubscription({
       customerProfileId,
@@ -93,8 +91,7 @@ export async function GET(req: Request) {
     await base(BUSINESS_TABLE).update(rowId, {
       "Auth.net Payment Profile ID": paymentProfileId,
       "Auth.net ARB Subscription ID": subscriptionId,
-      "Trial Ends": startDate,
-      Status: "Active — Trial",
+      Status: "Active",
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);

@@ -35,7 +35,9 @@ export default async function EventsBookingPage({ searchParams }: PageProps) {
               $1,500 for a 24-hour single-day activation, or $1,999 for
               a 72-hour multi-day. Charged in full at booking. Free
               reschedule up to 7 days before your event; non-refundable
-              within 7 days. Maryland venues also pay 6% MD sales tax.
+              within 7 days (geo-config and social posts are already
+              committed by then). Maryland venues also pay 6% MD sales
+              tax.
             </p>
           </div>
         </section>

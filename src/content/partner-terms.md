@@ -10,9 +10,9 @@ These Partner Terms are separate from the consumer-facing [Plus None Terms & Con
 
 ## 1. What You're Buying
 
-**Subscription (monthly partner):** Ongoing access to the Plus None geo-gated dating pool at your business location, social media promotion via @plusnonedating, printed branded signage shipped to you, and a monthly performance report delivered by email.
+**Subscription (monthly partner):** Ongoing access to the Plus None geo-gated dating pool at your business location, social media promotion via @plusnonedating, a downloadable brand kit (your unique QR code plus Plus None-branded print templates for stickers, table tents, and flyers), and a monthly performance report delivered by email.
 
-**Pop-Up (single event):** A time-bound activation of Plus None at your event venue. Includes geo-gating for the event window, event-branded printed signage, social media promotion, and a post-event performance report.
+**Pop-Up (single event):** A time-bound activation of Plus None at your event venue. Includes geo-gating for the event window, an event-branded downloadable brand kit (QR code + print templates), social media promotion, and a post-event performance report.
 
 We may update what's included from time to time. We won't materially reduce what you get during a paid term without notice.
 
@@ -43,13 +43,13 @@ We may improve report quality, add new metrics, or change the report format over
 ## 1.2 Service-Level Expectations
 
 - **Geo-tag setup:** Within 48 hours of signup (subscriptions) or within the 14-business-day lead time (pop-ups).
-- **Signage delivery:** Within 10 business days of signup (subscriptions). Shipped to arrive at least 3 days before event date (pop-ups).
+- **Brand kit delivery:** Within 48 hours of signup by email (subscriptions and pop-ups both).
 - **Social media features:** At least one @plusnonedating post within your first 30 days of paid subscription; pre-event and post-event posts for pop-ups.
 - **Report delivery:** By the 5th of each month (subscriptions); within 5 business days of event end (pop-ups).
 
 If we miss one of these delivery windows by more than 7 days due to our own delays, we'll either extend your billing period by an equivalent amount or, at our discretion, issue a partial refund.
 
-Delays caused by you (e.g., wrong shipping address, missing event details, rescheduled events) are not eligible for credit.
+Delays caused by you (e.g., missing event details, rescheduled events) are not eligible for credit.
 
 ## 2. Payment Terms
 
@@ -66,13 +66,16 @@ If your payment fails, we may suspend your service until the issue is resolved.
 
 ## 3. Free Trials
 
-If you signed up under a free trial (e.g., the 30-day Business trial or the 365-day Founding Partner trial):
+Founding Partner subscriptions include a 365-day free trial. (Founding Partner is a legacy tier; no new Founding Partner spots are available.)
 
+If you're on a Founding Partner trial:
 - We require a valid payment method on file at signup.
 - You won't be charged during the trial period.
 - At the end of the trial, your subscription **automatically renews at the full rate** ($199/month, plus 6% Maryland sales tax for Maryland-based venues) unless you cancel before the trial ends.
 
 You're responsible for tracking when your trial ends and cancelling if you don't want to continue.
+
+Standard Business subscriptions do not include a free trial. Your card is charged $199 (plus applicable MD sales tax) on signup and every 30 days thereafter.
 
 ## 4. Cancellation
 
@@ -83,27 +86,26 @@ You're responsible for tracking when your trial ends and cancelling if you don't
 
 **Pop-up events:**
 - Reschedule for free if you give us at least 7 days notice before your event date.
-- Cancel for full refund if you give us at least 14 business days notice before your event date.
-- Cancellations within 14 business days are non-refundable due to signage being printed and shipped.
+- Cancellations more than 7 days before your event date: full refund.
+- Cancellations within 7 days of your event: non-refundable — by then we've committed geo-config work and social posts.
 
 ## 5. What You Provide
 
 You agree to give us:
-- A business mailing address for signage delivery
 - The address of the location you want geo-tagged
 - A contact phone number and email for service updates
-- Any logo or branding files you want incorporated into your signage (Pop-Up only)
+- Any logo or branding files you want incorporated into your brand kit (Pop-Up only)
 
-You confirm that you have the right to give us this information and to install Plus None signage at the location you've identified.
+You confirm that you have the right to give us this information and to display Plus None materials at the location you've identified.
 
-## 6. Signage and Branded Materials
+## 6. Brand Kit and Branded Materials
 
-Signage we ship to you is yours to display at the address you provided. You may not:
-- Resell, copy, or distribute the signage outside of your business
+The brand kit we deliver to you is a downloadable set of assets — your unique QR code, logos, and Plus None-branded print templates for stickers, table tents, flyers, and similar in-venue materials. You are responsible for printing and displaying these materials. You may not:
+- Resell, copy, or redistribute the templates outside of your business
 - Modify the Plus None brand marks
-- Display signage at locations other than the one we geo-tagged
+- Display Plus None materials at locations other than the one we geo-tagged
 
-If you cancel, you don't have to return the signage, but we may revoke your geo-gating, which renders the QR code on the signage non-functional.
+If you cancel, we may revoke your geo-gating, which renders any printed QR codes non-functional. You are responsible for removing displayed Plus None materials from your venue when your subscription or event activation ends.
 
 ## 7. Your Data and Reporting
 
@@ -115,13 +117,13 @@ We retain the underlying scan and submission data for our own analytics, but we 
 
 ## 8. Plus None's IP
 
-Plus None — the brand, the QR system, the geo-gating tech, the @plusnonedating account, the cat illustrations, the signage designs, and any underlying code or content — is owned by Plus None LLC. Becoming a partner doesn't transfer any of that to you.
+Plus None — the brand, the QR system, the geo-gating tech, the @plusnonedating account, the cat illustrations, the brand kit templates and designs, and any underlying code or content — is owned by Plus None LLC. Becoming a partner doesn't transfer any of that to you.
 
-You're granted a limited, non-transferable, non-exclusive license to display the Plus None signage we send you at your geo-tagged location for as long as your subscription or event activation is active.
+You're granted a limited, non-transferable, non-exclusive license to print and display the Plus None brand kit materials we provide at your geo-tagged location for as long as your subscription or event activation is active.
 
 ## 9. Your IP
 
-You retain ownership of your business name, your logo, and any branding materials you send us. By sending us your logo or business name, you grant us a non-exclusive license to use them for the limited purpose of customizing your signage and promoting your participation in Plus None on our social media accounts.
+You retain ownership of your business name, your logo, and any branding materials you send us. By sending us your logo or business name, you grant us a non-exclusive license to use them for the limited purpose of customizing your brand kit and promoting your participation in Plus None on our social media accounts.
 
 ## 10. Social Media Promotion
 
