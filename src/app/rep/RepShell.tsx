@@ -22,14 +22,6 @@ export default function RepShell({ children }: { children: ReactNode }) {
           </Link>
           <div className="flex items-center gap-4 text-xs text-stone-600">
             <Link
-              href="https://airtable.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden underline underline-offset-2 hover:text-stone-900 md:inline"
-            >
-              Airtable →
-            </Link>
-            <Link
               href="mailto:kate@fetewell.com"
               className="hidden underline underline-offset-2 hover:text-stone-900 md:inline"
             >
