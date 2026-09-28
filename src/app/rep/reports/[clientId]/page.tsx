@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { requireRep } from "@/lib/rep-auth";
 import { getSalesBase } from "@/lib/sales-base";
 import PrintButton from "./PrintButton";
+import SendToClientButton from "./SendToClientButton";
 
 export const metadata: Metadata = {
   title: "Client report · Plus None Rep",
@@ -48,6 +49,7 @@ export default async function ClientReportPage({
   const f = row.fields as Fields;
   const businessName = str(f["Business Name"]);
   const contactName = str(f["Contact Name"]);
+  const clientEmail = str(f["Email"]);
   const geotag = str(f["Geotag Address"]);
   const activeSince = str(f["Signup Date"]);
   const now = new Date();
@@ -56,17 +58,37 @@ export default async function ClientReportPage({
     year: "numeric",
   });
 
+  // Kept in one place so the on-screen tiles and the Send-to-client
+  // email body render the same numbers. When we wire real metrics
+  // from the Submissions pipeline, swap the "—" values here.
+  const headlineMetrics: { label: string; value: string }[] = [
+    { label: "Total scans", value: "—" },
+    { label: "Submissions", value: "—" },
+    { label: "Repeat rate (30d)", value: "—" },
+  ];
+
   return (
     <div className="min-h-screen bg-[#f4ede4] print:bg-white">
       <div className="mx-auto max-w-3xl px-6 py-8 print:py-4">
-        <div className="mb-6 flex items-center justify-between print:hidden">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 print:hidden">
           <Link
             href="/rep"
             className="text-xs uppercase tracking-wider text-stone-500 underline underline-offset-2"
           >
             ← Back to dashboard
           </Link>
-          <PrintButton />
+          <div className="flex items-center gap-2">
+            <PrintButton />
+            <SendToClientButton
+              clientEmail={clientEmail}
+              contactName={contactName}
+              businessName={businessName}
+              reportMonth={reportMonth}
+              headlineMetrics={headlineMetrics}
+              senderName="Sydney"
+              senderEmail="plusnone@fetewell.com"
+            />
+          </div>
         </div>
 
         <article className="rounded-xl border border-stone-300 bg-white p-8 shadow-sm print:border-0 print:shadow-none md:p-10">
@@ -96,9 +118,9 @@ export default async function ClientReportPage({
               Headline
             </h2>
             <div className="grid grid-cols-3 gap-3">
-              <Metric label="Total scans" value="—" />
-              <Metric label="Submissions" value="—" />
-              <Metric label="Repeat rate (30d)" value="—" />
+              {headlineMetrics.map((m) => (
+                <Metric key={m.label} label={m.label} value={m.value} />
+              ))}
             </div>
           </section>
 
