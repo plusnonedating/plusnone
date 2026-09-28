@@ -14,6 +14,19 @@ interface SignupBody {
   geotagAddress?: string;
   shippingAddress?: string; // may equal geotagAddress if "same as" checkbox
   agreedToTerms?: boolean;
+  rep?: string; // Sales-rep attribution from the ?rep= URL param.
+}
+
+/**
+ * Whitelist of accepted rep handles. Anything else is dropped so a
+ * bad-actor can't stuff a random string into our Airtable rows.
+ */
+const KNOWN_REPS = new Set(["sydney"]);
+
+function normalizeRep(raw?: string): string | undefined {
+  if (!raw) return undefined;
+  const cleaned = raw.trim().toLowerCase();
+  return KNOWN_REPS.has(cleaned) ? cleaned : undefined;
 }
 
 /**
@@ -102,25 +115,34 @@ export async function POST(req: Request) {
     // Step 1: create the Airtable row so we have a stable rowId to
     // thread through the Auth.net return URL.
     const base = getSalesBase();
-    const [row] = await base(BUSINESS_TABLE).create([
-      {
-        fields: {
-          "Business Name": businessName,
-          "Contact Name": contactName,
-          Email: email,
-          Phone: phone,
-          Status: "Pending Payment",
-          "Billing Address": shippingAddress,
-          "Shipping Address": shippingAddress,
-          "Geotag Address": geotagAddress,
-          "Signup Date": new Date().toISOString().slice(0, 10),
-          "Monthly Amount": computeSalesTax(BUSINESS_BASE_USD, geotagAddress)
-            .totalUsd,
-          "Payment Provider": "authnet",
-          Notes: notesLines.join("\n"),
+    const rep = normalizeRep(body.rep);
+    const [row] = await base(BUSINESS_TABLE).create(
+      [
+        {
+          fields: {
+            "Business Name": businessName,
+            "Contact Name": contactName,
+            Email: email,
+            Phone: phone,
+            Status: "Pending Payment",
+            "Billing Address": shippingAddress,
+            "Shipping Address": shippingAddress,
+            "Geotag Address": geotagAddress,
+            "Signup Date": new Date().toISOString().slice(0, 10),
+            "Monthly Amount": computeSalesTax(BUSINESS_BASE_USD, geotagAddress)
+              .totalUsd,
+            "Payment Provider": "authnet",
+            Notes: notesLines.join("\n"),
+            ...(rep ? { "Sourced By": rep } : {}),
+          },
         },
+      ],
+      {
+        // typecast lets Airtable auto-create the "Sourced By"
+        // singleSelect option on first use (sydney, kate, inbound, …).
+        typecast: true,
       },
-    ]);
+    );
     const rowId = row.id;
 
     // Step 2: create an empty Auth.net Customer Profile. The card

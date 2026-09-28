@@ -7,10 +7,20 @@ export const metadata: Metadata = {
     "Turn your business into a social pool. Plus None is geo-gated to your venue, featured to a 1M+ audience, and reports on your bar monthly.",
 };
 
-export default function BusinessPage() {
+interface Props {
+  searchParams: Promise<{ rep?: string }>;
+}
+
+export default async function BusinessPage({ searchParams }: Props) {
+  const { rep } = await searchParams;
+  // Forward the ?rep= attribution through to the signup CTA so the
+  // downstream Airtable row gets tagged correctly.
+  const checkoutUrl = rep
+    ? `/business/signup?rep=${encodeURIComponent(rep)}`
+    : "/business/signup";
   return (
     <PartnerSignup
-      checkoutUrl="/business/signup"
+      checkoutUrl={checkoutUrl}
       primaryCtaLabel="Sign up →"
       pricingCtaLabel="Sign up →"
       heroCtaSubtext="$199/mo + 6% MD sales tax ($210.94/mo). Billed monthly. Cancel anytime."

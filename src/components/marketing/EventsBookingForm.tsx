@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { CheckoutIframe } from "./CheckoutIframe";
 
@@ -62,6 +63,8 @@ function businessDaysBetween(from: Date, to: Date): number {
  * page (same handoff pattern as BusinessSignupForm).
  */
 export default function EventsBookingForm({ initialTier }: Props) {
+  const searchParams = useSearchParams();
+  const rep = searchParams.get("rep") ?? undefined;
   const [form, setForm] = useState<FormState>(initialState);
   const [tier, setTier] = useState<Tier>(initialTier);
   const [agreed, setAgreed] = useState(false);
@@ -112,6 +115,7 @@ export default function EventsBookingForm({ initialTier }: Props) {
           shippingAddress: form.venueAddress,
           tier,
           agreedToTerms: true,
+          ...(rep ? { rep } : {}),
         }),
       });
       if (!res.ok) {

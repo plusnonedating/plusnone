@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import Header from "@/components/partners/Header";
 import EventsBookingForm from "@/components/marketing/EventsBookingForm";
 
@@ -44,7 +45,9 @@ export default async function EventsBookingPage({ searchParams }: PageProps) {
 
         <section className="px-5 py-12 md:px-8 md:py-16">
           <div className="mx-auto max-w-2xl">
-            <EventsBookingForm initialTier={initialTier as "single" | "multi"} />
+            <Suspense fallback={null}>
+              <EventsBookingForm initialTier={initialTier as "single" | "multi"} />
+            </Suspense>
           </div>
         </section>
 
