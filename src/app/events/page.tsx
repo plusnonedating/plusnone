@@ -23,11 +23,20 @@ export const metadata: Metadata = {
     "One-night Plus None activations for conventions, weddings, festivals, and brand events. Geo-gated to your event, featured to a 1M+ audience.",
 };
 
-export default function EventsPage() {
-  const heroCtaUrl = "/events/booking";
+interface Props {
+  searchParams: Promise<{ rep?: string }>;
+}
+
+export default async function EventsPage({ searchParams }: Props) {
+  const { rep } = await searchParams;
+  // Forward the ?rep= attribution through to the booking CTAs so the
+  // downstream Airtable row gets tagged correctly.
+  const repSuffix = rep ? `&rep=${encodeURIComponent(rep)}` : "";
+  const repOnly = rep ? `?rep=${encodeURIComponent(rep)}` : "";
+  const heroCtaUrl = `/events/booking${repOnly}`;
   const heroCtaLabel = "Book your event →";
-  const singleDayUrl = "/events/booking?tier=single";
-  const multiDayUrl = "/events/booking?tier=multi";
+  const singleDayUrl = `/events/booking?tier=single${repSuffix}`;
+  const multiDayUrl = `/events/booking?tier=multi${repSuffix}`;
   const pricingCtaLabel = "Book Now →";
 
   return (

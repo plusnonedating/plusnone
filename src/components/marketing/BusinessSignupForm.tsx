@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { CheckoutIframe } from "./CheckoutIframe";
 
@@ -40,6 +41,8 @@ const initialState: FormState = {
  * address of record on the Airtable row.
  */
 export default function BusinessSignupForm() {
+  const searchParams = useSearchParams();
+  const rep = searchParams.get("rep") ?? undefined;
   const [form, setForm] = useState<FormState>(initialState);
   const [agreed, setAgreed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -73,6 +76,7 @@ export default function BusinessSignupForm() {
           // shippingAddress is omitted, keeping the API contract stable.
           shippingAddress: form.geotagAddress,
           agreedToTerms: true,
+          ...(rep ? { rep } : {}),
         }),
       });
       if (!res.ok) {

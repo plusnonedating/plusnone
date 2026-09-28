@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import Header from "@/components/partners/Header";
 import BusinessSignupForm from "@/components/marketing/BusinessSignupForm";
 
@@ -36,7 +37,9 @@ export default function BusinessSignupPage() {
 
         <section className="px-5 py-12 md:px-8 md:py-16">
           <div className="mx-auto max-w-2xl">
-            <BusinessSignupForm />
+            <Suspense fallback={null}>
+              <BusinessSignupForm />
+            </Suspense>
           </div>
         </section>
 

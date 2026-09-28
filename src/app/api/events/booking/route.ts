@@ -23,6 +23,14 @@ interface BookingBody {
   logoUrl?: string;
   agreedToTerms?: boolean;
   tier?: Tier;
+  rep?: string;
+}
+
+const KNOWN_REPS = new Set(["sydney"]);
+function normalizeRep(raw?: string): string | undefined {
+  if (!raw) return undefined;
+  const cleaned = raw.trim().toLowerCase();
+  return KNOWN_REPS.has(cleaned) ? cleaned : undefined;
 }
 
 const TIER_CONFIG: Record<
@@ -177,6 +185,7 @@ export async function POST(req: Request) {
 
   try {
     const base = getSalesBase();
+    const rep = normalizeRep(body.rep);
     const [row] = await base(EVENTS_TABLE).create([
       {
         fields: {
@@ -193,6 +202,7 @@ export async function POST(req: Request) {
           "Shipping Address": shippingAddress,
           "Payment Provider": "authnet",
           Notes: notesLines.join("\n"),
+          ...(rep ? { "Sourced By": rep } : {}),
         },
       },
     ], {
