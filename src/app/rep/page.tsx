@@ -8,6 +8,7 @@ import TrackingLinks from "./sections/TrackingLinks";
 import AccountsTable from "./sections/AccountsTable";
 import PipelineTable from "./sections/PipelineTable";
 import ReportsSection from "./sections/ReportsSection";
+import SocialAssetsPreview from "./sections/SocialAssetsPreview";
 import SocialsPlaceholder from "./sections/SocialsPlaceholder";
 import PlaybookLinks from "./sections/PlaybookLinks";
 
@@ -59,6 +60,8 @@ export default async function RepDashboardPage() {
       />
 
       <ReportsSection clients={snap.business.active} />
+
+      <SocialAssetsPreview />
 
       <SocialsPlaceholder />
 
