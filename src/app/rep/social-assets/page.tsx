@@ -4,6 +4,7 @@ import { requireRep } from "@/lib/rep-auth";
 import { fetchSocialAssets, type SocialAsset } from "@/lib/rep-social-assets";
 import RepShell from "../RepShell";
 import CopyIceBreakerLink from "./CopyIceBreakerLink";
+import MarkPostedControls from "./MarkPostedControls";
 
 export const metadata: Metadata = {
   title: "Social assets · Plus None Rep",
@@ -207,6 +208,13 @@ function AssetCard({ asset }: { asset: SocialAsset }) {
           </a>
           {asset.iceBreaker && <CopyIceBreakerLink text={asset.iceBreaker} />}
         </div>
+        {(!asset.postedToIg || !asset.postedToTiktok) && (
+          <MarkPostedControls
+            id={asset.id}
+            postedToIg={asset.postedToIg}
+            postedToTiktok={asset.postedToTiktok}
+          />
+        )}
       </div>
     </div>
   );

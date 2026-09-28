@@ -16,9 +16,17 @@ export default function ReportsSection({
 }) {
   return (
     <section className="mb-10">
-      <p className="mb-1 text-[11px] font-medium uppercase tracking-[0.18em] text-[#2647e8]">
-        Client reports
-      </p>
+      <div className="mb-1 flex items-baseline justify-between gap-3">
+        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#2647e8]">
+          Client reports
+        </p>
+        <Link
+          href="/rep/reports/sample"
+          className="text-xs text-stone-600 underline underline-offset-2 hover:text-stone-900"
+        >
+          See sample report →
+        </Link>
+      </div>
       <h2 className="mb-4 font-serif text-2xl leading-tight tracking-tight text-stone-900 md:text-3xl">
         Generate a monthly report.
       </h2>
@@ -26,7 +34,9 @@ export default function ReportsSection({
         Once a Client is Active, their monthly report shows here.
         Aggregated data only — no individual end-user names, photos, or
         handles (see §9.8 of your contract). Click a Client to open a
-        printable report page you can save to PDF and email.
+        printable report page you can save to PDF and email. Use the{" "}
+        <strong>sample</strong> in pitches to show prospects what
+        they&apos;ll get.
       </p>
       {clients.length === 0 ? (
         <div className="rounded-lg border border-dashed border-stone-400 bg-white/40 p-6 text-center text-sm text-stone-600">
