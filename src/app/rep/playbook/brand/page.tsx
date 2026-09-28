@@ -138,6 +138,48 @@ export default async function BrandGuidelinesPage() {
           ]} />
         </div>
       </Section>
+
+      <Section title="Assets">
+        <p className="mb-4 max-w-2xl text-sm leading-relaxed text-stone-700">
+          Right-click to save, or click to open in a new tab. All assets
+          are Plus None LLC property (§8) — use them for Plus None
+          content only.
+        </p>
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          <Asset
+            href="/plus-none-logo.png"
+            name="Wordmark"
+            filename="plus-none-logo.png"
+            note="PNG · square"
+            imgSrc="/plus-none-logo.png"
+            imgBg="#f4ede4"
+          />
+          <Asset
+            href="/cat-cool.svg"
+            name="Cool cat"
+            filename="cat-cool.svg"
+            note="SVG · line"
+            imgSrc="/cat-cool.svg"
+            imgBg="#f4ede4"
+          />
+          <Asset
+            href="/cat-clueless.svg"
+            name="Clueless cat"
+            filename="cat-clueless.svg"
+            note="SVG · line"
+            imgSrc="/cat-clueless.svg"
+            imgBg="#f4ede4"
+          />
+          <Asset
+            href="/pattern-1.svg"
+            name="Pattern"
+            filename="pattern-1.svg"
+            note="SVG · tile"
+            imgSrc="/pattern-1.svg"
+            imgBg="#2647e8"
+          />
+        </div>
+      </Section>
     </RepShell>
   );
 }
@@ -200,5 +242,48 @@ function List({ title, items }: { title: string; items: string[] }) {
         ))}
       </ul>
     </div>
+  );
+}
+
+function Asset({
+  href,
+  name,
+  filename,
+  note,
+  imgSrc,
+  imgBg,
+}: {
+  href: string;
+  name: string;
+  filename: string;
+  note: string;
+  imgSrc: string;
+  imgBg: string;
+}) {
+  return (
+    <a
+      href={href}
+      download={filename}
+      className="group block overflow-hidden rounded-lg border border-stone-300 bg-white transition-colors hover:border-stone-500"
+    >
+      <div
+        className="flex h-32 items-center justify-center p-4"
+        style={{ backgroundColor: imgBg }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={imgSrc}
+          alt={name}
+          className="max-h-full max-w-full object-contain"
+        />
+      </div>
+      <div className="p-3">
+        <div className="text-sm font-medium text-stone-900">{name}</div>
+        <div className="text-[11px] text-stone-500">{note}</div>
+        <div className="mt-1 text-[11px] text-[#2647e8] group-hover:underline">
+          Download →
+        </div>
+      </div>
+    </a>
   );
 }
