@@ -68,10 +68,10 @@ export default async function RepDashboardPage() {
         <p>
           Plus None LLC · Questions to{" "}
           <Link
-            href="mailto:plusnone@fetewell.com"
+            href="mailto:kate@fetewell.com"
             className="underline"
           >
-            plusnone@fetewell.com
+            kate@fetewell.com
           </Link>
         </p>
       </footer>
