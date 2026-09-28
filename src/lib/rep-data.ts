@@ -55,11 +55,17 @@ export interface EventAccount {
 export interface PipelineItem {
   id: string;
   name: string;
+  type: string;
   category: string;
   priority: string;
   status: string;
   location: string;
   notes: string;
+  contactName: string;
+  contactEmail: string;
+  contactPhone: string;
+  pitchSent: boolean;
+  dateLastContact: string | null;
 }
 
 export interface WaitlistLead {
@@ -197,11 +203,17 @@ export async function fetchRepSnapshot(rep: string): Promise<RepSnapshot> {
     return {
       id: row.id,
       name: str(fields["Event Name"]),
+      type: str(fields["Type"]),
       category: str(fields["Category"]),
       priority: str(fields["Priority"]),
       status: str(fields["Status"]),
       location: str(fields["Location"]),
       notes: str(fields["Notes"]),
+      contactName: str(fields["Contact"]),
+      contactEmail: str(fields["Contact Email"]),
+      contactPhone: str(fields["Contact Phone"]),
+      pitchSent: Boolean(fields["Pitch Sent?"]),
+      dateLastContact: str(fields["Date Last Contact"]) || null,
     };
   });
 

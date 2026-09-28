@@ -29,9 +29,9 @@ export default async function BrandGuidelinesPage() {
       <p className="mb-10 max-w-2xl text-base leading-relaxed text-stone-700">
         Everything you post as @plusnonedating, everything you send as
         plusnone@fetewell.com, everything you print with your Client
-        onboarding — pass it through these first. Kate has editorial
-        authority (§7.6 of your contract); if something feels off-brand,
-        ask.
+        onboarding — pass it through these first. Plus None LLC holds
+        editorial authority (§7.6 of your contract); if something feels
+        off-brand, ask before publishing.
       </p>
 
       <Section title="Colors">
@@ -100,8 +100,8 @@ export default async function BrandGuidelinesPage() {
           <li>
             <strong>End-user photos, names, profiles are off-limits</strong>{" "}
             unless the individual has given documented opt-in consent for
-            that specific use. When in doubt, check with Kate. Silence is
-            not consent.
+            that specific use. When in doubt, get written approval from
+            Plus None LLC. Silence is not consent.
           </li>
           <li>
             <strong>Never contact an end-user directly.</strong> Not DMs,
@@ -114,8 +114,8 @@ export default async function BrandGuidelinesPage() {
           </li>
           <li>
             <strong>No forecasts, guarantees, or invented Client results</strong>{" "}
-            (§10.2). Only claims Kate has approved or that are supported by
-            our own data.
+            (§10.2). Only claims Plus None LLC has approved or that are
+            supported by our own data.
           </li>
         </ul>
       </Section>
@@ -123,7 +123,7 @@ export default async function BrandGuidelinesPage() {
       <Section title="Do / Don't">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <List title="Do" items={[
-            "Post daters ONLY after opt-in consent confirmed with Kate",
+            "Post daters ONLY after opt-in consent confirmed by Plus None LLC",
             "Lead pitches with the Client's problem, not with us",
             "Reply to comments within 24 hours",
             "Tag venues where daters submit from",
@@ -131,10 +131,10 @@ export default async function BrandGuidelinesPage() {
           ]} />
           <List title="Don't" items={[
             "Post any end-user photo without confirmed opt-in",
-            "Mention individual Client results without Kate's OK",
+            "Mention individual Client results without Plus None LLC's OK",
             "Use Plus None in your personal portfolio (§7.9)",
             "Publish anything to your own accounts (§7.8)",
-            "Discount or offer free periods (§1.5) — pricing is Kate's call",
+            "Discount or offer free periods (§1.5) — pricing is set by Plus None LLC",
           ]} />
         </div>
       </Section>
