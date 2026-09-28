@@ -33,9 +33,9 @@ export default function PlaybookLinks() {
           external
         />
         <Card
-          href="mailto:plusnone@fetewell.com"
+          href="mailto:kate@fetewell.com"
           title="Stuck? Ping Kate."
-          body="plusnone@fetewell.com. She'll get back within a business day."
+          body="kate@fetewell.com. She'll get back within a business day."
           external
         />
       </div>

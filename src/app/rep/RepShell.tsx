@@ -30,7 +30,7 @@ export default function RepShell({ children }: { children: ReactNode }) {
               Airtable →
             </Link>
             <Link
-              href="mailto:plusnone@fetewell.com"
+              href="mailto:kate@fetewell.com"
               className="hidden underline underline-offset-2 hover:text-stone-900 md:inline"
             >
               Kate ↗
