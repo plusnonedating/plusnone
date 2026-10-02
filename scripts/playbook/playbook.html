@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Plus None — The Playbook</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @page {
+        size: Letter;
+        margin: 0;
+      }
+      :root {
+        --cream: #f4ede4;
+        --cobalt: #2647e8;
+        --ink: #1c1c1c;
+        --muted: #78716c;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .page {
+        width: 8.5in;
+        height: 11in;
+        padding: 0.9in 0.95in 0.9in 0.95in;
+        page-break-after: always;
+        page-break-inside: avoid;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+      .page:last-child {
+        page-break-after: auto;
+      }
+      .running {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .brand {
+        font-family: "Instrument Serif", serif;
+        font-size: 42px;
+        line-height: 1;
+        margin: 0;
+      }
+      .brand .l {
+        color: var(--cobalt);
+      }
+      .brand .n {
+        color: var(--cobalt);
+      }
+      .eyebrow {
+        margin: 24px 0 10px 0;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--cobalt);
+      }
+      h1 {
+        font-family: "Instrument Serif", serif;
+        font-size: 56px;
+        line-height: 1.03;
+        letter-spacing: -0.01em;
+        margin: 0 0 18px 0;
+      }
+      h2 {
+        font-family: "Instrument Serif", serif;
+        font-size: 32px;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        margin: 0 0 14px 0;
+      }
+      p,
+      li {
+        font-size: 13.5px;
+        line-height: 1.55;
+        color: var(--ink);
+        margin: 0 0 10px 0;
+      }
+      ul {
+        margin: 0 0 10px 0;
+        padding-left: 20px;
+      }
+      strong {
+        font-weight: 700;
+      }
+      .pull {
+        margin-top: auto;
+        padding-left: 14px;
+        border-left: 3px solid var(--cobalt);
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        color: var(--cobalt);
+        font-size: 18px;
+        line-height: 1.4;
+      }
+      .quote {
+        margin: 12px 0;
+        padding: 14px 18px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 4px;
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-size: 18px;
+        line-height: 1.4;
+      }
+      .priority {
+        background: rgba(255, 255, 255, 0.55);
+        border-radius: 6px;
+        padding: 14px 18px;
+        margin: 10px 0 14px 0;
+      }
+      .priority .label {
+        margin: 0 0 6px 0;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--cobalt);
+      }
+      .priority ol {
+        margin: 0;
+        padding-left: 18px;
+      }
+      .priority li {
+        margin: 0 0 2px 0;
+      }
+      .subhead {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--cobalt);
+        margin: 14px 0 6px 0;
+      }
+      .toc-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        font-size: 14px;
+      }
+      .cover-logo {
+        margin-bottom: auto;
+      }
+      .cover-foot {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .cover-sub {
+        font-size: 15px;
+        color: var(--ink);
+        margin: 0 0 6px 0;
+        max-width: 5.6in;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 01 — COVER -->
+    <section class="page">
+      <div class="cover-logo">
+        <p class="brand">p<span class="l">l</span>us</p>
+        <p class="brand">no<span class="n">n</span>e</p>
+      </div>
+      <div>
+        <p class="eyebrow">The Playbook</p>
+        <h1>How to become the<br />place where people met.</h1>
+        <p class="cover-sub">
+          A practical guide to printing your brand kit, placing signage,
+          training staff, and getting the most from Plus None.
+        </p>
+      </div>
+      <div class="cover-foot" style="margin-top: 36px;">
+        <span>v2 · 2026</span>
+        <span>Plus None LLC</span>
+      </div>
+    </section>
+
+    <!-- 02 — CONTENTS -->
+    <section class="page">
+      <div class="running"><span>Contents</span><span>02</span></div>
+      <p class="eyebrow">Contents</p>
+      <h1>What's inside.</h1>
+      <div>
+        <div class="toc-row"><span>01 · Welcome</span><span>03</span></div>
+        <div class="toc-row"><span>02 · First 48 hours</span><span>04</span></div>
+        <div class="toc-row"><span>03 · Signage · Business</span><span>05</span></div>
+        <div class="toc-row"><span>04 · Signage · Events</span><span>06</span></div>
+        <div class="toc-row"><span>05 · Training your team</span><span>07</span></div>
+        <div class="toc-row"><span>06 · Reading your report</span><span>08</span></div>
+        <div class="toc-row"><span>07 · Posting it</span><span>09</span></div>
+        <div class="toc-row"><span>08 · Troubleshooting</span><span>10</span></div>
+      </div>
+      <div class="pull">
+        The best part of your business isn't on the menu. It's who
+        walks through the door.
+      </div>
+    </section>
+
+    <!-- 03 — WELCOME -->
+    <section class="page">
+      <div class="running"><span>01 · Welcome</span><span>03</span></div>
+      <p class="eyebrow">Welcome</p>
+      <h1>You signed up.<br />Here's what next.</h1>
+      <p>
+        Plus None turns your business or event into a dating pool — a
+        geo-gated, opt-in space where the singles in your room can find
+        each other. The software is the easy part. We've already
+        activated your geofence. Your digital brand kit is in your
+        inbox, ready to download, print, and place.
+      </p>
+      <p><strong>The rest is on you.</strong></p>
+      <p>This playbook covers the three things that decide whether Plus None works at your place:</p>
+      <p><strong>1.</strong> Where you put the signage. A QR code in the wrong spot is wallpaper. In the right spot, it's a doorway.</p>
+      <p><strong>2.</strong> How your team talks about it. Patrons will ask. The right 30-second answer turns a curious scan into a return visit.</p>
+      <p><strong>3.</strong> What you do with the report. Every month we send you a snapshot of who showed up, when, and how many came back. The businesses that read it benefit more than the ones that don't.</p>
+      <p>Save it. Share it with your team. Refer back to section 06 when your first report lands.</p>
+      <div class="pull">
+        Your business is already full of people hoping to meet
+        someone. This is how you help them.
+      </div>
+    </section>
+
+    <!-- 04 — FIRST 48 HOURS -->
+    <section class="page">
+      <div class="running"><span>02 · First 48 hours</span><span>04</span></div>
+      <p class="eyebrow">First 48 hours</p>
+      <h1>Two days of prep beats<br />two months of guessing.</h1>
+      <p>A quick checklist for the two days after you sign up.</p>
+      <p class="subhead">Day 0 — Right now</p>
+      <p>
+        Your geofence is live within 48 hours of payment. You'll get a
+        confirmation email when it activates, plus a link to download
+        your Plus None brand kit — QR signage in multiple formats,
+        table tents, mirror clings, and social templates. If you don't
+        see it within two business days, email plusnone@fetewell.com.
+      </p>
+      <p class="subhead">Day 1 — Brief your team</p>
+      <p>
+        Send section 05 of this playbook to everyone working the floor
+        — bartenders, servers, hosts, door staff. They'll get asked
+        "what's that?" within the first shift. They need the
+        30-second answer ready.
+      </p>
+      <p class="subhead">Day 2 — Sketch your placement plan</p>
+      <p>
+        Walk your space twice — once at peak hours, once at slow
+        hours. Mark the spots where a single person would be standing
+        still for at least five seconds. Section 03 or 04 tells you
+        which spots win and which lose.
+      </p>
+      <p class="subhead">Day 3 — Print and place</p>
+      <p>
+        Send the kit to any print shop — Staples, Office Depot, VistaPrint,
+        your local print and copy — or run it off a decent office printer
+        for day one. Place it according to your plan. Take a photo of
+        each placement and text it to your manager — that's your audit
+        trail when staff move things around.
+      </p>
+      <div class="pull">Two days of prep beats two months of guessing.</div>
+    </section>
+
+    <!-- 05 — SIGNAGE · BUSINESS -->
+    <section class="page">
+      <div class="running"><span>03 · Signage · Business</span><span>05</span></div>
+      <p class="eyebrow">Placement</p>
+      <h1>Bathroom mirror beats<br />every other location.</h1>
+      <p>
+        Captive audience. Good lighting. Five seconds of waiting. They
+        scan because there's nothing else to do.
+      </p>
+      <div class="priority">
+        <p class="label">Priority order</p>
+        <ol>
+          <li>Bathroom mirrors (both)</li>
+          <li>Bar top, by the register</li>
+          <li>Table tents on two-tops</li>
+          <li>Coat check / entry counter</li>
+          <li>Patio standing tables</li>
+        </ol>
+      </div>
+      <p><strong>Bathroom mirrors.</strong> Highest-converting spot. One cling in every bathroom.</p>
+      <p><strong>Bar top, by the register.</strong> Where solo patrons sit. Eye-level when waiting for a drink.</p>
+      <p><strong>Table tents on two-tops.</strong> Skip four-tops — those are date nights or friend groups.</p>
+      <p><strong>Coat check / entry counter.</strong> First and last impression.</p>
+      <p><strong>Patio standing tables.</strong> Singles wander out alone. Catch them.</p>
+      <p class="subhead">Don't</p>
+      <ul>
+        <li>Hide it behind a bottle display or menu board.</li>
+        <li>Put it in the kitchen pass or back-of-house.</li>
+        <li>Tape it to a window where backlight kills the QR.</li>
+        <li>Move it after the first week. Let it become part of the room.</li>
+      </ul>
+      <div class="pull">
+        A QR code in the wrong spot is wallpaper. In the right spot,
+        it's a doorway.
+      </div>
+    </section>
+
+    <!-- 06 — SIGNAGE · EVENTS -->
+    <section class="page">
+      <div class="running"><span>04 · Signage · Events</span><span>06</span></div>
+      <p class="eyebrow">Placement</p>
+      <h1>Restrooms first.<br />Then registration.</h1>
+      <p>
+        For festivals, conferences, conventions, and faires running
+        Plus None as a one-time activation.
+      </p>
+      <div class="priority">
+        <p class="label">Priority order</p>
+        <ol>
+          <li>Restroom mirrors and stall doors</li>
+          <li>Registration and badge pickup</li>
+          <li>Food and drink areas</li>
+          <li>Lounge and chill zones</li>
+          <li>Smoking and vape areas</li>
+        </ol>
+      </div>
+      <p><strong>Restroom mirrors and stall doors.</strong> Same logic as bars. Number-one performer at every event.</p>
+      <p><strong>Registration and badge pickup.</strong> Day-one moment. Attendees alone, waiting in line.</p>
+      <p><strong>Food and drink areas.</strong> Coffee carts, bars, snack stations. Singles congregate.</p>
+      <p><strong>Lounge and chill zones.</strong> Couches, charging stations, quiet rooms. Singles seek these out.</p>
+      <p class="subhead">Don't</p>
+      <ul>
+        <li>Put signage in vendor-only or staff-only areas.</li>
+        <li>Compete with stage signage, sponsor signage, or wayfinding.</li>
+        <li>Put it on a column where it gets covered the next day.</li>
+      </ul>
+      <div class="pull">The hallway is the program. Treat it like one.</div>
+    </section>
+
+    <!-- 07 — TRAINING -->
+    <section class="page">
+      <div class="running"><span>05 · Training your team</span><span>07</span></div>
+      <p class="eyebrow">The 30-second script</p>
+      <h1>If your team can't answer<br />in 30 seconds, the scan<br />doesn't happen.</h1>
+      <p>When a patron asks "what's this for?", here's what to say:</p>
+      <div class="quote">
+        "It's Plus None — scan and see who else here is single right
+        now. Just for our venue, anonymous outside it. People meet
+        through it. Try it."
+      </div>
+      <p class="subhead">What not to say</p>
+      <ul>
+        <li>Don't call it a "dating app." It's geo-gated, opt-in, anonymous outside the venue.</li>
+        <li>Don't pressure. If they ask once and don't scan, drop it.</li>
+        <li>Don't gatekeep. Anyone can scan.</li>
+      </ul>
+      <p class="subhead">Common questions</p>
+      <p><strong>"Who can see my profile?"</strong><br />Only other people physically inside this venue who also opted in. Nothing persists outside.</p>
+      <p><strong>"What does it cost?"</strong><br />Nothing. Free to opt in.</p>
+      <p><strong>"How do I get my info off?"</strong><br />Tap "remove me" in the feed. Or wait — your session auto-ends when the timer runs out.</p>
+    </section>
+
+    <!-- 08 — READING YOUR REPORT -->
+    <section class="page">
+      <div class="running"><span>06 · Reading your report</span><span>08</span></div>
+      <p class="eyebrow">Monthly report</p>
+      <h1>Five numbers that<br />actually matter.</h1>
+      <p>First of the month. By email. Subject: "Your Plus None report — [Month] [Year]."</p>
+      <p><strong>Scans.</strong> How many people opted into your dating pool last month. Anything is a win in month one.</p>
+      <p><strong>Return rate (30-day).</strong> How many came back and scanned again within 30 days. Watch it month over month — when it climbs, you're building regulars.</p>
+      <p><strong>Peak night.</strong> The night with the most scans. Staff smarter — your strongest server on that night.</p>
+      <p><strong>Demographic mix.</strong> Age and gender breakdown. Often surprises owners.</p>
+      <p><strong>Social pull.</strong> Submissions that converted to a follow of @plusnonedating and tagged your venue.</p>
+      <p class="subhead">What to do with it</p>
+      <ul>
+        <li>Staff your peak night with your strongest team.</li>
+        <li>Run a promotion on your slowest night — target the demographic you're already pulling.</li>
+        <li>Quote the numbers to your landlord or investors. "Our scans grew 40% MoM" closes a refinance.</li>
+      </ul>
+      <div class="pull">
+        The businesses that read it benefit more than the ones that
+        don't.
+      </div>
+    </section>
+
+    <!-- 09 — POSTING -->
+    <section class="page">
+      <div class="running"><span>07 · Posting it</span><span>09</span></div>
+      <p class="eyebrow">Social</p>
+      <h1>Once a month, post a<br />number. Tag us.</h1>
+      <p>
+        We see it. We reshare it. Our 1M+ following sees your venue.
+        Your patrons see their venue showing up.
+      </p>
+      <p class="subhead">What to post</p>
+      <p>Pick one number from your monthly report and turn it into a story:</p>
+      <ul>
+        <li>"847 singles scanned at our bar last month. Find your person here."</li>
+        <li>"Tuesday is our Plus None peak. Tuesday is now $7 espresso martinis."</li>
+        <li>"31% of last month's scanners came back. We're a place people meet."</li>
+      </ul>
+      <p class="subhead">Tag us</p>
+      <p>
+        @plusnonedating and @TheVenueCEO on Instagram and TikTok. We
+        reshare the good ones. Use #plusnone for extra surface area.
+        Post the day after your report drops, while the numbers are
+        fresh.
+      </p>
+      <div class="pull">Your numbers are your marketing. Use them.</div>
+    </section>
+
+    <!-- 10 — TROUBLESHOOTING -->
+    <section class="page">
+      <div class="running"><span>08 · Troubleshooting</span><span>10</span></div>
+      <p class="eyebrow">When things go wrong</p>
+      <h1>The handful of things<br />that go wrong.</h1>
+      <p>Most of it is one email away.</p>
+      <p><strong>Lost your brand kit email.</strong> Email plusnone@fetewell.com with the business name on the account — we'll resend the download link.</p>
+      <p><strong>The QR code isn't scanning.</strong> Three usual culprits: direct sunlight or reflective surface (move it), grease or sticker covering the code (wipe or replace), bad camera moment (refresh the camera app).</p>
+      <p><strong>You need the signage reprinted.</strong> Everything in the brand kit is in print-ready vector and high-res PNG. Send it to any print shop or run it off your office printer. Email us if you want format advice or a vendor recommendation.</p>
+      <p><strong>A patron complains about privacy.</strong> Nothing persists outside their session. The venue can't see their profile. They can remove themselves anytime. For deletion requests, email plusnone@fetewell.com.</p>
+      <p><strong>You want to cancel.</strong> Email plusnone@fetewell.com from the account's billing email. Geofence deactivates at the end of your billing cycle; no further charges.</p>
+      <p><strong>You want to add a second location.</strong> Email plusnone@fetewell.com. Multi-location pricing exists.</p>
+      <div style="margin-top: auto;">
+        <p style="font-size: 11px; color: var(--muted); margin: 0 0 4px 0;">
+          Plus None LLC · plusnone@fetewell.com · plusnone.fetewell.com
+        </p>
+        <p style="font-size: 11px; font-style: italic; color: var(--muted); margin: 0;">
+          If something here is wrong, outdated, or unclear — tell us.
+          We update it every quarter.
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
